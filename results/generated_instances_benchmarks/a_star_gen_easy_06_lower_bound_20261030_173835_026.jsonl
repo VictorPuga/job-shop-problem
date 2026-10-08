@@ -1,0 +1,8 @@
+{"ts": "2026-10-30T17:38:35.048", "level": "INFO", "event": "start", "instance": "gen_easy_06", "algorithm": "a_star", "n_jobs": 3, "n_machines": 3, "heuristic": "lower_bound", "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "a_star", "-i", "gen_easy_06", "--heuristic", "lower_bound"]}
+{"ts": "2026-10-30T17:38:35.049", "level": "INFO", "event": "progress", "visited": 10, "f": 23, "depth": 3, "frontier": 16, "pushed": 28}
+{"ts": "2026-10-30T17:38:35.050", "level": "INFO", "event": "progress", "visited": 20, "f": 24, "depth": 4, "frontier": 24, "pushed": 52}
+{"ts": "2026-10-30T17:38:35.050", "level": "INFO", "event": "progress", "visited": 30, "f": 27, "depth": 4, "frontier": 32, "pushed": 77}
+{"ts": "2026-10-30T17:38:35.050", "level": "INFO", "event": "progress", "visited": 40, "f": 28, "depth": 4, "frontier": 44, "pushed": 101}
+{"ts": "2026-10-30T17:38:35.050", "level": "INFO", "event": "progress", "visited": 50, "f": 28, "depth": 3, "frontier": 55, "pushed": 124}
+{"ts": "2026-10-30T17:38:35.050", "level": "INFO", "event": "solution", "makespan": 28, "visited": 59, "frontier": 57, "sequence": [0, 2, 2, 2, 1, 1, 1, 0, 0]}
+{"ts": "2026-10-30T17:38:35.050", "level": "INFO", "event": "done", "instance": "gen_easy_06", "algorithm": "a_star", "heuristic": "lower_bound", "best": 28, "visited": 59, "elapsed": 0.001, "time_to_best": 0.001, "max_frontier": 65, "optimal": null, "reached_optimal": null}

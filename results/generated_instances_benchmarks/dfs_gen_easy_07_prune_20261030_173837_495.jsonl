@@ -1,0 +1,17 @@
+{"ts": "2026-10-30T17:38:37.523", "level": "INFO", "event": "start", "instance": "gen_easy_07", "algorithm": "dfs", "n_jobs": 4, "n_machines": 4, "prune": true, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "dfs", "-i", "gen_easy_07"]}
+{"ts": "2026-10-30T17:38:37.524", "level": "INFO", "event": "new_best", "makespan": 49, "visited": 17, "sequence": [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:37.526", "level": "INFO", "event": "new_best", "makespan": 47, "visited": 497, "sequence": [0, 0, 0, 0, 1, 2, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:37.527", "level": "INFO", "event": "new_best", "makespan": 45, "visited": 665, "sequence": [0, 0, 0, 0, 1, 2, 3, 1, 2, 3, 1, 1, 2, 3, 3, 2]}
+{"ts": "2026-10-30T17:38:37.561", "level": "INFO", "event": "new_best", "makespan": 43, "visited": 10673, "sequence": [0, 0, 0, 1, 0, 1, 1, 1, 2, 3, 2, 3, 2, 3, 3, 2]}
+{"ts": "2026-10-30T17:38:37.563", "level": "INFO", "event": "new_best", "makespan": 39, "visited": 11030, "sequence": [0, 0, 0, 1, 1, 1, 1, 2, 0, 2, 2, 2, 3, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:37.575", "level": "INFO", "event": "new_best", "makespan": 38, "visited": 14494, "sequence": [0, 0, 0, 1, 1, 2, 0, 2, 2, 1, 2, 1, 3, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:37.601", "level": "INFO", "event": "new_best", "makespan": 37, "visited": 21556, "sequence": [0, 0, 0, 1, 2, 0, 2, 2, 2, 3, 1, 3, 1, 3, 3, 1]}
+{"ts": "2026-10-30T17:38:37.640", "level": "INFO", "event": "new_best", "makespan": 36, "visited": 32226, "sequence": [0, 0, 0, 2, 0, 1, 2, 2, 2, 3, 1, 3, 1, 3, 3, 1]}
+{"ts": "2026-10-30T17:38:37.815", "level": "INFO", "event": "new_best", "makespan": 35, "visited": 81624, "sequence": [0, 0, 1, 1, 1, 0, 1, 2, 0, 2, 2, 2, 3, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:37.822", "level": "INFO", "event": "new_best", "makespan": 34, "visited": 83493, "sequence": [0, 0, 1, 1, 1, 1, 2, 2, 2, 0, 0, 2, 3, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:37.882", "level": "INFO", "event": "progress", "visited": 100000, "best": 34, "depth": 12}
+{"ts": "2026-10-30T17:38:38.256", "level": "INFO", "event": "progress", "visited": 200000, "best": 34, "depth": 12}
+{"ts": "2026-10-30T17:38:38.636", "level": "INFO", "event": "progress", "visited": 300000, "best": 34, "depth": 12}
+{"ts": "2026-10-30T17:38:39.089", "level": "INFO", "event": "progress", "visited": 400000, "best": 34, "depth": 11}
+{"ts": "2026-10-30T17:38:39.611", "level": "INFO", "event": "progress", "visited": 500000, "best": 34, "depth": 12}
+{"ts": "2026-10-30T17:38:39.995", "level": "INFO", "event": "done", "instance": "gen_easy_07", "algorithm": "dfs", "prune": true, "best": 34, "visited": 595934, "elapsed": 2.472, "time_to_best": 0.299, "optimal": null, "reached_optimal": null}

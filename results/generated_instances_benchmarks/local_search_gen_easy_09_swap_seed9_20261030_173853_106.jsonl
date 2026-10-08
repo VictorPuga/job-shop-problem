@@ -1,0 +1,16 @@
+{"ts": "2026-10-30T17:38:53.129", "level": "INFO", "event": "start", "instance": "gen_easy_09", "algorithm": "local_search", "n_jobs": 4, "n_machines": 4, "seed": 9, "neighborhood": "swap", "max_iterations": 500, "restarts": 10, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "local_search", "-i", "gen_easy_09", "--neighborhood", "swap", "--seed", "9"]}
+{"ts": "2026-10-30T17:38:53.129", "level": "INFO", "event": "new_best", "makespan": 61, "restart": 0, "iteration": 0, "visited": 1, "sequence": [0, 0, 1, 2, 2, 3, 3, 1, 3, 0, 2, 0, 1, 1, 2, 3]}
+{"ts": "2026-10-30T17:38:53.129", "level": "INFO", "event": "new_best", "makespan": 52, "restart": 0, "iteration": 1, "visited": 2, "sequence": [0, 0, 1, 2, 2, 0, 3, 1, 3, 0, 2, 3, 1, 1, 2, 3]}
+{"ts": "2026-10-30T17:38:53.129", "level": "INFO", "event": "new_best", "makespan": 42, "restart": 0, "iteration": 2, "visited": 6, "sequence": [0, 3, 1, 2, 2, 0, 3, 1, 3, 0, 2, 3, 1, 1, 2, 0]}
+{"ts": "2026-10-30T17:38:53.129", "level": "INFO", "event": "new_best", "makespan": 40, "restart": 0, "iteration": 3, "visited": 9, "sequence": [0, 3, 1, 2, 2, 0, 3, 1, 3, 0, 2, 3, 0, 1, 2, 1]}
+{"ts": "2026-10-30T17:38:53.130", "level": "INFO", "event": "restart_done", "restart": 0, "makespan": 40, "iterations": 4, "best": 40, "visited": 34}
+{"ts": "2026-10-30T17:38:53.131", "level": "INFO", "event": "restart_done", "restart": 1, "makespan": 42, "iterations": 6, "best": 40, "visited": 123}
+{"ts": "2026-10-30T17:38:53.133", "level": "INFO", "event": "restart_done", "restart": 2, "makespan": 42, "iterations": 4, "best": 40, "visited": 181}
+{"ts": "2026-10-30T17:38:53.133", "level": "INFO", "event": "restart_done", "restart": 3, "makespan": 40, "iterations": 4, "best": 40, "visited": 220}
+{"ts": "2026-10-30T17:38:53.134", "level": "INFO", "event": "restart_done", "restart": 4, "makespan": 50, "iterations": 1, "best": 40, "visited": 246}
+{"ts": "2026-10-30T17:38:53.135", "level": "INFO", "event": "restart_done", "restart": 5, "makespan": 41, "iterations": 3, "best": 40, "visited": 285}
+{"ts": "2026-10-30T17:38:53.135", "level": "INFO", "event": "restart_done", "restart": 6, "makespan": 40, "iterations": 3, "best": 40, "visited": 328}
+{"ts": "2026-10-30T17:38:53.136", "level": "INFO", "event": "restart_done", "restart": 7, "makespan": 41, "iterations": 2, "best": 40, "visited": 369}
+{"ts": "2026-10-30T17:38:53.137", "level": "INFO", "event": "restart_done", "restart": 8, "makespan": 43, "iterations": 5, "best": 40, "visited": 404}
+{"ts": "2026-10-30T17:38:53.138", "level": "INFO", "event": "restart_done", "restart": 9, "makespan": 44, "iterations": 2, "best": 40, "visited": 432}
+{"ts": "2026-10-30T17:38:53.138", "level": "INFO", "event": "done", "instance": "gen_easy_09", "algorithm": "local_search", "seed": 9, "neighborhood": "swap", "best": 40, "visited": 432, "elapsed": 0.009, "time_to_best": 0.0, "optimal": null, "reached_optimal": null}

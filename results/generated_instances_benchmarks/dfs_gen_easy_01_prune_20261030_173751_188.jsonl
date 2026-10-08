@@ -1,0 +1,43 @@
+{"ts": "2026-10-30T17:37:51.214", "level": "INFO", "event": "start", "instance": "gen_easy_01", "algorithm": "dfs", "n_jobs": 4, "n_machines": 4, "prune": true, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "dfs", "-i", "gen_easy_01"]}
+{"ts": "2026-10-30T17:37:51.215", "level": "INFO", "event": "new_best", "makespan": 90, "visited": 17, "sequence": [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3]}
+{"ts": "2026-10-30T17:37:51.215", "level": "INFO", "event": "new_best", "makespan": 87, "visited": 24, "sequence": [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 2, 2, 3, 3, 3]}
+{"ts": "2026-10-30T17:37:51.215", "level": "INFO", "event": "new_best", "makespan": 85, "visited": 30, "sequence": [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 2, 3, 3, 2, 3]}
+{"ts": "2026-10-30T17:37:51.215", "level": "INFO", "event": "new_best", "makespan": 84, "visited": 60, "sequence": [0, 0, 0, 0, 1, 1, 1, 1, 2, 3, 3, 2, 2, 3, 2, 3]}
+{"ts": "2026-10-30T17:37:51.215", "level": "INFO", "event": "new_best", "makespan": 74, "visited": 176, "sequence": [0, 0, 0, 0, 1, 1, 1, 2, 3, 1, 3, 2, 2, 3, 2, 3]}
+{"ts": "2026-10-30T17:37:51.218", "level": "INFO", "event": "new_best", "makespan": 70, "visited": 918, "sequence": [0, 0, 0, 0, 1, 2, 2, 1, 1, 2, 2, 3, 1, 3, 3, 3]}
+{"ts": "2026-10-30T17:37:51.219", "level": "INFO", "event": "new_best", "makespan": 64, "visited": 1122, "sequence": [0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 3, 1, 1, 1, 3, 3]}
+{"ts": "2026-10-30T17:37:51.219", "level": "INFO", "event": "new_best", "makespan": 63, "visited": 1168, "sequence": [0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 1, 1, 1, 3, 2, 3]}
+{"ts": "2026-10-30T17:37:51.219", "level": "INFO", "event": "new_best", "makespan": 62, "visited": 1181, "sequence": [0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:51.219", "level": "INFO", "event": "new_best", "makespan": 61, "visited": 1256, "sequence": [0, 0, 0, 0, 1, 2, 2, 3, 2, 3, 1, 3, 2, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:51.248", "level": "INFO", "event": "new_best", "makespan": 55, "visited": 9358, "sequence": [0, 0, 0, 1, 0, 1, 1, 2, 3, 1, 3, 2, 2, 3, 2, 3]}
+{"ts": "2026-10-30T17:37:51.253", "level": "INFO", "event": "new_best", "makespan": 51, "visited": 10753, "sequence": [0, 0, 0, 1, 0, 2, 3, 3, 2, 1, 2, 3, 2, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:51.412", "level": "INFO", "event": "new_best", "makespan": 49, "visited": 55259, "sequence": [0, 0, 1, 2, 2, 0, 0, 2, 3, 3, 1, 1, 1, 3, 2, 3]}
+{"ts": "2026-10-30T17:37:51.418", "level": "INFO", "event": "new_best", "makespan": 48, "visited": 56819, "sequence": [0, 0, 1, 2, 2, 0, 2, 2, 3, 3, 1, 3, 0, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:51.424", "level": "INFO", "event": "new_best", "makespan": 47, "visited": 58648, "sequence": [0, 0, 1, 2, 2, 1, 1, 2, 2, 3, 1, 3, 0, 3, 0, 3]}
+{"ts": "2026-10-30T17:37:51.567", "level": "INFO", "event": "progress", "visited": 100000, "best": 47, "depth": 12}
+{"ts": "2026-10-30T17:37:51.920", "level": "INFO", "event": "new_best", "makespan": 43, "visited": 198928, "sequence": [0, 1, 2, 2, 3, 0, 2, 2, 3, 0, 1, 3, 0, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:51.924", "level": "INFO", "event": "progress", "visited": 200000, "best": 43, "depth": 12}
+{"ts": "2026-10-30T17:37:51.938", "level": "INFO", "event": "new_best", "makespan": 42, "visited": 204045, "sequence": [0, 1, 2, 3, 0, 3, 2, 0, 1, 2, 3, 2, 0, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:52.268", "level": "INFO", "event": "progress", "visited": 300000, "best": 42, "depth": 12}
+{"ts": "2026-10-30T17:37:52.618", "level": "INFO", "event": "progress", "visited": 400000, "best": 42, "depth": 13}
+{"ts": "2026-10-30T17:37:52.958", "level": "INFO", "event": "progress", "visited": 500000, "best": 42, "depth": 13}
+{"ts": "2026-10-30T17:37:53.298", "level": "INFO", "event": "progress", "visited": 600000, "best": 42, "depth": 12}
+{"ts": "2026-10-30T17:37:53.641", "level": "INFO", "event": "progress", "visited": 700000, "best": 42, "depth": 11}
+{"ts": "2026-10-30T17:37:53.913", "level": "INFO", "event": "new_best", "makespan": 39, "visited": 779497, "sequence": [1, 2, 0, 2, 3, 0, 2, 3, 0, 1, 3, 2, 0, 3, 1, 1]}
+{"ts": "2026-10-30T17:37:53.984", "level": "INFO", "event": "progress", "visited": 800000, "best": 39, "depth": 8}
+{"ts": "2026-10-30T17:37:54.329", "level": "INFO", "event": "progress", "visited": 900000, "best": 39, "depth": 11}
+{"ts": "2026-10-30T17:37:54.669", "level": "INFO", "event": "progress", "visited": 1000000, "best": 39, "depth": 14}
+{"ts": "2026-10-30T17:37:55.009", "level": "INFO", "event": "progress", "visited": 1100000, "best": 39, "depth": 12}
+{"ts": "2026-10-30T17:37:55.358", "level": "INFO", "event": "progress", "visited": 1200000, "best": 39, "depth": 10}
+{"ts": "2026-10-30T17:37:55.710", "level": "INFO", "event": "progress", "visited": 1300000, "best": 39, "depth": 12}
+{"ts": "2026-10-30T17:37:56.048", "level": "INFO", "event": "progress", "visited": 1400000, "best": 39, "depth": 11}
+{"ts": "2026-10-30T17:37:56.390", "level": "INFO", "event": "progress", "visited": 1500000, "best": 39, "depth": 10}
+{"ts": "2026-10-30T17:37:56.729", "level": "INFO", "event": "progress", "visited": 1600000, "best": 39, "depth": 14}
+{"ts": "2026-10-30T17:37:57.064", "level": "INFO", "event": "progress", "visited": 1700000, "best": 39, "depth": 15}
+{"ts": "2026-10-30T17:37:57.424", "level": "INFO", "event": "progress", "visited": 1800000, "best": 39, "depth": 12}
+{"ts": "2026-10-30T17:37:57.811", "level": "INFO", "event": "progress", "visited": 1900000, "best": 39, "depth": 11}
+{"ts": "2026-10-30T17:37:58.159", "level": "INFO", "event": "progress", "visited": 2000000, "best": 39, "depth": 11}
+{"ts": "2026-10-30T17:37:58.515", "level": "INFO", "event": "progress", "visited": 2100000, "best": 39, "depth": 12}
+{"ts": "2026-10-30T17:37:58.860", "level": "INFO", "event": "progress", "visited": 2200000, "best": 39, "depth": 13}
+{"ts": "2026-10-30T17:37:59.195", "level": "INFO", "event": "progress", "visited": 2300000, "best": 39, "depth": 12}
+{"ts": "2026-10-30T17:37:59.245", "level": "INFO", "event": "done", "instance": "gen_easy_01", "algorithm": "dfs", "prune": true, "best": 39, "visited": 2314211, "elapsed": 8.03, "time_to_best": 2.699, "optimal": null, "reached_optimal": null}

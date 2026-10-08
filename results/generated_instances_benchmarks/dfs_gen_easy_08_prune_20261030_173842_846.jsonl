@@ -1,0 +1,5 @@
+{"ts": "2026-10-30T17:38:42.868", "level": "INFO", "event": "start", "instance": "gen_easy_08", "algorithm": "dfs", "n_jobs": 3, "n_machines": 3, "prune": true, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "dfs", "-i", "gen_easy_08"]}
+{"ts": "2026-10-30T17:38:42.868", "level": "INFO", "event": "new_best", "makespan": 59, "visited": 10, "sequence": [0, 0, 0, 1, 1, 1, 2, 2, 2]}
+{"ts": "2026-10-30T17:38:42.868", "level": "INFO", "event": "new_best", "makespan": 39, "visited": 14, "sequence": [0, 0, 0, 1, 1, 2, 1, 2, 2]}
+{"ts": "2026-10-30T17:38:42.869", "level": "INFO", "event": "new_best", "makespan": 30, "visited": 31, "sequence": [0, 0, 1, 0, 1, 2, 1, 2, 2]}
+{"ts": "2026-10-30T17:38:42.871", "level": "INFO", "event": "done", "instance": "gen_easy_08", "algorithm": "dfs", "prune": true, "best": 30, "visited": 751, "elapsed": 0.003, "time_to_best": 0.0, "optimal": null, "reached_optimal": null}

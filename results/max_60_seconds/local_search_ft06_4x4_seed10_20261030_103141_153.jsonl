@@ -1,0 +1,18 @@
+{"ts": "2026-10-30T10:31:41.176", "level": "INFO", "event": "start", "instance": "ft06_4x4", "algorithm": "local_search", "n_jobs": 4, "n_machines": 4, "seed": 10, "max_iterations": 500, "restarts": 10, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "a66de4356e37278c72617d7600f6b89aef1b064d", "argv": ["main.py", "-a", "local_search", "-i", "ft06_4x4", "--seed", "10"]}
+{"ts": "2026-10-30T10:31:41.177", "level": "INFO", "event": "new_best", "makespan": 48, "restart": 0, "iteration": 0, "visited": 1, "sequence": [0, 2, 3, 2, 2, 3, 1, 1, 3, 3, 0, 0, 2, 1, 1, 0]}
+{"ts": "2026-10-30T10:31:41.177", "level": "INFO", "event": "new_best", "makespan": 44, "restart": 0, "iteration": 1, "visited": 4, "sequence": [0, 2, 3, 2, 2, 3, 1, 1, 3, 3, 0, 0, 2, 0, 1, 1]}
+{"ts": "2026-10-30T10:31:41.177", "level": "INFO", "event": "new_best", "makespan": 39, "restart": 0, "iteration": 2, "visited": 5, "sequence": [0, 2, 3, 2, 3, 3, 1, 1, 3, 2, 0, 0, 2, 0, 1, 1]}
+{"ts": "2026-10-30T10:31:41.177", "level": "INFO", "event": "new_best", "makespan": 36, "restart": 0, "iteration": 3, "visited": 6, "sequence": [0, 2, 3, 2, 3, 3, 0, 1, 3, 2, 0, 1, 2, 0, 1, 1]}
+{"ts": "2026-10-30T10:31:41.177", "level": "INFO", "event": "restart_done", "restart": 0, "makespan": 36, "iterations": 4, "best": 36, "visited": 31}
+{"ts": "2026-10-30T10:31:41.178", "level": "INFO", "event": "new_best", "makespan": 34, "restart": 1, "iteration": 4, "visited": 66, "sequence": [0, 0, 3, 2, 3, 3, 2, 1, 0, 2, 1, 3, 2, 1, 0, 1]}
+{"ts": "2026-10-30T10:31:41.178", "level": "INFO", "event": "restart_done", "restart": 1, "makespan": 34, "iterations": 5, "best": 34, "visited": 91}
+{"ts": "2026-10-30T10:31:41.179", "level": "INFO", "event": "new_best", "makespan": 33, "restart": 2, "iteration": 2, "visited": 104, "sequence": [0, 0, 2, 3, 2, 1, 1, 3, 2, 0, 3, 2, 0, 1, 3, 1]}
+{"ts": "2026-10-30T10:31:41.179", "level": "INFO", "event": "restart_done", "restart": 2, "makespan": 33, "iterations": 3, "best": 33, "visited": 129}
+{"ts": "2026-10-30T10:31:41.180", "level": "INFO", "event": "restart_done", "restart": 3, "makespan": 33, "iterations": 3, "best": 33, "visited": 177}
+{"ts": "2026-10-30T10:31:41.181", "level": "INFO", "event": "restart_done", "restart": 4, "makespan": 36, "iterations": 6, "best": 33, "visited": 235}
+{"ts": "2026-10-30T10:31:41.182", "level": "INFO", "event": "restart_done", "restart": 5, "makespan": 44, "iterations": 2, "best": 33, "visited": 264}
+{"ts": "2026-10-30T10:31:41.183", "level": "INFO", "event": "restart_done", "restart": 6, "makespan": 38, "iterations": 2, "best": 33, "visited": 306}
+{"ts": "2026-10-30T10:31:41.184", "level": "INFO", "event": "restart_done", "restart": 7, "makespan": 34, "iterations": 4, "best": 33, "visited": 356}
+{"ts": "2026-10-30T10:31:41.184", "level": "INFO", "event": "restart_done", "restart": 8, "makespan": 38, "iterations": 1, "best": 33, "visited": 382}
+{"ts": "2026-10-30T10:31:41.185", "level": "INFO", "event": "restart_done", "restart": 9, "makespan": 38, "iterations": 6, "best": 33, "visited": 438}
+{"ts": "2026-10-30T10:31:41.185", "level": "INFO", "event": "done", "instance": "ft06_4x4", "algorithm": "local_search", "seed": 10, "best": 33, "visited": 438, "elapsed": 0.009, "time_to_best": 0.002, "optimal": 33, "reached_optimal": true}

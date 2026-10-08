@@ -1,0 +1,169 @@
+{"ts": "2026-10-30T17:52:03.475", "level": "INFO", "event": "start", "instance": "gen_medium_04", "algorithm": "dfs", "n_jobs": 6, "n_machines": 6, "prune": true, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "dfs", "-i", "gen_medium_04"]}
+{"ts": "2026-10-30T17:52:03.475", "level": "INFO", "event": "new_best", "makespan": 666, "visited": 37, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.475", "level": "INFO", "event": "new_best", "makespan": 629, "visited": 46, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.476", "level": "INFO", "event": "new_best", "makespan": 623, "visited": 298, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 3, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.477", "level": "INFO", "event": "new_best", "makespan": 606, "visited": 316, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 5, 3, 4, 4, 4, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.477", "level": "INFO", "event": "new_best", "makespan": 599, "visited": 337, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 5, 3, 4, 5, 5, 4, 4, 4, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.477", "level": "INFO", "event": "new_best", "makespan": 598, "visited": 345, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 5, 3, 4, 5, 5, 4, 5, 5, 5, 4, 4]}
+{"ts": "2026-10-30T17:52:03.477", "level": "INFO", "event": "new_best", "makespan": 593, "visited": 385, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 5, 4, 3, 5, 5, 4, 4, 4, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.477", "level": "INFO", "event": "new_best", "makespan": 592, "visited": 393, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 5, 4, 3, 5, 5, 4, 5, 5, 5, 4, 4]}
+{"ts": "2026-10-30T17:52:03.479", "level": "INFO", "event": "new_best", "makespan": 585, "visited": 780, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 3, 5, 4, 3, 5, 5, 4, 4, 4, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.855", "level": "INFO", "event": "progress", "visited": 100000, "best": 585, "depth": 32}
+{"ts": "2026-10-30T17:52:03.954", "level": "INFO", "event": "new_best", "makespan": 584, "visited": 126130, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 4, 3, 5, 4, 3, 4, 4, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:03.954", "level": "INFO", "event": "new_best", "makespan": 577, "visited": 126151, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 4, 3, 5, 4, 3, 5, 5, 4, 4, 4, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:04.238", "level": "INFO", "event": "progress", "visited": 200000, "best": 577, "depth": 26}
+{"ts": "2026-10-30T17:52:04.621", "level": "INFO", "event": "progress", "visited": 300000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:05.002", "level": "INFO", "event": "progress", "visited": 400000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:05.386", "level": "INFO", "event": "progress", "visited": 500000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:05.767", "level": "INFO", "event": "progress", "visited": 600000, "best": 577, "depth": 32}
+{"ts": "2026-10-30T17:52:06.149", "level": "INFO", "event": "progress", "visited": 700000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:06.532", "level": "INFO", "event": "progress", "visited": 800000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:06.911", "level": "INFO", "event": "progress", "visited": 900000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:07.294", "level": "INFO", "event": "progress", "visited": 1000000, "best": 577, "depth": 32}
+{"ts": "2026-10-30T17:52:07.677", "level": "INFO", "event": "progress", "visited": 1100000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:08.056", "level": "INFO", "event": "progress", "visited": 1200000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:08.440", "level": "INFO", "event": "progress", "visited": 1300000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:08.820", "level": "INFO", "event": "progress", "visited": 1400000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:09.205", "level": "INFO", "event": "progress", "visited": 1500000, "best": 577, "depth": 31}
+{"ts": "2026-10-30T17:52:09.589", "level": "INFO", "event": "progress", "visited": 1600000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:09.967", "level": "INFO", "event": "progress", "visited": 1700000, "best": 577, "depth": 29}
+{"ts": "2026-10-30T17:52:10.350", "level": "INFO", "event": "progress", "visited": 1800000, "best": 577, "depth": 31}
+{"ts": "2026-10-30T17:52:10.734", "level": "INFO", "event": "progress", "visited": 1900000, "best": 577, "depth": 30}
+{"ts": "2026-10-30T17:52:11.118", "level": "INFO", "event": "progress", "visited": 2000000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:11.501", "level": "INFO", "event": "progress", "visited": 2100000, "best": 577, "depth": 32}
+{"ts": "2026-10-30T17:52:11.881", "level": "INFO", "event": "progress", "visited": 2200000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:12.263", "level": "INFO", "event": "progress", "visited": 2300000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:12.647", "level": "INFO", "event": "progress", "visited": 2400000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:13.027", "level": "INFO", "event": "progress", "visited": 2500000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:13.413", "level": "INFO", "event": "progress", "visited": 2600000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:13.794", "level": "INFO", "event": "progress", "visited": 2700000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:14.177", "level": "INFO", "event": "progress", "visited": 2800000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:14.560", "level": "INFO", "event": "progress", "visited": 2900000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:14.938", "level": "INFO", "event": "progress", "visited": 3000000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:15.322", "level": "INFO", "event": "progress", "visited": 3100000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:15.707", "level": "INFO", "event": "progress", "visited": 3200000, "best": 577, "depth": 29}
+{"ts": "2026-10-30T17:52:16.089", "level": "INFO", "event": "progress", "visited": 3300000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:16.474", "level": "INFO", "event": "progress", "visited": 3400000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:16.852", "level": "INFO", "event": "progress", "visited": 3500000, "best": 577, "depth": 30}
+{"ts": "2026-10-30T17:52:17.235", "level": "INFO", "event": "progress", "visited": 3600000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:17.619", "level": "INFO", "event": "progress", "visited": 3700000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:17.999", "level": "INFO", "event": "progress", "visited": 3800000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:18.384", "level": "INFO", "event": "progress", "visited": 3900000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:18.767", "level": "INFO", "event": "progress", "visited": 4000000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:19.150", "level": "INFO", "event": "progress", "visited": 4100000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:19.532", "level": "INFO", "event": "progress", "visited": 4200000, "best": 577, "depth": 35}
+{"ts": "2026-10-30T17:52:19.912", "level": "INFO", "event": "progress", "visited": 4300000, "best": 577, "depth": 32}
+{"ts": "2026-10-30T17:52:20.294", "level": "INFO", "event": "progress", "visited": 4400000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:20.677", "level": "INFO", "event": "progress", "visited": 4500000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:21.057", "level": "INFO", "event": "progress", "visited": 4600000, "best": 577, "depth": 32}
+{"ts": "2026-10-30T17:52:21.442", "level": "INFO", "event": "progress", "visited": 4700000, "best": 577, "depth": 30}
+{"ts": "2026-10-30T17:52:21.822", "level": "INFO", "event": "progress", "visited": 4800000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:22.205", "level": "INFO", "event": "progress", "visited": 4900000, "best": 577, "depth": 31}
+{"ts": "2026-10-30T17:52:22.587", "level": "INFO", "event": "progress", "visited": 5000000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:22.966", "level": "INFO", "event": "progress", "visited": 5100000, "best": 577, "depth": 31}
+{"ts": "2026-10-30T17:52:23.348", "level": "INFO", "event": "progress", "visited": 5200000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:23.731", "level": "INFO", "event": "progress", "visited": 5300000, "best": 577, "depth": 32}
+{"ts": "2026-10-30T17:52:24.117", "level": "INFO", "event": "progress", "visited": 5400000, "best": 577, "depth": 33}
+{"ts": "2026-10-30T17:52:24.499", "level": "INFO", "event": "progress", "visited": 5500000, "best": 577, "depth": 30}
+{"ts": "2026-10-30T17:52:24.877", "level": "INFO", "event": "progress", "visited": 5600000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:25.259", "level": "INFO", "event": "progress", "visited": 5700000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:25.648", "level": "INFO", "event": "progress", "visited": 5800000, "best": 577, "depth": 34}
+{"ts": "2026-10-30T17:52:26.027", "level": "INFO", "event": "progress", "visited": 5900000, "best": 577, "depth": 31}
+{"ts": "2026-10-30T17:52:26.205", "level": "INFO", "event": "new_best", "makespan": 575, "visited": 5946054, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 4, 2, 3, 4, 4, 4, 5, 3, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:26.205", "level": "INFO", "event": "new_best", "makespan": 557, "visited": 5946084, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 4, 2, 3, 5, 4, 3, 4, 4, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:26.208", "level": "INFO", "event": "new_best", "makespan": 552, "visited": 5946789, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 4, 3, 2, 5, 4, 3, 4, 4, 5, 4, 5, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:26.399", "level": "INFO", "event": "new_best", "makespan": 545, "visited": 5993243, "sequence": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4, 3, 4, 5, 4, 5, 3, 3, 2, 3, 5, 4, 4, 4, 5, 5, 5]}
+{"ts": "2026-10-30T17:52:26.427", "level": "INFO", "event": "progress", "visited": 6000000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:26.817", "level": "INFO", "event": "progress", "visited": 6100000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:27.215", "level": "INFO", "event": "progress", "visited": 6200000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:27.611", "level": "INFO", "event": "progress", "visited": 6300000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:27.998", "level": "INFO", "event": "progress", "visited": 6400000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:28.389", "level": "INFO", "event": "progress", "visited": 6500000, "best": 545, "depth": 28}
+{"ts": "2026-10-30T17:52:28.778", "level": "INFO", "event": "progress", "visited": 6600000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:29.173", "level": "INFO", "event": "progress", "visited": 6700000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:29.566", "level": "INFO", "event": "progress", "visited": 6800000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:29.950", "level": "INFO", "event": "progress", "visited": 6900000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:30.343", "level": "INFO", "event": "progress", "visited": 7000000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:30.734", "level": "INFO", "event": "progress", "visited": 7100000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:31.134", "level": "INFO", "event": "progress", "visited": 7200000, "best": 545, "depth": 30}
+{"ts": "2026-10-30T17:52:31.529", "level": "INFO", "event": "progress", "visited": 7300000, "best": 545, "depth": 30}
+{"ts": "2026-10-30T17:52:31.924", "level": "INFO", "event": "progress", "visited": 7400000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:32.320", "level": "INFO", "event": "progress", "visited": 7500000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:32.713", "level": "INFO", "event": "progress", "visited": 7600000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:33.102", "level": "INFO", "event": "progress", "visited": 7700000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:33.491", "level": "INFO", "event": "progress", "visited": 7800000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:33.890", "level": "INFO", "event": "progress", "visited": 7900000, "best": 545, "depth": 29}
+{"ts": "2026-10-30T17:52:34.283", "level": "INFO", "event": "progress", "visited": 8000000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:34.683", "level": "INFO", "event": "progress", "visited": 8100000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:35.075", "level": "INFO", "event": "progress", "visited": 8200000, "best": 545, "depth": 30}
+{"ts": "2026-10-30T17:52:35.478", "level": "INFO", "event": "progress", "visited": 8300000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:35.866", "level": "INFO", "event": "progress", "visited": 8400000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:36.256", "level": "INFO", "event": "progress", "visited": 8500000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:36.647", "level": "INFO", "event": "progress", "visited": 8600000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:37.039", "level": "INFO", "event": "progress", "visited": 8700000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:37.438", "level": "INFO", "event": "progress", "visited": 8800000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:37.827", "level": "INFO", "event": "progress", "visited": 8900000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:38.217", "level": "INFO", "event": "progress", "visited": 9000000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:38.609", "level": "INFO", "event": "progress", "visited": 9100000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:39.010", "level": "INFO", "event": "progress", "visited": 9200000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:39.401", "level": "INFO", "event": "progress", "visited": 9300000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:39.789", "level": "INFO", "event": "progress", "visited": 9400000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:40.179", "level": "INFO", "event": "progress", "visited": 9500000, "best": 545, "depth": 28}
+{"ts": "2026-10-30T17:52:40.568", "level": "INFO", "event": "progress", "visited": 9600000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:40.960", "level": "INFO", "event": "progress", "visited": 9700000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:41.350", "level": "INFO", "event": "progress", "visited": 9800000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:41.740", "level": "INFO", "event": "progress", "visited": 9900000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:42.126", "level": "INFO", "event": "progress", "visited": 10000000, "best": 545, "depth": 29}
+{"ts": "2026-10-30T17:52:42.525", "level": "INFO", "event": "progress", "visited": 10100000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:42.916", "level": "INFO", "event": "progress", "visited": 10200000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:43.310", "level": "INFO", "event": "progress", "visited": 10300000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:43.698", "level": "INFO", "event": "progress", "visited": 10400000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:44.089", "level": "INFO", "event": "progress", "visited": 10500000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:44.487", "level": "INFO", "event": "progress", "visited": 10600000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:44.871", "level": "INFO", "event": "progress", "visited": 10700000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:45.261", "level": "INFO", "event": "progress", "visited": 10800000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:45.651", "level": "INFO", "event": "progress", "visited": 10900000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:46.043", "level": "INFO", "event": "progress", "visited": 11000000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:46.437", "level": "INFO", "event": "progress", "visited": 11100000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:46.841", "level": "INFO", "event": "progress", "visited": 11200000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:47.235", "level": "INFO", "event": "progress", "visited": 11300000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:47.634", "level": "INFO", "event": "progress", "visited": 11400000, "best": 545, "depth": 29}
+{"ts": "2026-10-30T17:52:48.026", "level": "INFO", "event": "progress", "visited": 11500000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:48.423", "level": "INFO", "event": "progress", "visited": 11600000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:48.811", "level": "INFO", "event": "progress", "visited": 11700000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:49.201", "level": "INFO", "event": "progress", "visited": 11800000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:49.607", "level": "INFO", "event": "progress", "visited": 11900000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:50.001", "level": "INFO", "event": "progress", "visited": 12000000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:50.392", "level": "INFO", "event": "progress", "visited": 12100000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:50.789", "level": "INFO", "event": "progress", "visited": 12200000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:51.184", "level": "INFO", "event": "progress", "visited": 12300000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:51.578", "level": "INFO", "event": "progress", "visited": 12400000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:51.962", "level": "INFO", "event": "progress", "visited": 12500000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:52.357", "level": "INFO", "event": "progress", "visited": 12600000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:52.749", "level": "INFO", "event": "progress", "visited": 12700000, "best": 545, "depth": 30}
+{"ts": "2026-10-30T17:52:53.143", "level": "INFO", "event": "progress", "visited": 12800000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:53.535", "level": "INFO", "event": "progress", "visited": 12900000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:53.923", "level": "INFO", "event": "progress", "visited": 13000000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:52:54.315", "level": "INFO", "event": "progress", "visited": 13100000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:54.735", "level": "INFO", "event": "progress", "visited": 13200000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:55.127", "level": "INFO", "event": "progress", "visited": 13300000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:55.523", "level": "INFO", "event": "progress", "visited": 13400000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:55.917", "level": "INFO", "event": "progress", "visited": 13500000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:56.322", "level": "INFO", "event": "progress", "visited": 13600000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:56.717", "level": "INFO", "event": "progress", "visited": 13700000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:57.111", "level": "INFO", "event": "progress", "visited": 13800000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:57.511", "level": "INFO", "event": "progress", "visited": 13900000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:52:57.909", "level": "INFO", "event": "progress", "visited": 14000000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:58.300", "level": "INFO", "event": "progress", "visited": 14100000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:52:58.690", "level": "INFO", "event": "progress", "visited": 14200000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:59.075", "level": "INFO", "event": "progress", "visited": 14300000, "best": 545, "depth": 32}
+{"ts": "2026-10-30T17:52:59.475", "level": "INFO", "event": "progress", "visited": 14400000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:52:59.867", "level": "INFO", "event": "progress", "visited": 14500000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:53:00.259", "level": "INFO", "event": "progress", "visited": 14600000, "best": 545, "depth": 27}
+{"ts": "2026-10-30T17:53:00.652", "level": "INFO", "event": "progress", "visited": 14700000, "best": 545, "depth": 35}
+{"ts": "2026-10-30T17:53:01.040", "level": "INFO", "event": "progress", "visited": 14800000, "best": 545, "depth": 34}
+{"ts": "2026-10-30T17:53:01.448", "level": "INFO", "event": "progress", "visited": 14900000, "best": 545, "depth": 29}
+{"ts": "2026-10-30T17:53:01.842", "level": "INFO", "event": "progress", "visited": 15000000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:53:02.238", "level": "INFO", "event": "progress", "visited": 15100000, "best": 545, "depth": 31}
+{"ts": "2026-10-30T17:53:02.636", "level": "INFO", "event": "progress", "visited": 15200000, "best": 545, "depth": 33}
+{"ts": "2026-10-30T17:53:03.026", "level": "INFO", "event": "progress", "visited": 15300000, "best": 545, "depth": 33}

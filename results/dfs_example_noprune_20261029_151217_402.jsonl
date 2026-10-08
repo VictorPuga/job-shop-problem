@@ -1,0 +1,22 @@
+{"ts": "2026-10-29T15:12:17.439", "level": "INFO", "event": "start", "instance": "example", "algorithm": "dfs", "n_jobs": 4, "n_machines": 3, "prune": false, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "d483a225b6914886aac0670d73092fbe19bfae12", "argv": ["main.py", "-a", "dfs", "-i", "example", "--no-prune"]}
+{"ts": "2026-10-29T15:12:17.439", "level": "INFO", "event": "new_best", "makespan": 51, "visited": 13, "sequence": [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]}
+{"ts": "2026-10-29T15:12:17.439", "level": "INFO", "event": "new_best", "makespan": 49, "visited": 27, "sequence": [0, 0, 0, 1, 1, 1, 2, 3, 2, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:17.440", "level": "INFO", "event": "new_best", "makespan": 46, "visited": 134, "sequence": [0, 0, 0, 1, 1, 2, 2, 2, 3, 1, 3, 3]}
+{"ts": "2026-10-29T15:12:17.440", "level": "INFO", "event": "new_best", "makespan": 45, "visited": 180, "sequence": [0, 0, 0, 1, 1, 2, 3, 1, 2, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:17.440", "level": "INFO", "event": "new_best", "makespan": 40, "visited": 199, "sequence": [0, 0, 0, 1, 1, 2, 3, 2, 1, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:17.440", "level": "INFO", "event": "new_best", "makespan": 33, "visited": 513, "sequence": [0, 0, 0, 1, 2, 1, 2, 2, 3, 1, 3, 3]}
+{"ts": "2026-10-29T15:12:17.461", "level": "INFO", "event": "new_best", "makespan": 31, "visited": 13755, "sequence": [0, 0, 1, 2, 3, 0, 2, 2, 3, 1, 1, 3]}
+{"ts": "2026-10-29T15:12:17.530", "level": "INFO", "event": "new_best", "makespan": 30, "visited": 57305, "sequence": [0, 1, 0, 2, 1, 2, 2, 3, 0, 1, 3, 3]}
+{"ts": "2026-10-29T15:12:17.531", "level": "INFO", "event": "new_best", "makespan": 29, "visited": 57693, "sequence": [0, 1, 0, 2, 1, 3, 2, 0, 1, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:17.599", "level": "INFO", "event": "progress", "visited": 100000, "best": 29, "depth": 12}
+{"ts": "2026-10-29T15:12:17.760", "level": "INFO", "event": "progress", "visited": 200000, "best": 29, "depth": 11}
+{"ts": "2026-10-29T15:12:17.918", "level": "INFO", "event": "progress", "visited": 300000, "best": 29, "depth": 12}
+{"ts": "2026-10-29T15:12:18.075", "level": "INFO", "event": "progress", "visited": 400000, "best": 29, "depth": 10}
+{"ts": "2026-10-29T15:12:18.233", "level": "INFO", "event": "progress", "visited": 500000, "best": 29, "depth": 9}
+{"ts": "2026-10-29T15:12:18.393", "level": "INFO", "event": "progress", "visited": 600000, "best": 29, "depth": 10}
+{"ts": "2026-10-29T15:12:18.550", "level": "INFO", "event": "progress", "visited": 700000, "best": 29, "depth": 10}
+{"ts": "2026-10-29T15:12:18.713", "level": "INFO", "event": "progress", "visited": 800000, "best": 29, "depth": 10}
+{"ts": "2026-10-29T15:12:18.870", "level": "INFO", "event": "progress", "visited": 900000, "best": 29, "depth": 11}
+{"ts": "2026-10-29T15:12:19.027", "level": "INFO", "event": "progress", "visited": 1000000, "best": 29, "depth": 11}
+{"ts": "2026-10-29T15:12:19.185", "level": "INFO", "event": "progress", "visited": 1100000, "best": 29, "depth": 11}
+{"ts": "2026-10-29T15:12:19.197", "level": "INFO", "event": "done", "instance": "example", "algorithm": "dfs", "prune": false, "best": 29, "visited": 1107697, "elapsed": 1.758, "time_to_best": 0.092, "optimal": 29, "reached_optimal": true}
