@@ -24,22 +24,13 @@ class DFS:
             return
         a, b = self.graph.disjunctive_pairs[position]
 
-        self.graph.add_edge(a, b)
-        self.current_orientation.append((a, b))
+        for from_id, to_id in ((a, b), (b, a)):
+            self.graph.add_edge(from_id, to_id)
+            self.current_orientation.append((from_id, to_id))
 
-        longest_path = self.graph.longest_path()
-        if longest_path is not None and longest_path < self.best_makespan:
-            self.search(position + 1)
+            longest_path = self.graph.longest_path()
+            if longest_path is not None and longest_path < self.best_makespan:
+                self.search(position + 1)
 
-        self.graph.remove_edge(a, b)
-        self.current_orientation.pop()
-
-        self.graph.add_edge(b, a)
-        self.current_orientation.append((b, a))
-
-        longest_path = self.graph.longest_path()
-        if longest_path is not None and longest_path < self.best_makespan:
-            self.search(position + 1)
-
-        self.graph.remove_edge(b, a)
-        self.current_orientation.pop()
+            self.graph.remove_edge(from_id, to_id)
+            self.current_orientation.pop()
