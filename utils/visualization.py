@@ -8,6 +8,8 @@ from matplotlib.patches import FancyArrowPatch, Patch
 from utils.dfs import DFS
 from utils.graph import Graph
 
+GANTT_COLORS = ["#FF7F7F", "#B5F26B", "#6FF0F5", "#B070F0"]
+
 
 class LiveGantt:
     """Gantt chart that redraws every time the search finds a better schedule."""
@@ -25,7 +27,6 @@ class LiveGantt:
         assert start is not None
 
         self.x_limit = max(self.x_limit, dfs.best_makespan)
-        colors = colormaps["tab10"]
 
         self.axes.clear()
         for node_id, node in graph.nodes.items():
@@ -36,8 +37,8 @@ class LiveGantt:
                 node.machine,
                 node.duration,
                 left=start[node_id],
-                color=colors(node.job % 10),
-                edgecolor="white",
+                color=GANTT_COLORS[node.job % len(GANTT_COLORS)],
+                edgecolor="black",
             )
             self.axes.text(
                 start[node_id] + node.duration / 2,
@@ -46,7 +47,7 @@ class LiveGantt:
                 ha="center",
                 va="center",
                 fontsize=8,
-                color="white",
+                color="black",
             )
 
         self.axes.set_xlim(0, self.x_limit * 1.02)
@@ -100,7 +101,9 @@ def draw_graph(
     node_size = 1500
     curvatures = (0.3, -0.3, 0.5, -0.5)
 
-    def add_arrow(from_id, to_id, style, color, linestyle="-", curvature=0.0, alpha=1.0):
+    def add_arrow(
+        from_id, to_id, style, color, linestyle="-", curvature=0.0, alpha=1.0
+    ):
         axes.add_patch(
             FancyArrowPatch(
                 positions[from_id],
@@ -120,7 +123,9 @@ def draw_graph(
 
     for job in range(graph.n_jobs):
         chain = [graph.source]
-        chain += [graph.calculate_node_id(job, op) for op in range(graph.n_operations_per_job)]
+        chain += [
+            graph.calculate_node_id(job, op) for op in range(graph.n_operations_per_job)
+        ]
         chain.append(graph.sink)
         for from_id, to_id in zip(chain, chain[1:]):
             add_arrow(from_id, to_id, "-|>", "gray")
@@ -171,7 +176,9 @@ def save_graph_image(
 
     figure, (left, right) = plt.subplots(1, 2, figsize=(18, 7))
     draw_graph(left, graph, title="Disjunctive graph (dashed = machine conflict)")
-    draw_graph(right, graph, orientation, title="Best orientation (node label: duration)")
+    draw_graph(
+        right, graph, orientation, title="Best orientation (node label: duration)"
+    )
     figure.tight_layout()
     figure.savefig(path, dpi=150)
     plt.close(figure)
