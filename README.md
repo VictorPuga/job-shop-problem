@@ -19,14 +19,21 @@ Run the search on the instance defined in `utils/instances.py`:
 python main.py
 ```
 
-It prints the best makespan, the number of search calls, the search time, and the order of operations on each machine.
+It prints the best makespan, the number of search calls, the search time, the order of operations on each machine, and the start time of each operation.
 
 DFS Pruning is on by default.
 To run without it, set `PRUNE_DFS = False` at the top of `main.py`.
 
+### Live visualization
+
+Set `VISUALIZE = True` at the top of `main.py` to show a live Gantt chart (requires `matplotlib`, installed from `requirements.txt`).
+The chart redraws every time the search finds a better schedule, with one row per machine and one color per job.
+The search time then includes the pauses between redraws, so turn the visualization off when comparing timings.
+The window stays open after the search ends, and the program exits when you close it.
+
 ## Running the unit tests
 
-Tests use the standard library `unittest`, so no extra dependencies are needed.
+Tests use the standard library `unittest`, so no extra test dependencies are needed.
 Run them from the project root with the virtual environment active:
 
 ```sh

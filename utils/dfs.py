@@ -1,12 +1,19 @@
 import sys
+from collections.abc import Callable
 
 from utils.graph import Graph
 
 
 class DFS:
-    def __init__(self, graph: Graph, prune: bool = True):
+    def __init__(
+        self,
+        graph: Graph,
+        prune: bool = True,
+        on_improvement: Callable[["DFS"], None] | None = None,
+    ):
         self.graph = graph
         self.prune = prune
+        self.on_improvement = on_improvement
         self.visited: int = 0
         self.best_makespan: int = sys.maxsize
         self.best_orientation: list[tuple[int, int]] = []
@@ -24,6 +31,9 @@ class DFS:
             if makespan < self.best_makespan:
                 self.best_makespan = makespan
                 self.best_orientation = list(self.current_orientation)
+
+                if self.on_improvement is not None:
+                    self.on_improvement(self)
 
             return
         a, b = self.graph.disjunctive_pairs[position]

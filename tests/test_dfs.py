@@ -70,6 +70,16 @@ class DFSMatchesBruteForceTests(unittest.TestCase):
         unpruned.search(0)
         self.assertLess(pruned.visited, unpruned.visited)
 
+    def test_on_improvement_is_called_with_each_new_best(self):
+        makespans = []
+        dfs = DFS(
+            Graph(machines, durations),
+            on_improvement=lambda d: makespans.append(d.best_makespan),
+        )
+        dfs.search(0)
+        self.assertEqual(makespans, sorted(set(makespans), reverse=True))
+        self.assertEqual(makespans[-1], 29)
+
     def test_full_instance(self):
         dfs = DFS(Graph(machines, durations))
         dfs.search(0)

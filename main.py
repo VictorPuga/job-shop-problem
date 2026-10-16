@@ -5,6 +5,7 @@ from utils.graph import Graph
 from utils.instances import durations, machines
 
 PRUNE_DFS = True
+VISUALIZE = False
 
 
 def describe(graph: Graph, node_id: int) -> str:
@@ -12,9 +13,9 @@ def describe(graph: Graph, node_id: int) -> str:
     return f"J{node.job + 1}.O{node.operation + 1}"
 
 
-def run(prune: bool) -> tuple[Graph, DFS, float]:
+def run(prune: bool, gantt=None) -> tuple[Graph, DFS, float]:
     graph = Graph(machines, durations)
-    dfs = DFS(graph, prune=prune)
+    dfs = DFS(graph, prune=prune, on_improvement=gantt.update if gantt else None)
 
     start = time.perf_counter()
     dfs.search(0)
@@ -56,13 +57,24 @@ def print_start_times(graph: Graph, dfs: DFS) -> None:
 
 
 def main() -> None:
-    graph, dfs, elapsed = run(PRUNE_DFS)
+    gantt = None
+    if VISUALIZE:
+        from utils.visualization import LiveGantt
+
+        gantt = LiveGantt()
+
+    graph, dfs, elapsed = run(PRUNE_DFS, gantt)
     print(f"DFS Pruning: {'on' if PRUNE_DFS else 'off'}")
     print(f"Best makespan: {dfs.best_makespan}")
     print(f"Search calls: {dfs.visited}")
-    print(f"Search time: {elapsed:.3f} s")
+    print(
+        f"Search time: {elapsed:.3f} s{' (includes plotting pauses)' if gantt else ''}"
+    )
     print_schedule(graph, dfs)
     print_start_times(graph, dfs)
+
+    if gantt:
+        gantt.show()
 
 
 if __name__ == "__main__":
