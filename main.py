@@ -6,6 +6,8 @@ from utils.instances import durations, machines
 
 PRUNE_DFS = True
 VISUALIZE = False
+DRAW_GRAPH = False
+GRAPH_IMAGE_PATH = "tmp/graph.png"
 
 
 def describe(graph: Graph, node_id: int) -> str:
@@ -71,6 +73,13 @@ def main() -> None:
         f"Search time: {elapsed:.3f} s{' (includes plotting pauses)' if gantt else ''}"
     )
     print_schedule(graph, dfs)
+
+    if DRAW_GRAPH:
+        from utils.visualization import save_graph_image
+
+        save_graph_image(graph, dfs.best_orientation, GRAPH_IMAGE_PATH)
+        print(f"Graph image saved to {GRAPH_IMAGE_PATH}")
+
     print_start_times(graph, dfs)
 
     if gantt:
