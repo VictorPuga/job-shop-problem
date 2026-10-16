@@ -1,4 +1,5 @@
 import itertools
+from collections import deque
 
 import numpy as np
 from numpy.typing import NDArray
@@ -93,3 +94,32 @@ class Graph:
     def remove_edge(self, from_id: int, to_id: int) -> None:
         """Removes a directed edge. Raises `ValueError` if it does not exist."""
         self.successors[from_id].remove(to_id)
+
+    def longest_path(self) -> int | None:
+        """Returns the length of the longest path from source to sink, or None if there is a cycle."""
+
+        in_degree = dict.fromkeys(range(self.sink + 1), 0)
+
+        for node in self.successors:
+            for successor in self.successors[node]:
+                in_degree[successor] += 1
+
+        queue = deque(node for node in in_degree if in_degree[node] == 0)
+        finish = dict.fromkeys(range(self.sink + 1), 0)
+
+        while queue:
+            current = queue.popleft()
+            for successor in self.successors[current]:
+                in_degree[successor] -= 1
+
+                finish[successor] = max(
+                    finish[successor], finish[current] + self.nodes[current].duration
+                )
+
+                if in_degree[successor] == 0:
+                    queue.append(successor)
+
+        if any(in_degree.values()):
+            return None
+
+        return finish[self.sink]

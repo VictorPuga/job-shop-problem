@@ -61,6 +61,28 @@ class GraphTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.graph.remove_edge(1, 5)
 
+    def test_longest_path_chains_only(self):
+        self.assertEqual(self.graph.longest_path(), 23)
+
+    def test_longest_path_orientation_that_does_not_lengthen(self):
+        self.graph.add_edge(1, 5)
+        self.assertEqual(self.graph.longest_path(), 23)
+
+    def test_longest_path_orientation_that_lengthens(self):
+        for a, b in [(5, 7), (7, 11), (11, 1)]:
+            self.graph.add_edge(a, b)
+        self.assertEqual(self.graph.longest_path(), 34)
+
+    def test_longest_path_cycle_returns_none(self):
+        self.graph.add_edge(1, 5)
+        self.graph.add_edge(5, 1)
+        self.assertIsNone(self.graph.longest_path())
+
+    def test_longest_path_does_not_modify_successors(self):
+        before = {id: list(ids) for id, ids in self.graph.successors.items()}
+        self.graph.longest_path()
+        self.assertEqual(self.graph.successors, before)
+
 
 if __name__ == "__main__":
     unittest.main()
