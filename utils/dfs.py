@@ -26,12 +26,20 @@ class DFS:
 
         self.graph.add_edge(a, b)
         self.current_orientation.append((a, b))
-        self.search(position + 1)
+
+        longest_path = self.graph.longest_path()
+        if longest_path is not None and longest_path < self.best_makespan:
+            self.search(position + 1)
+
         self.graph.remove_edge(a, b)
         self.current_orientation.pop()
 
         self.graph.add_edge(b, a)
         self.current_orientation.append((b, a))
-        self.search(position + 1)
+
+        longest_path = self.graph.longest_path()
+        if longest_path is not None and longest_path < self.best_makespan:
+            self.search(position + 1)
+
         self.graph.remove_edge(b, a)
         self.current_orientation.pop()
