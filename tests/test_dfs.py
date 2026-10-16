@@ -54,6 +54,22 @@ class DFSMatchesBruteForceTests(unittest.TestCase):
                 dfs.search(0)
                 self.assertEqual(dfs.best_makespan, brute_force_makespan(m, d))
 
+    def test_without_pruning_matches_brute_force(self):
+        rng = np.random.RandomState(1)
+        for n_jobs, n_machines in [(2, 2), (2, 3), (3, 2)] * 3:
+            m, d = random_instance(rng, n_jobs, n_machines)
+            with self.subTest(machines=m.tolist(), durations=d.tolist()):
+                dfs = DFS(Graph(m, d), prune=False)
+                dfs.search(0)
+                self.assertEqual(dfs.best_makespan, brute_force_makespan(m, d))
+
+    def test_pruning_visits_fewer_calls(self):
+        pruned = DFS(Graph(machines, durations))
+        unpruned = DFS(Graph(machines, durations), prune=False)
+        pruned.search(0)
+        unpruned.search(0)
+        self.assertLess(pruned.visited, unpruned.visited)
+
     def test_full_instance(self):
         dfs = DFS(Graph(machines, durations))
         dfs.search(0)
