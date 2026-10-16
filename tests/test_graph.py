@@ -64,6 +64,18 @@ class GraphTests(unittest.TestCase):
     def test_longest_path_chains_only(self):
         self.assertEqual(self.graph.longest_path(), 23)
 
+    def test_earliest_starts_chains_only(self):
+        start = self.graph.earliest_starts()
+        assert start is not None
+        job_1 = [start[self.graph.calculate_node_id(1, op)] for op in range(3)]
+        self.assertEqual(job_1, [0, 8, 13])
+        self.assertEqual(start[self.graph.sink], 23)
+
+    def test_earliest_starts_cycle_returns_none(self):
+        self.graph.add_edge(1, 5)
+        self.graph.add_edge(5, 1)
+        self.assertIsNone(self.graph.earliest_starts())
+
     def test_longest_path_orientation_that_does_not_lengthen(self):
         self.graph.add_edge(1, 5)
         self.assertEqual(self.graph.longest_path(), 23)

@@ -95,8 +95,8 @@ class Graph:
         """Removes a directed edge. Raises `ValueError` if it does not exist."""
         self.successors[from_id].remove(to_id)
 
-    def longest_path(self) -> int | None:
-        """Returns the length of the longest path from source to sink, or None if there is a cycle."""
+    def earliest_starts(self) -> dict[int, int] | None:
+        """Returns the earliest start time of every node, or None if there is a cycle."""
 
         in_degree = dict.fromkeys(range(self.sink + 1), 0)
 
@@ -105,15 +105,15 @@ class Graph:
                 in_degree[successor] += 1
 
         queue = deque(node for node in in_degree if in_degree[node] == 0)
-        finish = dict.fromkeys(range(self.sink + 1), 0)
+        start = dict.fromkeys(range(self.sink + 1), 0)
 
         while queue:
             current = queue.popleft()
             for successor in self.successors[current]:
                 in_degree[successor] -= 1
 
-                finish[successor] = max(
-                    finish[successor], finish[current] + self.nodes[current].duration
+                start[successor] = max(
+                    start[successor], start[current] + self.nodes[current].duration
                 )
 
                 if in_degree[successor] == 0:
@@ -122,4 +122,14 @@ class Graph:
         if any(in_degree.values()):
             return None
 
-        return finish[self.sink]
+        return start
+
+    def longest_path(self) -> int | None:
+        """Returns the length of the longest path from source to sink, or None if there is a cycle."""
+
+        start = self.earliest_starts()
+
+        if start is None:
+            return None
+
+        return start[self.sink]
