@@ -34,7 +34,7 @@ class InitialStateTests(unittest.TestCase):
         self.assertEqual(self.state.job_free, (0, 0))
         self.assertEqual(self.state.machine_free, (0, 0))
         self.assertEqual(self.state.sequence, ())
-        self.assertEqual(self.state.makespan, 0)
+        self.assertEqual(self.state.makespan(), 0)
 
     def test_is_not_complete(self):
         self.assertFalse(self.problem.is_complete(self.state))
@@ -54,7 +54,7 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual(state.job_free, (3, 0))
         self.assertEqual(state.machine_free, (3, 0))
         self.assertEqual(state.sequence, (0,))
-        self.assertEqual(state.makespan, 3)
+        self.assertEqual(state.makespan(), 3)
 
     def test_waits_for_the_job(self):
         state = self.problem.dispatch(self.initial, 0)
@@ -70,7 +70,7 @@ class DispatchTests(unittest.TestCase):
         # Job 1 op 1 runs on machine 0, which job 0 holds until 3; the job is free at 2.
         self.assertEqual(state.job_free[1], 7)
         self.assertEqual(state.machine_free[0], 7)
-        self.assertEqual(state.makespan, 7)
+        self.assertEqual(state.makespan(), 7)
 
     def test_does_not_modify_the_previous_state(self):
         before = self.problem.initial_state()
@@ -111,7 +111,7 @@ class LowerBoundTests(unittest.TestCase):
         state = problem.initial_state()
         for job in TINY_OPTIMAL_SEQUENCE:
             state = problem.dispatch(state, job)
-        self.assertEqual(problem.lower_bound(state), state.makespan)
+        self.assertEqual(problem.lower_bound(state), state.makespan())
 
     def test_never_exceeds_the_optimum_of_any_completion(self):
         rng = np.random.RandomState(2)
@@ -173,8 +173,8 @@ class StartTimesTests(unittest.TestCase):
         for job in TINY_OPTIMAL_SEQUENCE:
             state = problem.dispatch(state, job)
         start = problem.start_times(TINY_OPTIMAL_SEQUENCE)
-        self.assertEqual((start + TINY_DURATIONS).max(), state.makespan)
-        self.assertEqual(state.makespan, TINY_OPTIMAL_MAKESPAN)
+        self.assertEqual((start + TINY_DURATIONS).max(), state.makespan())
+        self.assertEqual(state.makespan(), TINY_OPTIMAL_MAKESPAN)
 
 
 if __name__ == "__main__":

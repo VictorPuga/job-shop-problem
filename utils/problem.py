@@ -13,7 +13,6 @@ class State:
     machine_free: tuple[int, ...]
     sequence: tuple[int, ...]
 
-    @property
     def makespan(self) -> int:
         return max(self.machine_free)
 
@@ -65,7 +64,7 @@ class Problem:
 
     def lower_bound(self, state: State) -> int:
         """Lowest makespan any completion of `state` could reach."""
-        bound = state.makespan
+        bound = state.makespan()
         machine_end = list(state.machine_free)
 
         for job in range(self.n_jobs):

@@ -25,8 +25,9 @@ class DFS:
         self.visited += 1
 
         if self.problem.is_complete(state):
-            if state.makespan < self.best_makespan:
-                self.best_makespan = state.makespan
+            makespan = state.makespan()
+            if makespan < self.best_makespan:
+                self.best_makespan = makespan
                 self.best_sequence = state.sequence
                 if self.on_improvement:
                     self.on_improvement(self)
