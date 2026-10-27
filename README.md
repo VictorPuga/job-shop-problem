@@ -19,7 +19,7 @@ Run the search on the instance defined in `utils/instances.py`:
 python main.py
 ```
 
-It prints the best makespan, the number of search calls, the search time, the order of operations on each machine, and the start time of each operation.
+It prints the best makespan, the number of search calls, the search time, the dispatch sequence, the order of operations on each machine, and the start time of each operation.
 
 DFS Pruning is on by default.
 To run without it, set `PRUNE_DFS = False` at the top of `main.py`.
@@ -31,17 +31,38 @@ The chart redraws every time the search finds a better schedule, with one row pe
 The search time then includes the pauses between redraws, so turn the visualization off when comparing timings.
 The window stays open after the search ends, and the program exits when you close it.
 
-### Graph image
+## How it works
 
-Set `DRAW_GRAPH = True` at the top of `main.py` to save a picture of the graph after the search.
-It is saved to `GRAPH_IMAGE_PATH` (`tmp/graph.png` by default).
-The image has two panels:
+The search runs on an operation-sequence (dispatching) state space, implemented in `utils/problem.py` and `utils/dfs.py`.
 
-- Left: the disjunctive graph. Gray arrows are the job chains, dashed lines are machine conflicts, colored by machine.
-- Right: the same graph with the best orientation applied, where each conflict becomes an arrow.
+- **State:** a partial schedule (`State`).
+It holds the next operation of each job, when each job and each machine becomes free, the jobs dispatched so far (`sequence`), and the current makespan.
+- **Action:** dispatch the next operation of one job.
+It starts as soon as both its job and its machine are free.
+- **Goal:** every operation is dispatched.
+The makespan of the state is the schedule's makespan.
 
-Each node is labeled with its job, operation, and duration, and is colored by machine.
-`S` is the source and `T` is the sink.
+Every state is feasible, so there are no cycle or precedence checks.
+The schedules it reaches are semi-active, and an optimal schedule is always among them.
+Each node has at most one child per job that still has operations left.
+
+A schedule is described by its `sequence`, a list with each job repeated once per operation.
+The k-th occurrence of a job is that job's k-th operation.
+`Problem.start_times(sequence)` turns it into the start time of every operation.
+
+### Pruning
+
+With `prune=True`, a branch is cut when `Problem.lower_bound(state)` is not below the best makespan found.
+The bound is the largest of:
+
+- the current makespan,
+- each job's free time plus its remaining durations,
+- each machine's free time plus the durations still to run on it.
+
+### Adding another search algorithm
+
+A\*, branch and bound, and beam search only need `Problem.initial_state()`, `available_jobs`, `dispatch`, `is_complete` and `lower_bound`.
+`lower_bound` never overestimates the final makespan, so it can serve as the `f` value of A\*, and `State` is hashable for duplicate detection.
 
 ## Running the unit tests
 
@@ -55,5 +76,5 @@ python -m unittest discover -s tests -t .
 To run a single test module with verbose output:
 
 ```sh
-python -m unittest tests.test_graph -v
+python -m unittest tests.test_problem -v
 ```

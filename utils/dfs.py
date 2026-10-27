@@ -1,56 +1,42 @@
 import sys
 from collections.abc import Callable
 
-from utils.graph import Graph
+from utils.problem import Problem, State
 
 
 class DFS:
     def __init__(
         self,
-        graph: Graph,
+        problem: Problem,
         prune: bool = True,
         on_improvement: Callable[["DFS"], None] | None = None,
     ):
-        self.graph = graph
+        self.problem = problem
         self.prune = prune
         self.on_improvement = on_improvement
         self.visited: int = 0
         self.best_makespan: int = sys.maxsize
-        self.best_orientation: list[tuple[int, int]] = []
-        self.current_orientation: list[tuple[int, int]] = []
+        self.best_sequence: tuple[int, ...] = ()
 
-    def search(self, position: int) -> None:
+    def search(self, state: State | None = None) -> None:
+        """Searches every completion of `state`, or of the empty schedule if omitted."""
+        if state is None:
+            state = self.problem.initial_state()
+
         self.visited += 1
 
-        if position == len(self.graph.disjunctive_pairs):
-            makespan = self.graph.longest_path()
-
-            if makespan is None:
-                return
-
-            if makespan < self.best_makespan:
-                self.best_makespan = makespan
-                self.best_orientation = list(self.current_orientation)
+        if self.problem.is_complete(state):
+            if state.makespan < self.best_makespan:
+                self.best_makespan = state.makespan
+                self.best_sequence = state.sequence
 
                 if self.on_improvement is not None:
                     self.on_improvement(self)
 
             return
-        a, b = self.graph.disjunctive_pairs[position]
 
-        for from_id, to_id in ((a, b), (b, a)):
-            self.graph.add_edge(from_id, to_id)
-            self.current_orientation.append((from_id, to_id))
+        if self.prune and self.problem.lower_bound(state) >= self.best_makespan:
+            return
 
-            should_recurse = True
-            if self.prune:
-                longest_path = self.graph.longest_path()
-                should_recurse = (
-                    longest_path is not None and longest_path < self.best_makespan
-                )
-
-            if should_recurse:
-                self.search(position + 1)
-
-            self.graph.remove_edge(from_id, to_id)
-            self.current_orientation.pop()
+        for job in self.problem.available_jobs(state):
+            self.search(self.problem.dispatch(state, job))
