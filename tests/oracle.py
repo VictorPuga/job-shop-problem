@@ -14,26 +14,25 @@ def brute_force_makespan(machines: NDArray[np.int_], durations: NDArray[np.int_]
     n_jobs, n_operations = durations.shape
     n_machines = int(machines.max()) + 1
 
-    operations_on = [
-        [
-            (job, operation)
-            for job in range(n_jobs)
-            for operation in range(n_operations)
-            if machines[job, operation] == machine
-        ]
-        for machine in range(n_machines)
-    ]
+    orders_per_machine = []
+    for machine in range(n_machines):
+        operations = []
+        for job in range(n_jobs):
+            for operation in range(n_operations):
+                if machines[job, operation] == machine:
+                    operations.append((job, operation))
+        orders_per_machine.append(list(itertools.permutations(operations)))
 
     best = None
 
-    for orders in itertools.product(
-        *(itertools.permutations(ops) for ops in operations_on)
-    ):
-        predecessors = {
-            (job, operation): [(job, operation - 1)] if operation > 0 else []
-            for job in range(n_jobs)
-            for operation in range(n_operations)
-        }
+    for orders in itertools.product(*orders_per_machine):
+        predecessors: dict[tuple[int, int], list[tuple[int, int]]] = {}
+        for job in range(n_jobs):
+            for operation in range(n_operations):
+                predecessors[(job, operation)] = []
+                if operation > 0:
+                    predecessors[(job, operation)].append((job, operation - 1))
+
         for order in orders:
             for before, after in zip(order, order[1:]):
                 predecessors[after].append(before)
@@ -43,9 +42,9 @@ def brute_force_makespan(machines: NDArray[np.int_], durations: NDArray[np.int_]
         for _ in range(n_jobs * n_operations + 1):
             changed = False
             for node, before in predecessors.items():
-                earliest = max(
-                    (start[p] + int(durations[p]) for p in before), default=0
-                )
+                earliest = 0
+                for p in before:
+                    earliest = max(earliest, start[p] + int(durations[p]))
                 if earliest > start[node]:
                     start[node] = earliest
                     changed = True
@@ -56,7 +55,9 @@ def brute_force_makespan(machines: NDArray[np.int_], durations: NDArray[np.int_]
         if not settled:
             continue
 
-        makespan = max(start[node] + int(durations[node]) for node in start)
+        makespan = 0
+        for node in start:
+            makespan = max(makespan, start[node] + int(durations[node]))
         if best is None or makespan < best:
             best = makespan
 
@@ -68,6 +69,8 @@ def random_instance(
     rng: np.random.RandomState, n_jobs: int, n_machines: int
 ) -> tuple[NDArray[np.int_], NDArray[np.int_]]:
     """Each job visits every machine once, in a random order."""
-    machines = np.array([rng.permutation(n_machines) for _ in range(n_jobs)])
+    machines = np.zeros((n_jobs, n_machines), dtype=int)
+    for job in range(n_jobs):
+        machines[job] = rng.permutation(n_machines)
     durations = rng.randint(1, 10, size=(n_jobs, n_machines))
     return machines, durations

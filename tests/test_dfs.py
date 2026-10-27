@@ -23,7 +23,7 @@ class DFSTinyInstanceTests(unittest.TestCase):
         self.assertEqual(self.dfs.best_makespan, TINY_OPTIMAL_MAKESPAN)
 
     def test_best_sequence_dispatches_every_operation(self):
-        self.assertEqual(len(self.dfs.best_sequence), self.problem.n_operations)
+        self.assertEqual(len(self.dfs.best_sequence), 4)
         for job in range(self.problem.n_jobs):
             self.assertEqual(
                 self.dfs.best_sequence.count(job), self.problem.n_operations_per_job

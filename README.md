@@ -36,7 +36,8 @@ The window stays open after the search ends, and the program exits when you clos
 The search runs on an operation-sequence (dispatching) state space, implemented in `utils/problem.py` and `utils/dfs.py`.
 
 - **State:** a partial schedule (`State`).
-It holds the next operation of each job, when each job and each machine becomes free, the jobs dispatched so far (`sequence`), and the current makespan.
+It holds the next operation of each job (`next_operation`), when each job and each machine becomes free (`job_free`, `machine_free`), and the jobs dispatched so far (`sequence`).
+The makespan is the latest time any machine becomes free.
 - **Action:** dispatch the next operation of one job.
 It starts as soon as both its job and its machine are free.
 - **Goal:** every operation is dispatched.

@@ -47,7 +47,10 @@ class LiveGantt:
 
         self.axes.set_xlim(0, self.x_limit * 1.02)
         self.axes.set_yticks(range(problem.n_machines))
-        self.axes.set_yticklabels([f"M{m + 1}" for m in range(problem.n_machines)])
+        labels = []
+        for machine in range(problem.n_machines):
+            labels.append(f"M{machine + 1}")
+        self.axes.set_yticklabels(labels)
         self.axes.invert_yaxis()
         self.axes.set_xlabel("Time")
         self.axes.set_title(

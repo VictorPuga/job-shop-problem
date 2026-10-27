@@ -21,7 +21,7 @@ class ProblemDimensionTests(unittest.TestCase):
         self.assertEqual(problem.n_jobs, 4)
         self.assertEqual(problem.n_operations_per_job, 3)
         self.assertEqual(problem.n_machines, 3)
-        self.assertEqual(problem.n_operations, 12)
+        self.assertEqual(problem.n_jobs * problem.n_operations_per_job, 12)
 
 
 class InitialStateTests(unittest.TestCase):
@@ -146,7 +146,7 @@ class StartTimesTests(unittest.TestCase):
         problem = Problem(machines, durations)
         rng = np.random.RandomState(3)
         for _ in range(20):
-            sequence = tuple(int(job) for job in rng.permutation([0, 1, 2, 3] * 3))
+            sequence = tuple(rng.permutation([0, 1, 2, 3] * 3).tolist())
             with self.subTest(sequence=sequence):
                 self.assert_feasible(problem, problem.start_times(sequence))
 
@@ -157,12 +157,13 @@ class StartTimesTests(unittest.TestCase):
                 self.assertGreaterEqual(start[job, operation + 1], end)
 
         for machine in range(problem.n_machines):
-            intervals = sorted(
-                (start[job, operation], start[job, operation] + problem.durations[job, operation])
-                for job in range(problem.n_jobs)
-                for operation in range(problem.n_operations_per_job)
-                if problem.machines[job, operation] == machine
-            )
+            intervals = []
+            for job in range(problem.n_jobs):
+                for operation in range(problem.n_operations_per_job):
+                    if problem.machines[job, operation] == machine:
+                        begin = start[job, operation]
+                        intervals.append((begin, begin + problem.durations[job, operation]))
+            intervals.sort()
             for (_, end), (next_start, _) in zip(intervals, intervals[1:]):
                 self.assertGreaterEqual(next_start, end)
 

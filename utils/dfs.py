@@ -10,7 +10,7 @@ class DFS:
         problem: Problem,
         prune: bool = True,
         on_improvement: Callable[["DFS"], None] | None = None,
-    ):
+    ) -> None:
         self.problem = problem
         self.prune = prune
         self.on_improvement = on_improvement
@@ -19,7 +19,6 @@ class DFS:
         self.best_sequence: tuple[int, ...] = ()
 
     def search(self, state: State | None = None) -> None:
-        """Searches every completion of `state`, or of the empty schedule if omitted."""
         if state is None:
             state = self.problem.initial_state()
 
@@ -29,10 +28,8 @@ class DFS:
             if state.makespan < self.best_makespan:
                 self.best_makespan = state.makespan
                 self.best_sequence = state.sequence
-
-                if self.on_improvement is not None:
+                if self.on_improvement:
                     self.on_improvement(self)
-
             return
 
         if self.prune and self.problem.lower_bound(state) >= self.best_makespan:
