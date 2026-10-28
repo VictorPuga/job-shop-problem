@@ -13,11 +13,19 @@ pip install -r requirements.txt
 
 ## Running the solver
 
-Run the search on the instance defined in `utils/instances.py`:
+Run the search on the instance selected by `INSTANCE` at the top of `main.py`:
 
 ```sh
 python main.py
 ```
+
+The available instances are the keys of `INSTANCES` in `utils/instances.py`:
+
+- `example`: the small 4x3 instance (default).
+- `ft10`: Fisher & Thompson, 10x10, optimal makespan 930.
+- `la36`: Lawrence, 15x15, optimal makespan 1268.
+
+The larger instances are far too big for an exhaustive DFS, so expect them to run for a very long time.
 
 It prints the best makespan, the number of search calls, the search time, the dispatch sequence, the order of operations on each machine, and the start time of each operation.
 

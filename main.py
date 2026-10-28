@@ -4,9 +4,10 @@ import numpy as np
 from numpy.typing import NDArray
 
 from utils.dfs import DFS
-from utils.instances import durations, machines
+from utils.instances import INSTANCES
 from utils.problem import Problem
 
+INSTANCE = "example"
 PRUNE_DFS = True
 VISUALIZE = False
 
@@ -42,6 +43,7 @@ def main() -> None:
 
         gantt = LiveGantt()
 
+    machines, durations = INSTANCES[INSTANCE]
     problem = Problem(machines, durations)
     dfs = DFS(problem, prune=PRUNE_DFS, on_improvement=gantt.update if gantt else None)
 
@@ -49,10 +51,13 @@ def main() -> None:
     dfs.search()
     elapsed = time.perf_counter() - begin
 
+    print(f"Instance: {INSTANCE}")
     print(f"DFS Pruning: {'on' if PRUNE_DFS else 'off'}")
     print(f"Best makespan: {dfs.best_makespan}")
     print(f"Search calls: {dfs.visited}")
-    print(f"Search time: {elapsed:.3f} s{' (includes plotting pauses)' if gantt else ''}")
+    print(
+        f"Search time: {elapsed:.3f} s{' (includes plotting pauses)' if gantt else ''}"
+    )
     sequence = ""
     for job in dfs.best_sequence:
         sequence += f" J{job + 1}"
