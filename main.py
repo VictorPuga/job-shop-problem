@@ -1,6 +1,28 @@
+import logging
+import time
+from datetime import datetime
+from pathlib import Path
+
 import numpy as np
 
 INSTANCE = "example"  # "example", "ft06_4x4", "ft06", "ft10" or "la36"
+LOG_NODES = False
+PROGRESS_INTERVAL = 100_000
+
+logger = logging.getLogger("dfs")
+
+
+def setup_logging(instance, algorithm, level=logging.INFO):
+    log_dir = Path("logs")
+    log_dir.mkdir(exist_ok=True)
+    path = log_dir / f"{algorithm}_{instance}_{datetime.now():%Y%m%d_%H%M%S}.log"
+
+    handler = logging.FileHandler(path)
+    handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
+    logger.setLevel(level)
+    logger.addHandler(handler)
+    return path
+
 
 # *_machines[job, operation] = machine assigned to job operation
 example_machines = np.array(
@@ -258,17 +280,40 @@ class DFS:
         while stack:
             node = stack.pop()
             self.expanded += 1
+            logger.debug(
+                "expand #%d time=%d makespan=%d stack=%d",
+                self.expanded,
+                node.time,
+                node.makespan(),
+                len(stack),
+            )
+            if self.expanded % PROGRESS_INTERVAL == 0:
+                logger.info(
+                    "progress expanded=%d best=%s stack=%d solutions=%d",
+                    self.expanded,
+                    self.best.makespan() if self.best else None,
+                    len(stack),
+                    self.solutions,
+                )
 
             if node.is_final():
                 self.solutions += 1
                 if self.best is None or node.makespan() < self.best.makespan():
                     self.best = node
+                    logger.info(
+                        "new best makespan=%d expanded=%d",
+                        node.makespan(),
+                        self.expanded,
+                    )
                     print(
                         f"New best solution: Cmax = {node.makespan()}  (nodes: {self.expanded})"
                     )
                 continue
 
             if self.best is not None and node.makespan() >= self.best.makespan():
+                logger.debug(
+                    "prune makespan=%d best=%d", node.makespan(), self.best.makespan()
+                )
                 continue
 
             stack.extend(node.new_children())
@@ -276,9 +321,25 @@ class DFS:
 
 
 if __name__ == "__main__":
-    dfs = DFS()
-    best = dfs.solve()
+    log_path = setup_logging(
+        INSTANCE, "dfs", logging.DEBUG if LOG_NODES else logging.INFO
+    )
+    logger.info("start instance=%s", INSTANCE)
 
+    dfs = DFS()
+    begin = time.perf_counter()
+    best = dfs.solve()
+    elapsed = time.perf_counter() - begin
+
+    logger.info(
+        "done best=%d expanded=%d solutions=%d elapsed=%.3fs",
+        best.makespan(),
+        dfs.expanded,
+        dfs.solutions,
+        elapsed,
+    )
+
+    print(f"Log file: {log_path}")
     print(f"\nExpanded nodes: {dfs.expanded}")
     print(f"Complete solutions found: {dfs.solutions}")
     print(f"Optimal Cmax: {best.makespan()}")

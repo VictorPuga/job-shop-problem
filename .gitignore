@@ -1,4 +1,5 @@
 /venv
 /tmp
+/logs
 __pycache__
 .DS_Store
