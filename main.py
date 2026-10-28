@@ -1,6 +1,6 @@
 import numpy as np
 
-INSTANCE = "example"  # "example", "ft10" or "la36"
+INSTANCE = "example"  # "example", "ft06_4x4", "ft06", "ft10" or "la36"
 
 # *_machines[job, operation] = machine assigned to job operation
 example_machines = np.array(
@@ -19,6 +19,48 @@ example_durations = np.array(
         [8, 5, 10],
         [5, 4, 8],
         [4, 10, 6],
+    ]
+)
+
+# ft06 (Fisher & Thompson), 6x6, optimal makespan 55
+ft06_machines = np.array(
+    [
+        [2, 0, 1, 3, 5, 4],
+        [1, 2, 4, 5, 0, 3],
+        [2, 3, 5, 0, 1, 4],
+        [1, 0, 2, 3, 4, 5],
+        [2, 1, 4, 5, 0, 3],
+        [1, 3, 5, 0, 4, 2],
+    ]
+)
+
+ft06_durations = np.array(
+    [
+        [1, 3, 6, 7, 3, 6],
+        [8, 5, 10, 10, 10, 4],
+        [5, 4, 8, 9, 1, 7],
+        [5, 5, 5, 3, 8, 9],
+        [9, 3, 5, 4, 3, 1],
+        [3, 3, 9, 10, 4, 1],
+    ]
+)
+
+# ft06 cropped to its first 4 jobs and machines 0-3, 4x4, optimal makespan 33 (computed with the DFS)
+ft06_4x4_machines = np.array(
+    [
+        [2, 0, 1, 3],
+        [1, 2, 0, 3],
+        [2, 3, 0, 1],
+        [1, 0, 2, 3],
+    ]
+)
+
+ft06_4x4_durations = np.array(
+    [
+        [1, 3, 6, 7],
+        [8, 5, 10, 4],
+        [5, 4, 9, 1],
+        [5, 5, 5, 3],
     ]
 )
 
@@ -96,6 +138,8 @@ la36_durations = np.array(
 
 INSTANCES = {
     "example": (example_machines, example_durations),
+    "ft06_4x4": (ft06_4x4_machines, ft06_4x4_durations),
+    "ft06": (ft06_machines, ft06_durations),
     "ft10": (ft10_machines, ft10_durations),
     "la36": (la36_machines, la36_durations),
 }
