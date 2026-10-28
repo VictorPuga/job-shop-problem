@@ -22,6 +22,9 @@ python main.py
 The available instances are the keys of `INSTANCES` in `utils/instances.py`:
 
 - `example`: the small 4x3 instance (default).
+- `ft06_4x4`: `ft06` cropped to its first 4 jobs and machines 0-3, optimal makespan 33 (computed with the DFS, not an official benchmark).
+- `ft06`: Fisher & Thompson, 6x6, optimal makespan 55.
+- `la01`: Lawrence, 10x5, optimal makespan 666.
 - `ft10`: Fisher & Thompson, 10x10, optimal makespan 930.
 - `la36`: Lawrence, 15x15, optimal makespan 1268.
 

@@ -31,6 +31,79 @@ example_solution = np.array(
     ]
 )
 
+# ft06 (Fisher & Thompson), 6x6, optimal makespan 55
+ft06_machines: NDArray[np.int_] = np.array(
+    [
+        [2, 0, 1, 3, 5, 4],
+        [1, 2, 4, 5, 0, 3],
+        [2, 3, 5, 0, 1, 4],
+        [1, 0, 2, 3, 4, 5],
+        [2, 1, 4, 5, 0, 3],
+        [1, 3, 5, 0, 4, 2],
+    ]
+)
+
+ft06_durations: NDArray[np.int_] = np.array(
+    [
+        [1, 3, 6, 7, 3, 6],
+        [8, 5, 10, 10, 10, 4],
+        [5, 4, 8, 9, 1, 7],
+        [5, 5, 5, 3, 8, 9],
+        [9, 3, 5, 4, 3, 1],
+        [3, 3, 9, 10, 4, 1],
+    ]
+)
+
+# ft06 cropped to its first 4 jobs and machines 0-3, 4x4, optimal makespan 33 (computed with the DFS)
+ft06_4x4_machines: NDArray[np.int_] = np.array(
+    [
+        [2, 0, 1, 3],
+        [1, 2, 0, 3],
+        [2, 3, 0, 1],
+        [1, 0, 2, 3],
+    ]
+)
+
+ft06_4x4_durations: NDArray[np.int_] = np.array(
+    [
+        [1, 3, 6, 7],
+        [8, 5, 10, 4],
+        [5, 4, 9, 1],
+        [5, 5, 5, 3],
+    ]
+)
+
+# la01 (Lawrence), 10x5, optimal makespan 666
+la01_machines: NDArray[np.int_] = np.array(
+    [
+        [1, 0, 4, 3, 2],
+        [0, 3, 4, 2, 1],
+        [3, 4, 1, 2, 0],
+        [1, 0, 4, 2, 3],
+        [0, 3, 2, 1, 4],
+        [1, 2, 4, 0, 3],
+        [3, 4, 1, 2, 0],
+        [2, 0, 1, 3, 4],
+        [3, 1, 4, 0, 2],
+        [4, 3, 2, 1, 0],
+    ]
+)
+
+la01_durations: NDArray[np.int_] = np.array(
+    [
+        [21, 53, 95, 55, 34],
+        [21, 52, 16, 26, 71],
+        [39, 98, 42, 31, 12],
+        [77, 55, 79, 66, 77],
+        [83, 34, 64, 19, 37],
+        [54, 43, 79, 92, 62],
+        [69, 77, 87, 87, 93],
+        [38, 60, 41, 24, 83],
+        [17, 49, 25, 44, 98],
+        [77, 79, 43, 75, 96],
+    ]
+)
+
 # ft10 (Fisher & Thompson), 10x10, optimal makespan 930
 ft10_machines: NDArray[np.int_] = np.array(
     [
@@ -106,6 +179,9 @@ la36_durations: NDArray[np.int_] = np.array(
 # Instances selectable from main.py, each as a (machines, durations) pair
 INSTANCES: dict[str, tuple[NDArray[np.int_], NDArray[np.int_]]] = {
     "example": (machines, durations),
+    "ft06_4x4": (ft06_4x4_machines, ft06_4x4_durations),
+    "ft06": (ft06_machines, ft06_durations),
+    "la01": (la01_machines, la01_durations),
     "ft10": (ft10_machines, ft10_durations),
     "la36": (la36_machines, la36_durations),
 }
