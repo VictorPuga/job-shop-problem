@@ -1,7 +1,12 @@
+import logging
 import sys
 from collections.abc import Callable
 
 from utils.problem import Problem, State
+
+logger = logging.getLogger(__name__)
+
+PROGRESS_INTERVAL = 100_000
 
 
 class DFS:
@@ -23,18 +28,40 @@ class DFS:
             state = self.problem.initial_state()
 
         self.visited += 1
+        depth = len(state.sequence)
+        logger.debug(
+            "visit #%d depth=%d sequence=%s", self.visited, depth, state.sequence
+        )
+        if self.visited % PROGRESS_INTERVAL == 0:
+            logger.info(
+                "progress visited=%d best=%d depth=%d",
+                self.visited,
+                self.best_makespan,
+                depth,
+            )
 
         if self.problem.is_complete(state):
             makespan = state.makespan()
             if makespan < self.best_makespan:
                 self.best_makespan = makespan
                 self.best_sequence = state.sequence
+                logger.info(
+                    "new best makespan=%d visited=%d sequence=%s",
+                    makespan,
+                    self.visited,
+                    state.sequence,
+                )
                 if self.on_improvement:
                     self.on_improvement(self)
             return
 
-        if self.prune and self.problem.lower_bound(state) >= self.best_makespan:
-            return
+        if self.prune:
+            bound = self.problem.lower_bound(state)
+            if bound >= self.best_makespan:
+                logger.debug(
+                    "prune depth=%d bound=%d best=%d", depth, bound, self.best_makespan
+                )
+                return
 
         for job in self.problem.available_jobs(state):
             self.search(self.problem.dispatch(state, job))

@@ -35,6 +35,13 @@ It prints the best makespan, the number of search calls, the search time, the di
 DFS Pruning is on by default.
 To run without it, set `PRUNE_DFS = False` at the top of `main.py`.
 
+### Logging
+
+Each run writes a log to a new timestamped file, `logs/<algorithm>_<instance>_YYYYMMDD_HHMMSS.log` (for example `logs/dfs_ft06_20261028_171455.log`), and prints its path.
+By default it records the start, every improved makespan, a progress line every 100,000 visits, and the final result.
+Set `LOG_NODES = True` at the top of `main.py` to also log every visited node and every pruned branch.
+That produces very large files, so use it only on small instances.
+
 ### Live visualization
 
 Set `VISUALIZE = True` at the top of `main.py` to show a live Gantt chart (requires `matplotlib`, installed from `requirements.txt`).
