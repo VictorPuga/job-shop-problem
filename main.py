@@ -4,6 +4,7 @@ import time
 import numpy as np
 from numpy.typing import NDArray
 
+from utils.local_search import LocalSearch
 from utils.a_star import AStar
 from utils.dfs import DFS
 from utils.instances import INSTANCES
@@ -47,6 +48,8 @@ def build_solver(problem: Problem) -> DFS | AStar:
         return DFS(problem, prune=PRUNE_DFS)
     if ALGORITHM == "a_star":
         return AStar(problem, heuristic=HEURISTIC)
+    if ALGORITHM == "local_search":
+        return LocalSearch(problem)
     raise ValueError(f"Unknown algorithm {ALGORITHM!r}")
 
 
