@@ -23,14 +23,21 @@ class DFS:
         self.visited += 1
         depth = len(state.sequence)
         logger.debug(
-            "visit #%d depth=%d sequence=%s", self.visited, depth, state.sequence
+            "visit",
+            extra={
+                "visited": self.visited,
+                "depth": depth,
+                "sequence": state.sequence,
+            },
         )
         if self.visited % PROGRESS_INTERVAL == 0:
             logger.info(
-                "progress visited=%d best=%d depth=%d",
-                self.visited,
-                self.best_makespan,
-                depth,
+                "progress",
+                extra={
+                    "visited": self.visited,
+                    "best": self.best_makespan,
+                    "depth": depth,
+                },
             )
 
         if self.problem.is_complete(state):
@@ -39,10 +46,12 @@ class DFS:
                 self.best_makespan = makespan
                 self.best_sequence = state.sequence
                 logger.info(
-                    "new best makespan=%d visited=%d sequence=%s",
-                    makespan,
-                    self.visited,
-                    state.sequence,
+                    "new_best",
+                    extra={
+                        "makespan": makespan,
+                        "visited": self.visited,
+                        "sequence": state.sequence,
+                    },
                 )
             return
 
@@ -50,7 +59,8 @@ class DFS:
             bound = self.problem.lower_bound(state)
             if bound >= self.best_makespan:
                 logger.debug(
-                    "prune depth=%d bound=%d best=%d", depth, bound, self.best_makespan
+                    "prune",
+                    extra={"depth": depth, "bound": bound, "best": self.best_makespan},
                 )
                 return
 

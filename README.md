@@ -43,8 +43,9 @@ To run without it, set `PRUNE_DFS = False` at the top of `main.py`.
 
 ### Logging
 
-Each run writes a log to a new timestamped file, `logs/<algorithm>_<instance>_YYYYMMDD_HHMMSS.log` (for example `logs/dfs_ft06_20261028_171455.log`), and prints its path.
-By default it records the start, every improved makespan, a progress line every 100,000 visits, and the final result.
+Each run writes a JSON Lines log to a new timestamped file, `logs/<algorithm>_<instance>_YYYYMMDD_HHMMSS.jsonl` (for example `logs/dfs_ft06_20261028_171455.jsonl`), and prints its path.
+Each line is one JSON object with `ts`, `level`, `event`, and the event's own fields (for example `{"ts": "...", "level": "INFO", "event": "new_best", "makespan": 59, "visited": 120, "sequence": [0, 1]}`).
+By default it records the `start` event, every `new_best` makespan, a `progress` event every 100,000 visits, and the final `done` result.
 Set `LOG_NODES = True` at the top of `main.py` to also log every visited node and every pruned branch.
 That produces very large files, so use it only on small instances.
 

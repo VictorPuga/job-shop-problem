@@ -60,17 +60,19 @@ def main() -> None:
     )
     print(f"Log file: {log_path}", flush=True)
     logger = logging.getLogger(f"utils.{ALGORITHM}")
-    logger.info("start instance=%s algorithm=%s", INSTANCE, ALGORITHM)
+    logger.info("start", extra={"instance": INSTANCE, "algorithm": ALGORITHM})
 
     begin = time.perf_counter()
     solver.search()
     elapsed = time.perf_counter() - begin
 
     logger.info(
-        "done best=%d visited=%d elapsed=%.3fs",
-        solver.best_makespan,
-        solver.visited,
-        elapsed,
+        "done",
+        extra={
+            "best": solver.best_makespan,
+            "visited": solver.visited,
+            "elapsed": round(elapsed, 3),
+        },
     )
 
     print(f"Instance: {INSTANCE}")
