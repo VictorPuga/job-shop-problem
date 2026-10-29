@@ -95,9 +95,9 @@ An unknown name raises `ValueError`.
 To add a heuristic, write a method that takes a `State` and returns `h`, then register its name in `AStar.select_heuristic`.
 - **Tie-breaking:** frontier entries are `(f, push_count, state)`.
 The counter is unique per push, so `State` is never compared and ties pop the oldest entry first.
-- **Duplicate detection:** a state is marked as seen when it is popped, keyed by `(next_operation, job_free, machine_free)`.
+- **Duplicate detection:** a state is marked as seen when it is popped, keyed by `State.key()`, which is `(next_operation, job_free, machine_free)`.
 `sequence` is left out because the future of the search does not depend on it.
-A seen key is skipped, which is safe because `f` is consistent: it never decreases along an edge, so the first pop of a state has its best `f`.
+A seen key is skipped both when pushing a child and when popping, which is safe because `f` is consistent: it never decreases along an edge, so the first pop of a state has its best `f`.
 - **Result:** the search stops at the first goal popped and sets `best_makespan` and `best_sequence`, the same attributes `DFS` exposes.
 
 ### Adding another search algorithm

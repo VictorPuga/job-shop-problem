@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 from utils.problem import Problem, State
 
@@ -6,27 +7,21 @@ from utils.problem import Problem, State
 class AStar:
     def __init__(self, problem: Problem, heuristic: str):
         self.problem = problem
-        self.visited = 0
+        self.visited: int = 0
         self.visited_states: set[tuple[tuple[int, ...], ...]] = set()
-        self.push_count = 0
-        self.best_makespan = float("inf")
+        self.push_count: int = 0
+        self.best_makespan: int = sys.maxsize
         self.best_sequence: tuple[int, ...] = ()
 
         self.heuristic = self.select_heuristic(heuristic)
-        self.frontier = []
+        self.frontier: list[tuple[int, int, State]] = []
 
-    def search(self, state: State | None = None) -> None:
-        if state is None:
-            state = self.problem.initial_state()
-
-        f = state.makespan() + self.heuristic(state)
-
-        self.push_count += 1
-        heapq.heappush(self.frontier, (f, self.push_count, state))
+    def search(self) -> None:
+        self.push(self.problem.initial_state())
 
         while self.frontier:
-            f, _, state = heapq.heappop(self.frontier)
-            key = (state.next_operation, state.job_free, state.machine_free)
+            _, _, state = heapq.heappop(self.frontier)
+            key = state.key()
             if key in self.visited_states:
                 continue
             self.visited_states.add(key)
@@ -40,10 +35,13 @@ class AStar:
 
             for job in self.problem.available_jobs(state):
                 new_state = self.problem.dispatch(state, job)
-                f = new_state.makespan() + self.heuristic(new_state)
+                if new_state.key() not in self.visited_states:
+                    self.push(new_state)
 
-                self.push_count += 1
-                heapq.heappush(self.frontier, (f, self.push_count, new_state))
+    def push(self, state: State) -> None:
+        f = state.makespan() + self.heuristic(state)
+        self.push_count += 1
+        heapq.heappush(self.frontier, (f, self.push_count, state))
 
     def select_heuristic(self, heuristic: str):
         if heuristic == "lower_bound":

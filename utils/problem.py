@@ -16,6 +16,10 @@ class State:
     def makespan(self) -> int:
         return max(self.machine_free)
 
+    def key(self) -> tuple[tuple[int, ...], tuple[int, ...], tuple[int, ...]]:
+        """Identifies the state by what the rest of the search depends on, ignoring `sequence`."""
+        return (self.next_operation, self.job_free, self.machine_free)
+
 
 class Problem:
     def __init__(self, machines: NDArray[np.int_], durations: NDArray[np.int_]) -> None:
