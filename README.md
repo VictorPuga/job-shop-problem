@@ -19,6 +19,10 @@ Run the search on the instance selected by `INSTANCE` at the top of `main.py`:
 python main.py
 ```
 
+Set `ALGORITHM` to `"dfs"` (default) or `"a_star"` to pick the search.
+With `"a_star"`, `HEURISTIC` selects the heuristic by name.
+An unknown name raises an error.
+
 The available instances are the keys of `INSTANCES` in `utils/instances.py`:
 
 - `example`: the small 4x3 instance (default).

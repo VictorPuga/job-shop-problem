@@ -4,12 +4,15 @@ import time
 import numpy as np
 from numpy.typing import NDArray
 
+from utils.a_star import AStar
 from utils.dfs import DFS
 from utils.instances import INSTANCES
 from utils.log import setup_logging
 from utils.problem import Problem
 
 INSTANCE = "example"
+ALGORITHM = "dfs"
+HEURISTIC = "lower_bound"
 PRUNE_DFS = True
 VISUALIZE = False
 LOG_NODES = False
@@ -39,43 +42,57 @@ def print_schedule(problem: Problem, start: NDArray[np.int_]) -> None:
         print(line)
 
 
+def build_solver(problem: Problem) -> DFS | AStar:
+    if ALGORITHM == "dfs":
+        return DFS(problem, prune=PRUNE_DFS)
+    if ALGORITHM == "a_star":
+        return AStar(problem, heuristic=HEURISTIC)
+    raise ValueError(f"Unknown algorithm {ALGORITHM!r}")
+
+
 def main() -> None:
     machines, durations = INSTANCES[INSTANCE]
     problem = Problem(machines, durations)
-    dfs = DFS(problem, prune=PRUNE_DFS)
+    solver = build_solver(problem)
 
     log_path = setup_logging(
-        INSTANCE, "dfs", logging.DEBUG if LOG_NODES else logging.INFO
+        INSTANCE, ALGORITHM, logging.DEBUG if LOG_NODES else logging.INFO
     )
     print(f"Log file: {log_path}", flush=True)
-    logging.getLogger("utils.dfs").info(
-        "start instance=%s prune=%s", INSTANCE, PRUNE_DFS
-    )
+    logger = logging.getLogger(f"utils.{ALGORITHM}")
+    logger.info("start instance=%s algorithm=%s", INSTANCE, ALGORITHM)
 
     begin = time.perf_counter()
-    dfs.search()
+    solver.search()
     elapsed = time.perf_counter() - begin
 
-    logging.getLogger("utils.dfs").info(
-        "done best=%d visited=%d elapsed=%.3fs", dfs.best_makespan, dfs.visited, elapsed
+    logger.info(
+        "done best=%d visited=%d elapsed=%.3fs",
+        solver.best_makespan,
+        solver.visited,
+        elapsed,
     )
 
     print(f"Instance: {INSTANCE}")
-    print(f"DFS Pruning: {'on' if PRUNE_DFS else 'off'}")
-    print(f"Best makespan: {dfs.best_makespan}")
-    print(f"Search calls: {dfs.visited}")
+    print(f"Algorithm: {ALGORITHM}")
+    if ALGORITHM == "dfs":
+        print(f"DFS Pruning: {'on' if PRUNE_DFS else 'off'}")
+    else:
+        print(f"Heuristic: {HEURISTIC}")
+    print(f"Best makespan: {solver.best_makespan}")
+    print(f"Visited: {solver.visited}")
     print(f"Search time: {elapsed:.3f} s")
     sequence = ""
-    for job in dfs.best_sequence:
+    for job in solver.best_sequence:
         sequence += f" J{job + 1}"
     print(f"Dispatch sequence:{sequence}")
 
-    print_schedule(problem, problem.start_times(dfs.best_sequence))
+    print_schedule(problem, problem.start_times(solver.best_sequence))
 
     if VISUALIZE:
         from utils.visualization import plot_gantt
 
-        plot_gantt(dfs)
+        plot_gantt(solver)
 
 
 if __name__ == "__main__":

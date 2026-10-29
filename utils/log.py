@@ -12,7 +12,7 @@ def setup_logging(instance: str, algorithm: str, level: int = logging.INFO) -> P
     handler = logging.FileHandler(path)
     handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
 
-    logger = logging.getLogger("utils.dfs")
+    logger = logging.getLogger(f"utils.{algorithm}")
     logger.setLevel(level)
     logger.addHandler(handler)
     return path
