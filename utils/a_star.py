@@ -1,7 +1,12 @@
 import heapq
+import logging
 import sys
 
 from utils.problem import Problem, State
+
+logger = logging.getLogger(__name__)
+
+PROGRESS_INTERVAL = 10
 
 
 class AStar:
@@ -20,17 +25,38 @@ class AStar:
         self.push(self.problem.initial_state())
 
         while self.frontier:
-            _, _, state = heapq.heappop(self.frontier)
+            f, _, state = heapq.heappop(self.frontier)
             key = state.key()
             if key in self.visited_states:
+                logger.debug("duplicate", extra={"f": f, "sequence": state.sequence})
                 continue
             self.visited_states.add(key)
 
             self.visited += 1
+            if self.visited % PROGRESS_INTERVAL == 0:
+                logger.info(
+                    "progress",
+                    extra={
+                        "visited": self.visited,
+                        "f": f,
+                        "depth": len(state.sequence),
+                        "frontier": len(self.frontier),
+                        "pushed": self.push_count,
+                    },
+                )
 
             if self.problem.is_complete(state):
                 self.best_makespan = state.makespan()
                 self.best_sequence = state.sequence
+                logger.info(
+                    "solution",
+                    extra={
+                        "makespan": self.best_makespan,
+                        "visited": self.visited,
+                        "frontier": len(self.frontier),
+                        "sequence": self.best_sequence,
+                    },
+                )
                 return
 
             for job in self.problem.available_jobs(state):
