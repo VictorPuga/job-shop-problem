@@ -11,7 +11,7 @@ from utils.log import setup_logging
 from utils.problem import Problem
 
 INSTANCE = "example"
-ALGORITHM = "dfs"
+ALGORITHM = "a_star"
 HEURISTIC = "lower_bound"
 PRUNE_DFS = True
 VISUALIZE = False

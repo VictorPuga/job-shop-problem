@@ -1,43 +1,109 @@
 import unittest
 
-from tests.fixtures import TINY_DURATIONS, TINY_MACHINES
+import numpy as np
+
+from tests.fixtures import (
+    TINY_DURATIONS,
+    TINY_MACHINES,
+    TINY_OPTIMAL_MAKESPAN,
+    TINY_OPTIMAL_SEQUENCE,
+)
+from tests.oracle import brute_force_makespan, random_instance
 from utils.a_star import AStar
-from utils.problem import Problem
+from utils.dfs import DFS
+from utils.instances import durations, machines
+from utils.problem import Problem, State
+
+
+def reachable_states(problem: Problem) -> list[State]:
+    states = []
+    stack = [problem.initial_state()]
+    while stack:
+        state = stack.pop()
+        states.append(state)
+        for job in problem.available_jobs(state):
+            stack.append(problem.dispatch(state, job))
+    return states
 
 
 class AStarTinyInstanceTests(unittest.TestCase):
     def setUp(self):
         self.problem = Problem(TINY_MACHINES, TINY_DURATIONS)
-        self.astar = AStar(self.problem)
+        self.astar = AStar(self.problem, "lower_bound")
         self.astar.search()
 
     def test_finds_optimal_makespan(self):
-        self.skipTest("TODO")
+        self.assertEqual(self.astar.best_makespan, TINY_OPTIMAL_MAKESPAN)
 
     def test_best_sequence_dispatches_every_operation(self):
-        self.skipTest("TODO")
+        self.assertEqual(len(self.astar.best_sequence), 4)
+        for job in range(self.problem.n_jobs):
+            self.assertEqual(
+                self.astar.best_sequence.count(job), self.problem.n_operations_per_job
+            )
 
     def test_best_sequence_reproduces_best_makespan(self):
-        self.skipTest("TODO")
+        start = self.problem.start_times(self.astar.best_sequence)
+        self.assertEqual((start + TINY_DURATIONS).max(), self.astar.best_makespan)
 
 
 class AStarMatchesBruteForceTests(unittest.TestCase):
     def test_random_instances(self):
-        self.skipTest("TODO")
+        rng = np.random.RandomState(0)
+        for n_jobs, n_machines in [(2, 2), (2, 3), (3, 2), (3, 3)] * 5:
+            m, d = random_instance(rng, n_jobs, n_machines)
+            with self.subTest(machines=m.tolist(), durations=d.tolist()):
+                astar = AStar(Problem(m, d), "lower_bound")
+                astar.search()
+                self.assertEqual(astar.best_makespan, brute_force_makespan(m, d))
 
     def test_matches_dfs(self):
-        self.skipTest("TODO")
+        astar = AStar(Problem(machines, durations), "lower_bound")
+        dfs = DFS(Problem(machines, durations))
+        astar.search()
+        dfs.search()
+        self.assertEqual(astar.best_makespan, dfs.best_makespan)
+
+    def test_expands_fewer_states_than_dfs(self):
+        astar = AStar(Problem(machines, durations), "lower_bound")
+        dfs = DFS(Problem(machines, durations))
+        astar.search()
+        dfs.search()
+        self.assertLess(astar.visited, dfs.visited)
 
 
 class AStarHeuristicTests(unittest.TestCase):
     def test_unknown_heuristic_raises(self):
-        self.skipTest("TODO")
+        problem = Problem(TINY_MACHINES, TINY_DURATIONS)
+        with self.assertRaises(ValueError):
+            AStar(problem, "nonexistent")
 
     def test_heuristics_are_admissible(self):
-        self.skipTest("TODO")
+        rng = np.random.RandomState(2)
+        for n_jobs, n_machines in [(2, 2), (2, 3), (3, 2)] * 2:
+            m, d = random_instance(rng, n_jobs, n_machines)
+            problem = Problem(m, d)
+            astar = AStar(problem, "lower_bound")
+            for state in reachable_states(problem):
+                with self.subTest(sequence=state.sequence):
+                    dfs = DFS(problem, prune=False)
+                    dfs.search(state)
+                    remaining = dfs.best_makespan - state.makespan()
+                    self.assertLessEqual(astar.heuristic(state), remaining)
 
     def test_heuristic_is_never_negative(self):
-        self.skipTest("TODO")
+        problem = Problem(TINY_MACHINES, TINY_DURATIONS)
+        astar = AStar(problem, "lower_bound")
+        for state in reachable_states(problem):
+            self.assertGreaterEqual(astar.heuristic(state), 0)
+
+    def test_heuristic_is_zero_at_a_goal(self):
+        problem = Problem(TINY_MACHINES, TINY_DURATIONS)
+        astar = AStar(problem, "lower_bound")
+        goal = problem.initial_state()
+        for job in TINY_OPTIMAL_SEQUENCE:
+            goal = problem.dispatch(goal, job)
+        self.assertEqual(astar.heuristic(goal), 0)
 
 
 if __name__ == "__main__":

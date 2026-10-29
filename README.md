@@ -34,7 +34,9 @@ The available instances are the keys of `INSTANCES` in `utils/instances.py`:
 
 The larger instances are far too big for an exhaustive DFS, so expect them to run for a very long time.
 
-It prints the best makespan, the number of search calls, the search time, the dispatch sequence, the order of operations on each machine, and the start time of each operation.
+It prints the best makespan, the number of visited states, the search time, the dispatch sequence, the order of operations on each machine, and the start time of each operation.
+For DFS, visited counts `search` calls.
+For A\*, it counts expanded states, and duplicates skipped are not counted.
 
 DFS Pruning is on by default.
 To run without it, set `PRUNE_DFS = False` at the top of `main.py`.
@@ -54,7 +56,7 @@ The program exits when you close the window.
 
 ## How it works
 
-The search runs on an operation-sequence (dispatching) state space, implemented in `utils/problem.py` and `utils/dfs.py`.
+The search runs on an operation-sequence (dispatching) state space, implemented in `utils/problem.py`, `utils/dfs.py` and `utils/a_star.py`.
 
 - **State:** a partial schedule (`State`).
 It holds the next operation of each job (`next_operation`), when each job and each machine becomes free (`job_free`, `machine_free`), and the jobs dispatched so far (`sequence`).
@@ -81,10 +83,27 @@ The bound is the largest of:
 - each job's free time plus its remaining durations,
 - each machine's free time plus the durations still to run on it.
 
+### A\*
+
+`AStar(problem, heuristic)` in `utils/a_star.py` keeps a frontier ordered by `f = g + h`.
+
+- **g:** the makespan of the state so far (`State.makespan()`).
+- **h:** the heuristic selected by name, an estimate of the makespan still to be added.
+It must never overestimate, so the first goal popped is optimal.
+- **Heuristics:** `lower_bound` is `Problem.lower_bound(state) - state.makespan()`, so its `f` equals `Problem.lower_bound`.
+An unknown name raises `ValueError`.
+To add a heuristic, write a method that takes a `State` and returns `h`, then register its name in `AStar.select_heuristic`.
+- **Tie-breaking:** frontier entries are `(f, push_count, state)`.
+The counter is unique per push, so `State` is never compared and ties pop the oldest entry first.
+- **Duplicate detection:** a state is marked as seen when it is popped, keyed by `(next_operation, job_free, machine_free)`.
+`sequence` is left out because the future of the search does not depend on it.
+A seen key is skipped, which is safe because `f` is consistent: it never decreases along an edge, so the first pop of a state has its best `f`.
+- **Result:** the search stops at the first goal popped and sets `best_makespan` and `best_sequence`, the same attributes `DFS` exposes.
+
 ### Adding another search algorithm
 
-A\*, branch and bound, and beam search only need `Problem.initial_state()`, `available_jobs`, `dispatch`, `is_complete` and `lower_bound`.
-`lower_bound` never overestimates the final makespan, so it can serve as the `f` value of A\*, and `State` is hashable for duplicate detection.
+Branch and bound and beam search only need `Problem.initial_state()`, `available_jobs`, `dispatch`, `is_complete` and `lower_bound`.
+To work with `main.py` and `plot_gantt`, a solver also needs `problem`, a `search()` method, and the `visited`, `best_makespan` and `best_sequence` attributes.
 
 ## Running the unit tests
 
@@ -98,5 +117,5 @@ python -m unittest discover -s tests -t .
 To run a single test module with verbose output:
 
 ```sh
-python -m unittest tests.test_problem -v
+python -m unittest tests.test_a_star -v
 ```
