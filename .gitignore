@@ -1,4 +1,5 @@
 /venv
+/.venv
 /tmp
 /logs
 __pycache__
