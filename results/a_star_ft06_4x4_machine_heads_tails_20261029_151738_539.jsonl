@@ -1,0 +1,30 @@
+{"ts": "2026-10-29T15:17:38.677", "level": "INFO", "event": "start", "instance": "ft06_4x4", "algorithm": "a_star", "n_jobs": 4, "n_machines": 4, "heuristic": "machine_heads_tails", "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "d483a225b6914886aac0670d73092fbe19bfae12", "argv": ["main.py", "-a", "a_star", "-i", "ft06_4x4", "--heuristic", "machine_heads_tails"]}
+{"ts": "2026-10-29T15:17:38.679", "level": "INFO", "event": "progress", "visited": 10, "f": 29, "depth": 2, "frontier": 26, "pushed": 37}
+{"ts": "2026-10-29T15:17:38.680", "level": "INFO", "event": "progress", "visited": 20, "f": 29, "depth": 3, "frontier": 51, "pushed": 77}
+{"ts": "2026-10-29T15:17:38.681", "level": "INFO", "event": "progress", "visited": 30, "f": 29, "depth": 4, "frontier": 72, "pushed": 117}
+{"ts": "2026-10-29T15:17:38.681", "level": "INFO", "event": "progress", "visited": 40, "f": 30, "depth": 3, "frontier": 92, "pushed": 157}
+{"ts": "2026-10-29T15:17:38.682", "level": "INFO", "event": "progress", "visited": 50, "f": 30, "depth": 4, "frontier": 119, "pushed": 197}
+{"ts": "2026-10-29T15:17:38.683", "level": "INFO", "event": "progress", "visited": 60, "f": 30, "depth": 6, "frontier": 137, "pushed": 237}
+{"ts": "2026-10-29T15:17:38.683", "level": "INFO", "event": "progress", "visited": 70, "f": 30, "depth": 6, "frontier": 151, "pushed": 272}
+{"ts": "2026-10-29T15:17:38.684", "level": "INFO", "event": "progress", "visited": 80, "f": 32, "depth": 3, "frontier": 160, "pushed": 305}
+{"ts": "2026-10-29T15:17:38.685", "level": "INFO", "event": "progress", "visited": 90, "f": 32, "depth": 5, "frontier": 190, "pushed": 345}
+{"ts": "2026-10-29T15:17:38.685", "level": "INFO", "event": "progress", "visited": 100, "f": 32, "depth": 7, "frontier": 216, "pushed": 381}
+{"ts": "2026-10-29T15:17:38.687", "level": "INFO", "event": "progress", "visited": 110, "f": 32, "depth": 6, "frontier": 231, "pushed": 420}
+{"ts": "2026-10-29T15:17:38.691", "level": "INFO", "event": "progress", "visited": 120, "f": 32, "depth": 8, "frontier": 251, "pushed": 459}
+{"ts": "2026-10-29T15:17:38.693", "level": "INFO", "event": "progress", "visited": 130, "f": 33, "depth": 2, "frontier": 251, "pushed": 499}
+{"ts": "2026-10-29T15:17:38.696", "level": "INFO", "event": "progress", "visited": 140, "f": 33, "depth": 4, "frontier": 281, "pushed": 539}
+{"ts": "2026-10-29T15:17:38.697", "level": "INFO", "event": "progress", "visited": 150, "f": 33, "depth": 4, "frontier": 309, "pushed": 577}
+{"ts": "2026-10-29T15:17:38.699", "level": "INFO", "event": "progress", "visited": 160, "f": 33, "depth": 5, "frontier": 338, "pushed": 617}
+{"ts": "2026-10-29T15:17:38.701", "level": "INFO", "event": "progress", "visited": 170, "f": 33, "depth": 10, "frontier": 364, "pushed": 653}
+{"ts": "2026-10-29T15:17:38.701", "level": "INFO", "event": "progress", "visited": 180, "f": 33, "depth": 6, "frontier": 370, "pushed": 693}
+{"ts": "2026-10-29T15:17:38.702", "level": "INFO", "event": "progress", "visited": 190, "f": 33, "depth": 7, "frontier": 378, "pushed": 732}
+{"ts": "2026-10-29T15:17:38.704", "level": "INFO", "event": "progress", "visited": 200, "f": 33, "depth": 11, "frontier": 393, "pushed": 767}
+{"ts": "2026-10-29T15:17:38.710", "level": "INFO", "event": "progress", "visited": 210, "f": 33, "depth": 6, "frontier": 409, "pushed": 805}
+{"ts": "2026-10-29T15:17:38.712", "level": "INFO", "event": "progress", "visited": 220, "f": 33, "depth": 8, "frontier": 427, "pushed": 844}
+{"ts": "2026-10-29T15:17:38.713", "level": "INFO", "event": "progress", "visited": 230, "f": 33, "depth": 12, "frontier": 435, "pushed": 874}
+{"ts": "2026-10-29T15:17:38.715", "level": "INFO", "event": "progress", "visited": 240, "f": 33, "depth": 8, "frontier": 442, "pushed": 910}
+{"ts": "2026-10-29T15:17:38.716", "level": "INFO", "event": "progress", "visited": 250, "f": 33, "depth": 13, "frontier": 455, "pushed": 944}
+{"ts": "2026-10-29T15:17:38.717", "level": "INFO", "event": "progress", "visited": 260, "f": 33, "depth": 14, "frontier": 458, "pushed": 976}
+{"ts": "2026-10-29T15:17:38.723", "level": "INFO", "event": "progress", "visited": 270, "f": 33, "depth": 16, "frontier": 457, "pushed": 999}
+{"ts": "2026-10-29T15:17:38.725", "level": "INFO", "event": "solution", "makespan": 33, "visited": 270, "frontier": 457, "sequence": [0, 2, 2, 3, 0, 3, 1, 0, 1, 0, 2, 1, 2, 3, 3, 1]}
+{"ts": "2026-10-29T15:17:38.725", "level": "INFO", "event": "done", "instance": "ft06_4x4", "algorithm": "a_star", "heuristic": "machine_heads_tails", "best": 33, "visited": 270, "elapsed": 0.047, "time_to_best": 0.047, "max_frontier": 461, "optimal": 33, "reached_optimal": true}

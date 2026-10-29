@@ -1,0 +1,11 @@
+{"ts": "2026-10-29T15:12:19.328", "level": "INFO", "event": "start", "instance": "example", "algorithm": "dfs", "n_jobs": 4, "n_machines": 3, "prune": true, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "d483a225b6914886aac0670d73092fbe19bfae12", "argv": ["main.py", "-a", "dfs", "-i", "example"]}
+{"ts": "2026-10-29T15:12:19.328", "level": "INFO", "event": "new_best", "makespan": 51, "visited": 13, "sequence": [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3]}
+{"ts": "2026-10-29T15:12:19.328", "level": "INFO", "event": "new_best", "makespan": 49, "visited": 19, "sequence": [0, 0, 0, 1, 1, 1, 2, 3, 2, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:19.328", "level": "INFO", "event": "new_best", "makespan": 46, "visited": 71, "sequence": [0, 0, 0, 1, 1, 2, 2, 2, 3, 1, 3, 3]}
+{"ts": "2026-10-29T15:12:19.328", "level": "INFO", "event": "new_best", "makespan": 45, "visited": 79, "sequence": [0, 0, 0, 1, 1, 2, 3, 1, 2, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:19.328", "level": "INFO", "event": "new_best", "makespan": 40, "visited": 92, "sequence": [0, 0, 0, 1, 1, 2, 3, 2, 1, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:19.329", "level": "INFO", "event": "new_best", "makespan": 33, "visited": 194, "sequence": [0, 0, 0, 1, 2, 1, 2, 2, 3, 1, 3, 3]}
+{"ts": "2026-10-29T15:12:19.334", "level": "INFO", "event": "new_best", "makespan": 31, "visited": 1928, "sequence": [0, 0, 1, 2, 3, 0, 2, 2, 3, 1, 1, 3]}
+{"ts": "2026-10-29T15:12:19.350", "level": "INFO", "event": "new_best", "makespan": 30, "visited": 6753, "sequence": [0, 1, 0, 2, 1, 2, 2, 3, 0, 1, 3, 3]}
+{"ts": "2026-10-29T15:12:19.350", "level": "INFO", "event": "new_best", "makespan": 29, "visited": 6807, "sequence": [0, 1, 0, 2, 1, 3, 2, 0, 1, 2, 3, 3]}
+{"ts": "2026-10-29T15:12:19.475", "level": "INFO", "event": "done", "instance": "example", "algorithm": "dfs", "prune": true, "best": 29, "visited": 45736, "elapsed": 0.147, "time_to_best": 0.022, "optimal": 29, "reached_optimal": true}

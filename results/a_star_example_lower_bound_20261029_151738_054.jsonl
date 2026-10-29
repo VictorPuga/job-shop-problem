@@ -1,0 +1,47 @@
+{"ts": "2026-10-29T15:17:38.099", "level": "INFO", "event": "start", "instance": "example", "algorithm": "a_star", "n_jobs": 4, "n_machines": 3, "heuristic": "lower_bound", "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "d483a225b6914886aac0670d73092fbe19bfae12", "argv": ["main.py", "-a", "a_star", "-i", "example", "--heuristic", "lower_bound"]}
+{"ts": "2026-10-29T15:17:38.100", "level": "INFO", "event": "progress", "visited": 10, "f": 25, "depth": 2, "frontier": 26, "pushed": 37}
+{"ts": "2026-10-29T15:17:38.101", "level": "INFO", "event": "progress", "visited": 20, "f": 25, "depth": 3, "frontier": 49, "pushed": 77}
+{"ts": "2026-10-29T15:17:38.101", "level": "INFO", "event": "progress", "visited": 30, "f": 25, "depth": 4, "frontier": 71, "pushed": 117}
+{"ts": "2026-10-29T15:17:38.101", "level": "INFO", "event": "progress", "visited": 40, "f": 25, "depth": 4, "frontier": 96, "pushed": 157}
+{"ts": "2026-10-29T15:17:38.101", "level": "INFO", "event": "progress", "visited": 50, "f": 25, "depth": 4, "frontier": 118, "pushed": 197}
+{"ts": "2026-10-29T15:17:38.102", "level": "INFO", "event": "progress", "visited": 60, "f": 25, "depth": 5, "frontier": 137, "pushed": 237}
+{"ts": "2026-10-29T15:17:38.102", "level": "INFO", "event": "progress", "visited": 70, "f": 25, "depth": 5, "frontier": 156, "pushed": 277}
+{"ts": "2026-10-29T15:17:38.102", "level": "INFO", "event": "progress", "visited": 80, "f": 25, "depth": 6, "frontier": 171, "pushed": 316}
+{"ts": "2026-10-29T15:17:38.102", "level": "INFO", "event": "progress", "visited": 90, "f": 25, "depth": 7, "frontier": 187, "pushed": 353}
+{"ts": "2026-10-29T15:17:38.102", "level": "INFO", "event": "progress", "visited": 100, "f": 25, "depth": 8, "frontier": 201, "pushed": 386}
+{"ts": "2026-10-29T15:17:38.103", "level": "INFO", "event": "progress", "visited": 110, "f": 25, "depth": 9, "frontier": 207, "pushed": 415}
+{"ts": "2026-10-29T15:17:38.103", "level": "INFO", "event": "progress", "visited": 120, "f": 25, "depth": 10, "frontier": 204, "pushed": 434}
+{"ts": "2026-10-29T15:17:38.104", "level": "INFO", "event": "progress", "visited": 130, "f": 26, "depth": 5, "frontier": 222, "pushed": 467}
+{"ts": "2026-10-29T15:17:38.104", "level": "INFO", "event": "progress", "visited": 140, "f": 26, "depth": 6, "frontier": 248, "pushed": 503}
+{"ts": "2026-10-29T15:17:38.105", "level": "INFO", "event": "progress", "visited": 150, "f": 26, "depth": 8, "frontier": 266, "pushed": 531}
+{"ts": "2026-10-29T15:17:38.105", "level": "INFO", "event": "progress", "visited": 160, "f": 26, "depth": 6, "frontier": 269, "pushed": 561}
+{"ts": "2026-10-29T15:17:38.106", "level": "INFO", "event": "progress", "visited": 170, "f": 26, "depth": 8, "frontier": 276, "pushed": 589}
+{"ts": "2026-10-29T15:17:38.106", "level": "INFO", "event": "progress", "visited": 180, "f": 26, "depth": 7, "frontier": 285, "pushed": 616}
+{"ts": "2026-10-29T15:17:38.106", "level": "INFO", "event": "progress", "visited": 190, "f": 27, "depth": 6, "frontier": 290, "pushed": 641}
+{"ts": "2026-10-29T15:17:38.106", "level": "INFO", "event": "progress", "visited": 200, "f": 27, "depth": 7, "frontier": 309, "pushed": 670}
+{"ts": "2026-10-29T15:17:38.106", "level": "INFO", "event": "progress", "visited": 210, "f": 27, "depth": 6, "frontier": 331, "pushed": 702}
+{"ts": "2026-10-29T15:17:38.106", "level": "INFO", "event": "progress", "visited": 220, "f": 27, "depth": 6, "frontier": 354, "pushed": 735}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 230, "f": 27, "depth": 7, "frontier": 372, "pushed": 765}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 240, "f": 27, "depth": 8, "frontier": 379, "pushed": 794}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 250, "f": 27, "depth": 7, "frontier": 376, "pushed": 821}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 260, "f": 27, "depth": 7, "frontier": 377, "pushed": 848}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 270, "f": 27, "depth": 9, "frontier": 382, "pushed": 873}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 280, "f": 27, "depth": 9, "frontier": 369, "pushed": 893}
+{"ts": "2026-10-29T15:17:38.107", "level": "INFO", "event": "progress", "visited": 290, "f": 28, "depth": 6, "frontier": 377, "pushed": 918}
+{"ts": "2026-10-29T15:17:38.108", "level": "INFO", "event": "progress", "visited": 300, "f": 28, "depth": 7, "frontier": 382, "pushed": 940}
+{"ts": "2026-10-29T15:17:38.108", "level": "INFO", "event": "progress", "visited": 310, "f": 29, "depth": 5, "frontier": 403, "pushed": 975}
+{"ts": "2026-10-29T15:17:38.108", "level": "INFO", "event": "progress", "visited": 320, "f": 29, "depth": 6, "frontier": 429, "pushed": 1011}
+{"ts": "2026-10-29T15:17:38.108", "level": "INFO", "event": "progress", "visited": 330, "f": 29, "depth": 7, "frontier": 454, "pushed": 1046}
+{"ts": "2026-10-29T15:17:38.108", "level": "INFO", "event": "progress", "visited": 340, "f": 29, "depth": 8, "frontier": 477, "pushed": 1079}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 350, "f": 29, "depth": 10, "frontier": 496, "pushed": 1108}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 360, "f": 29, "depth": 6, "frontier": 507, "pushed": 1129}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 370, "f": 29, "depth": 7, "frontier": 522, "pushed": 1154}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 380, "f": 29, "depth": 8, "frontier": 536, "pushed": 1179}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 390, "f": 29, "depth": 9, "frontier": 553, "pushed": 1206}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 400, "f": 29, "depth": 6, "frontier": 567, "pushed": 1230}
+{"ts": "2026-10-29T15:17:38.109", "level": "INFO", "event": "progress", "visited": 410, "f": 29, "depth": 4, "frontier": 586, "pushed": 1260}
+{"ts": "2026-10-29T15:17:38.110", "level": "INFO", "event": "progress", "visited": 420, "f": 29, "depth": 7, "frontier": 592, "pushed": 1296}
+{"ts": "2026-10-29T15:17:38.110", "level": "INFO", "event": "progress", "visited": 430, "f": 29, "depth": 8, "frontier": 589, "pushed": 1326}
+{"ts": "2026-10-29T15:17:38.110", "level": "INFO", "event": "progress", "visited": 440, "f": 29, "depth": 9, "frontier": 588, "pushed": 1350}
+{"ts": "2026-10-29T15:17:38.110", "level": "INFO", "event": "solution", "makespan": 29, "visited": 447, "frontier": 569, "sequence": [0, 1, 0, 2, 1, 3, 2, 0, 1, 2, 3, 3]}
+{"ts": "2026-10-29T15:17:38.110", "level": "INFO", "event": "done", "instance": "example", "algorithm": "a_star", "heuristic": "lower_bound", "best": 29, "visited": 447, "elapsed": 0.01, "time_to_best": 0.01, "max_frontier": 598, "optimal": 29, "reached_optimal": true}
