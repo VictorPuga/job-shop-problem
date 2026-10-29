@@ -1,5 +1,6 @@
 import logging
 import random
+import time
 
 from utils.problem import Problem
 
@@ -16,7 +17,8 @@ class LocalSearch:
         self.visited: int = 0
         self.best_makespan: int = float("inf")
         self.best_sequence: tuple[int, ...] = ()
-        
+        self.best_found_at: float | None = None
+
     def _sequence_makespan(self, sequence: tuple[int, ...]) -> int:
         state = self.problem.initial_state()
         try:
@@ -52,6 +54,7 @@ class LocalSearch:
             if current_makespan < self.best_makespan:
                 self.best_makespan = current_makespan
                 self.best_sequence = current_sequence
+                self.best_found_at = time.perf_counter()
                 logger.info(
                     "new_best",
                     extra={
@@ -102,6 +105,7 @@ class LocalSearch:
                         if current_makespan < self.best_makespan:
                             self.best_makespan = current_makespan
                             self.best_sequence = neighbor_sequence
+                            self.best_found_at = time.perf_counter()
                             logger.info(
                                 "new_best",
                                 extra={

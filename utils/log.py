@@ -23,11 +23,16 @@ class JsonlFormatter(logging.Formatter):
         return json.dumps(entry, default=list)
 
 
-def setup_logging(instance: str, algorithm: str, level: int = logging.INFO) -> Path:
+def setup_logging(
+    instance: str, algorithm: str, tag: str = "", level: int = logging.INFO
+) -> Path:
     LOG_DIR.mkdir(exist_ok=True)
-    path = LOG_DIR / f"{algorithm}_{instance}_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
+    now = datetime.now()
+    stamp = f"{now:%Y%m%d_%H%M%S}_{now.microsecond // 1000:03d}"
+    parts = [algorithm, instance, tag, stamp]
+    path = LOG_DIR / f"{'_'.join(part for part in parts if part)}.jsonl"
 
-    handler = logging.FileHandler(path)
+    handler = logging.FileHandler(path, mode="x")
     handler.setFormatter(JsonlFormatter())
 
     logger = logging.getLogger(f"utils.{algorithm}")

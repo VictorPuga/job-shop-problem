@@ -1,6 +1,7 @@
 import heapq
 import logging
 import sys
+import time
 
 from utils.problem import Problem, State
 
@@ -17,6 +18,8 @@ class AStar:
         self.push_count: int = 0
         self.best_makespan: int = sys.maxsize
         self.best_sequence: tuple[int, ...] = ()
+        self.best_found_at: float | None = None
+        self.max_frontier: int = 0
 
         self.heuristic = self.select_heuristic(heuristic)
         self.frontier: list[tuple[int, int, State]] = []
@@ -48,6 +51,7 @@ class AStar:
             if self.problem.is_complete(state):
                 self.best_makespan = state.makespan()
                 self.best_sequence = state.sequence
+                self.best_found_at = time.perf_counter()
                 logger.info(
                     "solution",
                     extra={
@@ -68,6 +72,7 @@ class AStar:
         f = state.makespan() + self.heuristic(state)
         self.push_count += 1
         heapq.heappush(self.frontier, (f, self.push_count, state))
+        self.max_frontier = max(self.max_frontier, len(self.frontier))
 
     def select_heuristic(self, heuristic: str):
         if heuristic == "lower_bound":

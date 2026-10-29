@@ -1,5 +1,6 @@
 import logging
 import sys
+import time
 
 from utils.problem import Problem, State
 
@@ -15,6 +16,7 @@ class DFS:
         self.visited: int = 0
         self.best_makespan: int = sys.maxsize
         self.best_sequence: tuple[int, ...] = ()
+        self.best_found_at: float | None = None
 
     def search(self, state: State | None = None) -> None:
         if state is None:
@@ -45,6 +47,7 @@ class DFS:
             if makespan < self.best_makespan:
                 self.best_makespan = makespan
                 self.best_sequence = state.sequence
+                self.best_found_at = time.perf_counter()
                 logger.info(
                     "new_best",
                     extra={

@@ -1,13 +1,17 @@
 import argparse
 import logging
+import platform
+import subprocess
+import sys
 import time
+from pathlib import Path
 
 import numpy as np
 from numpy.typing import NDArray
 
 from utils.a_star import AStar
 from utils.dfs import DFS
-from utils.instances import INSTANCES
+from utils.instances import INSTANCES, OPTIMAL_MAKESPANS
 from utils.local_search import LocalSearch
 from utils.log import setup_logging
 from utils.problem import Problem
@@ -69,29 +73,100 @@ def build_solver(args: argparse.Namespace, problem: Problem) -> DFS | AStar | Lo
     return LocalSearch(problem, seed=args.seed)
 
 
+def run_options(args: argparse.Namespace) -> dict[str, object]:
+    if args.algorithm == "dfs":
+        return {"prune": not args.no_prune}
+    if args.algorithm == "a_star":
+        return {"heuristic": args.heuristic}
+    return {"seed": args.seed}
+
+
+def run_tag(options: dict[str, object]) -> str:
+    if "prune" in options:
+        return "prune" if options["prune"] else "noprune"
+    if "heuristic" in options:
+        return str(options["heuristic"])
+    return f"seed{options['seed']}"
+
+
+def git_commit() -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+            cwd=Path(__file__).parent,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return result.stdout.strip()
+
+
 def main() -> None:
     args = parse_args()
     machines, durations = INSTANCES[args.instance]
     problem = Problem(machines, durations)
     solver = build_solver(args, problem)
+    options = run_options(args)
 
     log_path = setup_logging(
-        args.instance, args.algorithm, logging.DEBUG if args.log_nodes else logging.INFO
+        args.instance,
+        args.algorithm,
+        run_tag(options),
+        logging.DEBUG if args.log_nodes else logging.INFO,
     )
     print(f"Log file: {log_path}", flush=True)
     logger = logging.getLogger(f"utils.{args.algorithm}")
-    logger.info("start", extra={"instance": args.instance, "algorithm": args.algorithm})
+
+    params = {}
+    if isinstance(solver, LocalSearch):
+        params = {
+            "max_iterations": solver.max_iterations,
+            "restarts": solver.restarts,
+        }
+    logger.info(
+        "start",
+        extra={
+            "instance": args.instance,
+            "algorithm": args.algorithm,
+            "n_jobs": problem.n_jobs,
+            "n_machines": problem.n_machines,
+            **options,
+            **params,
+            "log_nodes": args.log_nodes,
+            "python": platform.python_version(),
+            "platform": platform.platform(),
+            "machine": platform.machine(),
+            "git_commit": git_commit(),
+            "argv": sys.argv,
+        },
+    )
 
     begin = time.perf_counter()
     solver.search()
     elapsed = time.perf_counter() - begin
 
+    optimal = OPTIMAL_MAKESPANS.get(args.instance)
+    stats = {}
+    if solver.best_found_at is not None:
+        stats["time_to_best"] = round(solver.best_found_at - begin, 3)
+    if isinstance(solver, AStar):
+        stats["max_frontier"] = solver.max_frontier
     logger.info(
         "done",
         extra={
+            "instance": args.instance,
+            "algorithm": args.algorithm,
+            **options,
             "best": solver.best_makespan,
             "visited": solver.visited,
             "elapsed": round(elapsed, 3),
+            **stats,
+            "optimal": optimal,
+            "reached_optimal": (
+                None if optimal is None else solver.best_makespan == optimal
+            ),
         },
     )
 

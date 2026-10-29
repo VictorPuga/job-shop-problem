@@ -176,6 +176,16 @@ la36_durations: NDArray[np.int_] = np.array(
     ]
 )
 
+# Known optimal makespan per instance (ft06_4x4 computed with the DFS, not an official benchmark)
+OPTIMAL_MAKESPANS: dict[str, int] = {
+    "example": 29,
+    "ft06_4x4": 33,
+    "ft06": 55,
+    "la01": 666,
+    "ft10": 930,
+    "la36": 1268,
+}
+
 # Instances selectable from main.py, each as a (machines, durations) pair
 INSTANCES: dict[str, tuple[NDArray[np.int_], NDArray[np.int_]]] = {
     "example": (machines, durations),

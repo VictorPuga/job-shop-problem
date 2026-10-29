@@ -51,14 +51,31 @@ To run without it, pass `--no-prune`.
 
 ### Logging
 
-Each run writes a JSON Lines log to a new timestamped file, `logs/<algorithm>_<instance>_YYYYMMDD_HHMMSS.jsonl` (for example `logs/dfs_ft06_20261028_171455.jsonl`), and prints its path.
+Each run writes a JSON Lines log to its own new file, `logs/<algorithm>_<instance>_<tag>_YYYYMMDD_HHMMSS_mmm.jsonl` (for example `logs/dfs_ft06_noprune_20261028_171455_123.jsonl`), and prints its path.
+The tag is `prune` or `noprune` for DFS, the heuristic name for A\*, and `seed<N>` for local search.
+The timestamp has millisecond precision, and the file is created exclusively, so a run never appends to an existing log.
 Each line is one JSON object with `ts`, `level`, `event`, and the event's own fields (for example `{"ts": "...", "level": "INFO", "event": "new_best", "makespan": 59, "visited": 120, "sequence": [0, 1]}`).
 By default it records the `start` event, the final `done` result, and per algorithm:
 
 - DFS: every `new_best` makespan and a `progress` event every 100,000 visits.
 - A\*: a `progress` event every 10,000 expansions (with `f`, `depth`, `frontier` size and `pushed` count) and the `solution` event.
 - Local search: every `new_best` makespan (with `restart` and `iteration`) and a `restart_done` event at the end of each restart.
-  Pass `--log-nodes` to also log every DFS visited node and pruned branch, every duplicate A\* skips, and every local search restart start and evaluated neighbor.
+
+The `start` event describes the run, so a log can be identified from its contents:
+
+- `algorithm`, `instance`, `n_jobs`, `n_machines`.
+- `prune` (DFS), `heuristic` (A\*), `seed`, `max_iterations` and `restarts` (local search).
+- `log_nodes`, `python`, `platform`, `machine`, `git_commit` (`null` outside a git checkout) and the full `argv`.
+
+The `done` event has:
+
+- `algorithm`, `instance` and the same `prune`, `heuristic` or `seed` option.
+- `best`, `visited` and `elapsed`.
+- `time_to_best`: seconds from the start of the search to the last `new_best` or `solution` (absent if none was found).
+- `max_frontier`: the largest frontier size reached (A\* only).
+- `optimal`: the known optimal makespan from `OPTIMAL_MAKESPANS` in `utils/instances.py`, and `reached_optimal`: whether `best` equals it.
+
+Pass `--log-nodes` to also log every DFS visited node and pruned branch, every duplicate A\* skips, and every local search restart start and evaluated neighbor.
   That produces very large files, so use it only on small instances.
 
 ### Visualization
