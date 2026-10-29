@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Regenerates the logs behind the tables of the report.
-# Runs are sequential and uncapped. Comment out the cases you don't need.
+# Runs are sequential. Comment out the cases you don't need.
+# Each run is killed after TIMEOUT seconds (default 1 hour, 0 for no limit).
+# A killed run leaves a log without a done event.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -8,6 +10,8 @@ cd "$(dirname "$0")/.."
 if [[ -f venv/bin/activate ]]; then
   source venv/bin/activate
 fi
+
+TIMEOUT="${TIMEOUT:-3600}"
 
 # Local search cases run once per seed.
 SEEDS=(1 2 3 4 5 6 7 8 9 10)
@@ -48,14 +52,23 @@ CASES=(
   "-a local_search -i la36"
 )
 
+run() {
+  echo ">>> python main.py $*"
+  local status=0
+  perl -e 'alarm shift; exec @ARGV' "$TIMEOUT" python main.py "$@" || status=$?
+  if [[ $status -eq 142 ]]; then
+    echo "!!! timed out after ${TIMEOUT}s: python main.py $*"
+  elif [[ $status -ne 0 ]]; then
+    echo "!!! failed with status $status: python main.py $*"
+  fi
+}
+
 for args in "${CASES[@]}"; do
   if [[ "$args" == "-a local_search"* ]]; then
     for seed in "${SEEDS[@]}"; do
-      echo ">>> python main.py $args --seed $seed"
-      python main.py $args --seed "$seed"
+      run $args --seed "$seed"
     done
   else
-    echo ">>> python main.py $args"
-    python main.py $args
+    run $args
   fi
 done
