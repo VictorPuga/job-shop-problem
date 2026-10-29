@@ -90,8 +90,12 @@ The bound is the largest of:
 - **g:** the makespan of the state so far (`State.makespan()`).
 - **h:** the heuristic selected by name, an estimate of the makespan still to be added.
 It must never overestimate, so the first goal popped is optimal.
-- **Heuristics:** `lower_bound` is `Problem.lower_bound(state) - state.makespan()`, so its `f` equals `Problem.lower_bound`.
-An unknown name raises `ValueError`.
+- **Heuristics:** selected by name, and an unknown name raises `ValueError`.
+  - `lower_bound` is `Problem.lower_bound(state) - state.makespan()`, so its `f` equals `Problem.lower_bound`.
+  - `machine_heads_tails` is a one-machine relaxation.
+For each machine it takes the earliest possible start (head) of its remaining operations, plus their total duration, plus the smallest time left in their jobs after them (tail).
+The head of an operation is its job's free time plus the earlier remaining operations of that job, and never before the machine is free.
+The result is the maximum of that and `Problem.lower_bound`, so it is never below `lower_bound`.
 To add a heuristic, write a method that takes a `State` and returns `h`, then register its name in `AStar.select_heuristic`.
 - **Tie-breaking:** frontier entries are `(f, push_count, state)`.
 The counter is unique per push, so `State` is never compared and ties pop the oldest entry first.

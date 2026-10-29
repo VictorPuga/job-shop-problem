@@ -15,6 +15,9 @@ from utils.instances import durations, machines
 from utils.problem import Problem, State
 
 
+HEURISTICS = ["lower_bound", "machine_heads_tails"]
+
+
 def reachable_states(problem: Problem) -> list[State]:
     states = []
     stack = [problem.initial_state()]
@@ -83,27 +86,55 @@ class AStarHeuristicTests(unittest.TestCase):
         for n_jobs, n_machines in [(2, 2), (2, 3), (3, 2)] * 2:
             m, d = random_instance(rng, n_jobs, n_machines)
             problem = Problem(m, d)
-            astar = AStar(problem, "lower_bound")
-            for state in reachable_states(problem):
-                with self.subTest(sequence=state.sequence):
-                    dfs = DFS(problem, prune=False)
-                    dfs.search(state)
-                    remaining = dfs.best_makespan - state.makespan()
-                    self.assertLessEqual(astar.heuristic(state), remaining)
+            for name in HEURISTICS:
+                astar = AStar(problem, name)
+                for state in reachable_states(problem):
+                    with self.subTest(heuristic=name, sequence=state.sequence):
+                        dfs = DFS(problem, prune=False)
+                        dfs.search(state)
+                        remaining = dfs.best_makespan - state.makespan()
+                        self.assertLessEqual(astar.heuristic(state), remaining)
 
     def test_heuristic_is_never_negative(self):
         problem = Problem(TINY_MACHINES, TINY_DURATIONS)
-        astar = AStar(problem, "lower_bound")
-        for state in reachable_states(problem):
-            self.assertGreaterEqual(astar.heuristic(state), 0)
+        for name in HEURISTICS:
+            astar = AStar(problem, name)
+            for state in reachable_states(problem):
+                with self.subTest(heuristic=name, sequence=state.sequence):
+                    self.assertGreaterEqual(astar.heuristic(state), 0)
 
     def test_heuristic_is_zero_at_a_goal(self):
         problem = Problem(TINY_MACHINES, TINY_DURATIONS)
-        astar = AStar(problem, "lower_bound")
         goal = problem.initial_state()
         for job in TINY_OPTIMAL_SEQUENCE:
             goal = problem.dispatch(goal, job)
-        self.assertEqual(astar.heuristic(goal), 0)
+        for name in HEURISTICS:
+            with self.subTest(heuristic=name):
+                self.assertEqual(AStar(problem, name).heuristic(goal), 0)
+
+    def test_machine_heads_tails_dominates_lower_bound(self):
+        rng = np.random.RandomState(3)
+        for n_jobs, n_machines in [(2, 3), (3, 3)] * 2:
+            m, d = random_instance(rng, n_jobs, n_machines)
+            problem = Problem(m, d)
+            base = AStar(problem, "lower_bound")
+            tight = AStar(problem, "machine_heads_tails")
+            for state in reachable_states(problem):
+                with self.subTest(sequence=state.sequence):
+                    self.assertGreaterEqual(
+                        tight.heuristic(state), base.heuristic(state)
+                    )
+
+    def test_every_heuristic_finds_the_optimum(self):
+        rng = np.random.RandomState(5)
+        for n_jobs, n_machines in [(2, 3), (3, 2), (3, 3)] * 2:
+            m, d = random_instance(rng, n_jobs, n_machines)
+            expected = brute_force_makespan(m, d)
+            for name in HEURISTICS:
+                with self.subTest(heuristic=name, machines=m.tolist()):
+                    astar = AStar(Problem(m, d), name)
+                    astar.search()
+                    self.assertEqual(astar.best_makespan, expected)
 
 
 if __name__ == "__main__":

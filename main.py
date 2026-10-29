@@ -12,7 +12,7 @@ from utils.problem import Problem
 
 INSTANCE = "example"
 ALGORITHM = "a_star"
-HEURISTIC = "lower_bound"
+HEURISTIC = "machine_heads_tails"
 PRUNE_DFS = True
 VISUALIZE = False
 LOG_NODES = False
