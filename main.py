@@ -40,15 +40,9 @@ def print_schedule(problem: Problem, start: NDArray[np.int_]) -> None:
 
 
 def main() -> None:
-    gantt = None
-    if VISUALIZE:
-        from utils.visualization import LiveGantt
-
-        gantt = LiveGantt()
-
     machines, durations = INSTANCES[INSTANCE]
     problem = Problem(machines, durations)
-    dfs = DFS(problem, prune=PRUNE_DFS, on_improvement=gantt.update if gantt else None)
+    dfs = DFS(problem, prune=PRUNE_DFS)
 
     log_path = setup_logging(
         INSTANCE, "dfs", logging.DEBUG if LOG_NODES else logging.INFO
@@ -70,9 +64,7 @@ def main() -> None:
     print(f"DFS Pruning: {'on' if PRUNE_DFS else 'off'}")
     print(f"Best makespan: {dfs.best_makespan}")
     print(f"Search calls: {dfs.visited}")
-    print(
-        f"Search time: {elapsed:.3f} s{' (includes plotting pauses)' if gantt else ''}"
-    )
+    print(f"Search time: {elapsed:.3f} s")
     sequence = ""
     for job in dfs.best_sequence:
         sequence += f" J{job + 1}"
@@ -80,8 +72,10 @@ def main() -> None:
 
     print_schedule(problem, problem.start_times(dfs.best_sequence))
 
-    if gantt:
-        gantt.show()
+    if VISUALIZE:
+        from utils.visualization import plot_gantt
+
+        plot_gantt(dfs)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,5 @@
 import logging
 import sys
-from collections.abc import Callable
 
 from utils.problem import Problem, State
 
@@ -10,15 +9,9 @@ PROGRESS_INTERVAL = 100_000
 
 
 class DFS:
-    def __init__(
-        self,
-        problem: Problem,
-        prune: bool = True,
-        on_improvement: Callable[["DFS"], None] | None = None,
-    ) -> None:
+    def __init__(self, problem: Problem, prune: bool = True) -> None:
         self.problem = problem
         self.prune = prune
-        self.on_improvement = on_improvement
         self.visited: int = 0
         self.best_makespan: int = sys.maxsize
         self.best_sequence: tuple[int, ...] = ()
@@ -51,8 +44,6 @@ class DFS:
                     self.visited,
                     state.sequence,
                 )
-                if self.on_improvement:
-                    self.on_improvement(self)
             return
 
         if self.prune:

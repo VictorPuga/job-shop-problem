@@ -87,16 +87,6 @@ class DFSInstanceTests(unittest.TestCase):
         # 1 root + 2 + 4 + 6 + 6 leaves: the 6 orders of (0, 0, 1, 1) at each depth.
         self.assertEqual(dfs.visited, 1 + 2 + 4 + 6 + 6)
 
-    def test_on_improvement_is_called_with_each_new_best(self):
-        makespans = []
-        dfs = DFS(
-            Problem(machines, durations),
-            on_improvement=lambda d: makespans.append(d.best_makespan),
-        )
-        dfs.search()
-        self.assertEqual(makespans, sorted(set(makespans), reverse=True))
-        self.assertEqual(makespans[-1], 29)
-
     def test_full_instance(self):
         dfs = DFS(Problem(machines, durations))
         dfs.search()

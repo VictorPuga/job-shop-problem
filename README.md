@@ -42,12 +42,11 @@ By default it records the start, every improved makespan, a progress line every 
 Set `LOG_NODES = True` at the top of `main.py` to also log every visited node and every pruned branch.
 That produces very large files, so use it only on small instances.
 
-### Live visualization
+### Visualization
 
-Set `VISUALIZE = True` at the top of `main.py` to show a live Gantt chart (requires `matplotlib`, installed from `requirements.txt`).
-The chart redraws every time the search finds a better schedule, with one row per machine and one color per job.
-The search time then includes the pauses between redraws, so turn the visualization off when comparing timings.
-The window stays open after the search ends, and the program exits when you close it.
+Set `VISUALIZE = True` at the top of `main.py` to show a Gantt chart of the best schedule once the search ends (requires `matplotlib`, installed from `requirements.txt`).
+The chart has one row per machine and one color per job.
+The program exits when you close the window.
 
 ## How it works
 
