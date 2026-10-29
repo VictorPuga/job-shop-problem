@@ -4,15 +4,15 @@ import time
 import numpy as np
 from numpy.typing import NDArray
 
-from utils.local_search import LocalSearch
 from utils.a_star import AStar
 from utils.dfs import DFS
 from utils.instances import INSTANCES
+from utils.local_search import LocalSearch
 from utils.log import setup_logging
 from utils.problem import Problem
 
 INSTANCE = "example"
-ALGORITHM = "a_star"
+ALGORITHM = "local_search"
 HEURISTIC = "machine_heads_tails"
 PRUNE_DFS = True
 VISUALIZE = False

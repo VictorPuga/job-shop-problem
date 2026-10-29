@@ -1,6 +1,11 @@
+import logging
+import random
+
 from utils.problem import Problem
 
-import random
+logger = logging.getLogger(__name__)
+
+
 class LocalSearch:
     def __init__(self, problem: Problem, max_iterations: int = 500, restarts: int = 10, seed: int = 42):
         self.problem = problem
@@ -31,14 +36,32 @@ class LocalSearch:
         return tuple(seq)
 
     def search(self) -> None:
-        for _ in range(self.restarts):
+        for restart in range(self.restarts):
             current_sequence = self._generate_random_sequence()
             current_makespan = self._sequence_makespan(current_sequence)
             self.visited += 1
+            logger.debug(
+                "restart_start",
+                extra={
+                    "restart": restart,
+                    "makespan": current_makespan,
+                    "sequence": current_sequence,
+                },
+            )
 
             if current_makespan < self.best_makespan:
                 self.best_makespan = current_makespan
                 self.best_sequence = current_sequence
+                logger.info(
+                    "new_best",
+                    extra={
+                        "makespan": current_makespan,
+                        "restart": restart,
+                        "iteration": 0,
+                        "visited": self.visited,
+                        "sequence": current_sequence,
+                    },
+                )
 
             improved = True
             iter_count = 0
@@ -61,6 +84,16 @@ class LocalSearch:
                     makespan = self._sequence_makespan(neighbor_sequence)
                     self.visited += 1
 
+                    logger.debug(
+                        "neighbor",
+                        extra={
+                            "restart": restart,
+                            "iteration": iter_count,
+                            "makespan": makespan,
+                            "current": current_makespan,
+                        },
+                    )
+
                     if makespan < current_makespan:
                         current_sequence = neighbor_sequence
                         current_makespan = makespan
@@ -68,5 +101,26 @@ class LocalSearch:
 
                         if current_makespan < self.best_makespan:
                             self.best_makespan = current_makespan
-                            self.best_sequence = neighbor_sequence                            
+                            self.best_sequence = neighbor_sequence
+                            logger.info(
+                                "new_best",
+                                extra={
+                                    "makespan": current_makespan,
+                                    "restart": restart,
+                                    "iteration": iter_count,
+                                    "visited": self.visited,
+                                    "sequence": neighbor_sequence,
+                                },
+                            )
                         break
+
+            logger.info(
+                "restart_done",
+                extra={
+                    "restart": restart,
+                    "makespan": current_makespan,
+                    "iterations": iter_count,
+                    "best": self.best_makespan,
+                    "visited": self.visited,
+                },
+            )

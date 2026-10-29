@@ -48,7 +48,8 @@ Each line is one JSON object with `ts`, `level`, `event`, and the event's own fi
 By default it records the `start` event, the final `done` result, and per algorithm:
 - DFS: every `new_best` makespan and a `progress` event every 100,000 visits.
 - A\*: a `progress` event every 10,000 expansions (with `f`, `depth`, `frontier` size and `pushed` count) and the `solution` event.
-Set `LOG_NODES = True` at the top of `main.py` to also log every DFS visited node and pruned branch, and every duplicate A\* skips.
+- Local search: every `new_best` makespan (with `restart` and `iteration`) and a `restart_done` event at the end of each restart.
+Set `LOG_NODES = True` at the top of `main.py` to also log every DFS visited node and pruned branch, every duplicate A\* skips, and every local search restart start and evaluated neighbor.
 That produces very large files, so use it only on small instances.
 
 ### Visualization
