@@ -3,22 +3,22 @@ import random
 from pathlib import Path
 
 import numpy as np
-from numpy.typing import NDArray
 
 INSTANCES_DIR = Path(__file__).parent.parent / "instances"
 
-# name prefix -> (n_jobs, n_machines, min duration, max duration), one entry per instance
-GENERATED_SPECS: dict[str, tuple[int, int, int, int]] = {
-    **{f"gen_easy_{i:02d}": (3 + i % 2, 3 + i % 2, 1, 10) for i in range(1, 11)},
-    **{f"gen_medium_{i:02d}": (5 + i % 3, 5 + i % 3, 1, 50) for i in range(1, 9)},
-    "gen_hard_01": (10, 10, 1, 99),
-    "gen_hard_02": (15, 10, 1, 99),
-}
+# (name, n_jobs, n_machines, min duration, max duration)
+SPECS = []
+for i in range(1, 11):
+    size = 3 + i % 2
+    SPECS.append((f"gen_easy_{i:02d}", size, size, 1, 10))
+for i in range(1, 9):
+    size = 5 + i % 3
+    SPECS.append((f"gen_medium_{i:02d}", size, size, 1, 50))
+SPECS.append(("gen_hard_01", 10, 10, 1, 99))
+SPECS.append(("gen_hard_02", 15, 10, 1, 99))
 
 
-def generate_instance(
-    seed: int, n_jobs: int, n_machines: int, low: int, high: int
-) -> tuple[NDArray[np.int_], NDArray[np.int_]]:
+def generate_instance(seed, n_jobs, n_machines, low, high):
     rng = random.Random(seed)
     machines = []
     durations = []
@@ -30,32 +30,27 @@ def generate_instance(
     return np.array(machines), np.array(durations)
 
 
-def write_instance(
-    path: Path, machines: NDArray[np.int_], durations: NDArray[np.int_]
-) -> None:
-    data = {"machines": machines.tolist(), "durations": durations.tolist()}
-    lines = ["{"]
-    for key_index, (key, rows) in enumerate(data.items()):
-        lines.append(f'  "{key}": [')
-        for row_index, row in enumerate(rows):
-            comma = "," if row_index < len(rows) - 1 else ""
-            lines.append(f"    {json.dumps(row)}{comma}")
-        lines.append("  ]" + ("," if key_index < len(data) - 1 else ""))
-    lines.append("}")
-    path.write_text("\n".join(lines) + "\n")
+def format_matrix(matrix):
+    rows = [f"    {json.dumps(row)}" for row in matrix.tolist()]
+    return "[\n" + ",\n".join(rows) + "\n  ]"
 
 
-def read_instance(path: Path) -> tuple[NDArray[np.int_], NDArray[np.int_]]:
+def write_instance(path, machines, durations):
+    text = '{\n  "machines": ' + format_matrix(machines) + ",\n"
+    text += '  "durations": ' + format_matrix(durations) + "\n}\n"
+    path.write_text(text)
+
+
+def read_instance(path):
     data = json.loads(path.read_text())
     return np.array(data["machines"]), np.array(data["durations"])
 
 
-def generate_all(base_seed: int = 2026) -> list[Path]:
+def generate_all(base_seed=2026):
     INSTANCES_DIR.mkdir(exist_ok=True)
-    paths = []
-    for index, (name, (n_jobs, n_machines, low, high)) in enumerate(GENERATED_SPECS.items()):
-        machines, durations = generate_instance(base_seed + index, n_jobs, n_machines, low, high)
-        path = INSTANCES_DIR / f"{name}.json"
-        write_instance(path, machines, durations)
-        paths.append(path)
-    return paths
+    for index, (name, n_jobs, n_machines, low, high) in enumerate(SPECS):
+        machines, durations = generate_instance(
+            base_seed + index, n_jobs, n_machines, low, high
+        )
+        write_instance(INSTANCES_DIR / f"{name}.json", machines, durations)
+        print(name)

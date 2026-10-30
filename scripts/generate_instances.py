@@ -11,8 +11,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Generate the seeded instances.")
     parser.add_argument("--seed", type=int, default=2026, help="base seed")
     args = parser.parse_args()
-    for path in generate_all(args.seed):
-        print(path)
+    generate_all(args.seed)
 
 
 if __name__ == "__main__":

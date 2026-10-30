@@ -6,8 +6,8 @@ from utils.problem import Problem
 
 logger = logging.getLogger(__name__)
 
-# swap: exchange two positions of the dispatch sequence. insert: move one position to another.
 NEIGHBORHOODS = ["swap", "insert"]
+NEIGHBORS_PER_ITERATION = 25
 
 
 class LocalSearch:
@@ -19,122 +19,94 @@ class LocalSearch:
         seed: int = 42,
         neighborhood: str = "swap",
     ):
-        if neighborhood not in NEIGHBORHOODS:
-            raise ValueError(f"unknown neighborhood: {neighborhood}")
         self.problem = problem
         self.max_iterations = max_iterations
         self.restarts = restarts
         self.seed = seed
         self.neighborhood = neighborhood
         self.rng = random.Random(seed)
-        self.visited: int = 0
-        self.best_makespan: int = float("inf")
-        self.best_sequence: tuple[int, ...] = ()
-        self.best_found_at: float | None = None
+        self.visited = 0
+        self.best_makespan = float("inf")
+        self.best_sequence = ()
+        self.best_found_at = None
 
-    def _sequence_makespan(self, sequence: tuple[int, ...]) -> int:
+    def _makespan(self, sequence):
         state = self.problem.initial_state()
-        try:
-            for job in sequence:
-                state = self.problem.dispatch(state, job)
-            if self.problem.is_complete(state):
-                return state.makespan()
-        except Exception:
-            pass
-        return float("inf")
-    
-    def _generate_random_sequence(self) -> tuple[int, ...]:
-        seq = []
-        for job in range(self.problem.n_jobs):
-            seq.extend([job] * self.problem.n_operations_per_job)
-        self.rng.shuffle(seq)
-        return tuple(seq)
+        for job in sequence:
+            state = self.problem.dispatch(state, job)
+        return state.makespan()
 
-    def _neighbor(self, seq_list: list[int]) -> tuple[int, ...]:
-        i, j = self.rng.sample(range(len(seq_list)), 2)
-        neighbor = list(seq_list)
+    def _random_sequence(self):
+        sequence = []
+        for job in range(self.problem.n_jobs):
+            sequence += [job] * self.problem.n_operations_per_job
+        self.rng.shuffle(sequence)
+        return sequence
+
+    def _neighbor(self, sequence):
+        i, j = self.rng.sample(range(len(sequence)), 2)
+        neighbor = list(sequence)
         if self.neighborhood == "swap":
             neighbor[i], neighbor[j] = neighbor[j], neighbor[i]
         else:
             neighbor.insert(j, neighbor.pop(i))
-        return tuple(neighbor)
+        return neighbor
 
-    def search(self) -> None:
+    def _update_best(self, sequence, makespan, restart, iteration):
+        if makespan >= self.best_makespan:
+            return
+        self.best_makespan = makespan
+        self.best_sequence = tuple(sequence)
+        self.best_found_at = time.perf_counter()
+        logger.info(
+            "new_best",
+            extra={
+                "makespan": makespan,
+                "restart": restart,
+                "iteration": iteration,
+                "visited": self.visited,
+                "sequence": sequence,
+            },
+        )
+
+    def search(self):
         for restart in range(self.restarts):
-            current_sequence = self._generate_random_sequence()
-            current_makespan = self._sequence_makespan(current_sequence)
+            current = self._random_sequence()
+            current_makespan = self._makespan(current)
             self.visited += 1
             logger.debug(
                 "restart_start",
                 extra={
                     "restart": restart,
                     "makespan": current_makespan,
-                    "sequence": current_sequence,
+                    "sequence": current,
                 },
             )
+            self._update_best(current, current_makespan, restart, 0)
 
-            if current_makespan < self.best_makespan:
-                self.best_makespan = current_makespan
-                self.best_sequence = current_sequence
-                self.best_found_at = time.perf_counter()
-                logger.info(
-                    "new_best",
-                    extra={
-                        "makespan": current_makespan,
-                        "restart": restart,
-                        "iteration": 0,
-                        "visited": self.visited,
-                        "sequence": current_sequence,
-                    },
-                )
-
+            iteration = 0
             improved = True
-            iter_count = 0
-
-            while improved and iter_count < self.max_iterations:
+            while improved and iteration < self.max_iterations:
                 improved = False
-                iter_count += 1
-
-                seq_list = list(current_sequence)
-                n = len(seq_list)
-                if n < 2:
-                    break
-                
-                for _ in range(min(25, n * (n - 1) // 2)):
-                    neighbor_sequence = self._neighbor(seq_list)
-
-                    makespan = self._sequence_makespan(neighbor_sequence)
+                iteration += 1
+                for _ in range(NEIGHBORS_PER_ITERATION):
+                    neighbor = self._neighbor(current)
+                    makespan = self._makespan(neighbor)
                     self.visited += 1
-
                     logger.debug(
                         "neighbor",
                         extra={
                             "restart": restart,
-                            "iteration": iter_count,
+                            "iteration": iteration,
                             "makespan": makespan,
                             "current": current_makespan,
                         },
                     )
-
                     if makespan < current_makespan:
-                        current_sequence = neighbor_sequence
+                        current = neighbor
                         current_makespan = makespan
                         improved = True
-
-                        if current_makespan < self.best_makespan:
-                            self.best_makespan = current_makespan
-                            self.best_sequence = neighbor_sequence
-                            self.best_found_at = time.perf_counter()
-                            logger.info(
-                                "new_best",
-                                extra={
-                                    "makespan": current_makespan,
-                                    "restart": restart,
-                                    "iteration": iter_count,
-                                    "visited": self.visited,
-                                    "sequence": neighbor_sequence,
-                                },
-                            )
+                        self._update_best(current, makespan, restart, iteration)
                         break
 
             logger.info(
@@ -142,7 +114,7 @@ class LocalSearch:
                 extra={
                     "restart": restart,
                     "makespan": current_makespan,
-                    "iterations": iter_count,
+                    "iterations": iteration,
                     "best": self.best_makespan,
                     "visited": self.visited,
                 },
