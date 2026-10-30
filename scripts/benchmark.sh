@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Regenerates the logs behind the tables of the report.
 # Runs are sequential. Comment out the cases you don't need.
-# Each run is killed after TIMEOUT seconds (default 1 hour, 0 for no limit).
+# Each run is killed after TIMEOUT seconds (default 60, the assignment budget, 0 for no limit).
 # A killed run leaves a log without a done event.
+# For the uncapped runs, use a 1 hour limit: TIMEOUT=3600 scripts/benchmark.sh
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -11,7 +12,8 @@ if [[ -f venv/bin/activate ]]; then
   source venv/bin/activate
 fi
 
-TIMEOUT="${TIMEOUT:-3600}"
+# TIMEOUT="${TIMEOUT:-3600}"
+TIMEOUT="${TIMEOUT:-60}"
 
 # Local search cases run once per seed.
 SEEDS=(1 2 3 4 5 6 7 8 9 10)
