@@ -32,6 +32,10 @@ python main.py -a a_star -i ft06 --heuristic lower_bound
 An unknown algorithm, instance or heuristic is rejected by the argument parser.
 
 To regenerate the report benchmarks, run `bash scripts/benchmark.sh`.
+It kills each run after `TIMEOUT` seconds (default 60, the assignment budget, `TIMEOUT=0` for no limit).
+The solvers have no internal time limit, so a killed DFS or A\* run leaves a log without a `done` event.
+Some slow cases (DFS on `ft06`, A\* on `la01`, `ft10` and `la36`) are commented out in the script's `CASES` list, uncomment them to run them.
+The logs of the report are in `results/final_benchmarks/`.
 
 The available instances are the keys of `INSTANCES` in `utils/instances.py`:
 
@@ -54,7 +58,11 @@ The two neighborhoods are:
 - `swap`: exchange two positions of the sequence.
 - `insert`: remove one position and reinsert it at another, shifting the ones in between.
 
+`swap` can pick two equal job ids, which gives a neighbor identical to the current sequence.
+A restart stops after `max_iterations` (500) iterations, or when none of the 25 sampled neighbors improves.
+The search is bounded by restarts × iterations, not by the 60 s budget.
 The ablations compare `swap` vs `insert`, and `--restarts 10` vs `--restarts 1`.
+The 1-restart runs use the same `swap` tag as the 10-restart ones, so tell them apart by the `restarts` field of the `start` event or by `argv`.
 
 ### Instance format and generator
 
@@ -93,24 +101,24 @@ To run without it, pass `--no-prune`.
 ### Logging
 
 Each run writes a JSON Lines log to its own new file, `logs/<algorithm>_<instance>_<tag>_YYYYMMDD_HHMMSS_mmm.jsonl` (for example `logs/dfs_ft06_noprune_20261028_171455_123.jsonl`), and prints its path.
-The tag is `prune` or `noprune` for DFS, the heuristic name for A\*, and `seed<N>` for local search.
+The tag is `prune` or `noprune` for DFS, the heuristic name for A\*, and `<neighborhood>_seed<N>` for local search (for example `swap_seed3`).
 The timestamp has millisecond precision, and the file is created exclusively, so a run never appends to an existing log.
 Each line is one JSON object with `ts`, `level`, `event`, and the event's own fields (for example `{"ts": "...", "level": "INFO", "event": "new_best", "makespan": 59, "visited": 120, "sequence": [0, 1]}`).
 By default it records the `start` event, the final `done` result, and per algorithm:
 
 - DFS: every `new_best` makespan and a `progress` event every 100,000 visits.
-- A\*: a `progress` event every 10,000 expansions (with `f`, `depth`, `frontier` size and `pushed` count) and the `solution` event.
+- A\*: a `progress` event every 10 expansions (with `f`, `depth`, `frontier` size and `pushed` count) and the `solution` event.
 - Local search: every `new_best` makespan (with `restart` and `iteration`) and a `restart_done` event at the end of each restart.
 
 The `start` event describes the run, so a log can be identified from its contents:
 
 - `algorithm`, `instance`, `n_jobs`, `n_machines`.
-- `prune` (DFS), `heuristic` (A\*), `seed`, `max_iterations` and `restarts` (local search).
+- `prune` (DFS), `heuristic` (A\*), `seed`, `neighborhood`, `max_iterations` and `restarts` (local search).
 - `log_nodes`, `python`, `platform`, `machine`, `git_commit` (`null` outside a git checkout) and the full `argv`.
 
 The `done` event has:
 
-- `algorithm`, `instance` and the same `prune`, `heuristic` or `seed` option.
+- `algorithm`, `instance` and the same `prune`, `heuristic` or `seed` and `neighborhood` option.
 - `best`, `visited` and `elapsed`.
 - `time_to_best`: seconds from the start of the search to the last `new_best` or `solution` (absent if none was found).
 - `max_frontier`: the largest frontier size reached (A\* only).
