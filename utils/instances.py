@@ -1,6 +1,8 @@
 import numpy as np
 from numpy.typing import NDArray
 
+from utils.generator import INSTANCES_DIR, read_instance
+
 # machines[job, operation] = machine assigned to job operation
 machines: NDArray[np.int_] = np.array(
     [
@@ -195,3 +197,7 @@ INSTANCES: dict[str, tuple[NDArray[np.int_], NDArray[np.int_]]] = {
     "ft10": (ft10_machines, ft10_durations),
     "la36": (la36_machines, la36_durations),
 }
+
+# Instances stored as files in instances/, named after the file
+for _path in sorted(INSTANCES_DIR.glob("*.json")):
+    INSTANCES[_path.stem] = read_instance(_path)

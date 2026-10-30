@@ -43,13 +43,22 @@ CASES=(
   # "-a a_star -i ft10 --heuristic machine_heads_tails"
   # "-a a_star -i la36 --heuristic machine_heads_tails"
 
-  # Local search, one run per seed in SEEDS
-  "-a local_search -i example"
-  "-a local_search -i ft06_4x4"
-  "-a local_search -i ft06"
-  "-a local_search -i la01"
-  "-a local_search -i ft10"
-  "-a local_search -i la36"
+  # Local search, one run per seed in SEEDS.
+  # Neighborhood ablation: swap vs insert. Restarts ablation: 10 restarts vs 1.
+  "-a local_search -i example --neighborhood swap"
+  "-a local_search -i example --neighborhood insert"
+  "-a local_search -i ft06 --neighborhood swap"
+  "-a local_search -i ft06 --neighborhood insert"
+  "-a local_search -i ft06 --neighborhood swap --restarts 1"
+  "-a local_search -i la01 --neighborhood swap"
+  "-a local_search -i la01 --neighborhood insert"
+  "-a local_search -i la01 --neighborhood swap --restarts 1"
+  "-a local_search -i ft10 --neighborhood swap"
+  "-a local_search -i ft10 --neighborhood insert"
+  "-a local_search -i ft10 --neighborhood swap --restarts 1"
+  "-a local_search -i la36 --neighborhood swap"
+  "-a local_search -i la36 --neighborhood insert"
+  "-a local_search -i la36 --neighborhood swap --restarts 1"
 )
 
 run() {

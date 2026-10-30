@@ -24,6 +24,8 @@ python main.py -a a_star -i ft06 --heuristic lower_bound
 - `--heuristic`: `lower_bound` or `machine_heads_tails` (default), used by `a_star`.
 - `--no-prune`: disable DFS pruning.
 - `--seed`: seed for `local_search` (default 42).
+- `--neighborhood`: `swap` (default) or `insert`, used by `local_search`.
+- `--restarts`: number of random restarts for `local_search` (default 10).
 - `--visualize`: show a Gantt chart.
 - `--log-nodes`: log every node and neighbor.
 
@@ -39,6 +41,45 @@ The available instances are the keys of `INSTANCES` in `utils/instances.py`:
 - `la01`: Lawrence, 10x5, optimal makespan 666.
 - `ft10`: Fisher & Thompson, 10x10, optimal makespan 930.
 - `la36`: Lawrence, 15x15, optimal makespan 1268.
+
+Every `instances/<name>.json` file is also available as an instance named `<name>`.
+
+### Local search
+
+The representation is an operation-based dispatch sequence: a permutation with repetition where job `j` appears once per operation.
+Any such sequence is a valid schedule, decoded by dispatching the jobs in order, so every neighbor is feasible.
+Each restart starts from a random sequence and runs first-improvement hill climbing, sampling up to 25 neighbors per iteration.
+The two neighborhoods are:
+
+- `swap`: exchange two positions of the sequence.
+- `insert`: remove one position and reinsert it at another, shifting the ones in between.
+
+The ablations compare `swap` vs `insert`, and `--restarts 10` vs `--restarts 1`.
+
+### Instance format and generator
+
+Instances are JSON files in `instances/`, with the same layout as `utils/instances.py`:
+
+```json
+{
+  "machines": [[2, 3, 1, 0], [0, 1, 2, 3]],
+  "durations": [[4, 10, 10, 9], [10, 8, 4, 1]]
+}
+```
+
+`machines[job][operation]` is the machine (0-based) and `durations[job][operation]` its processing time.
+Each job visits every machine once, in a fixed order.
+
+The seeded generator creates 20 instances, with instance `i` (in `GENERATED_SPECS` order) using seed `base_seed + i`:
+
+| Family | Count | Size (jobs × machines) | Durations |
+|---|---|---|---|
+| `gen_easy_01`–`10` | 10 | 3×3 or 4×4 | 1–10 |
+| `gen_medium_01`–`08` | 8 | 5×5, 6×6 or 7×7 | 1–50 |
+| `gen_hard_01`–`02` | 2 | 10×10, 15×10 | 1–99 |
+
+Regenerate them with `python scripts/generate_instances.py` (`--seed` sets the base seed, default 2026).
+Generated instances have no known optimal makespan.
 
 The larger instances are far too big for an exhaustive DFS, so expect them to run for a very long time.
 

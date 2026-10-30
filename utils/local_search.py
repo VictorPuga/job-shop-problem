@@ -6,14 +6,27 @@ from utils.problem import Problem
 
 logger = logging.getLogger(__name__)
 
+# swap: exchange two positions of the dispatch sequence. insert: move one position to another.
+NEIGHBORHOODS = ["swap", "insert"]
+
 
 class LocalSearch:
-    def __init__(self, problem: Problem, max_iterations: int = 500, restarts: int = 10, seed: int = 42):
+    def __init__(
+        self,
+        problem: Problem,
+        max_iterations: int = 500,
+        restarts: int = 10,
+        seed: int = 42,
+        neighborhood: str = "swap",
+    ):
+        if neighborhood not in NEIGHBORHOODS:
+            raise ValueError(f"unknown neighborhood: {neighborhood}")
         self.problem = problem
         self.max_iterations = max_iterations
         self.restarts = restarts
         self.seed = seed
-        random.seed(seed)
+        self.neighborhood = neighborhood
+        self.rng = random.Random(seed)
         self.visited: int = 0
         self.best_makespan: int = float("inf")
         self.best_sequence: tuple[int, ...] = ()
@@ -34,8 +47,17 @@ class LocalSearch:
         seq = []
         for job in range(self.problem.n_jobs):
             seq.extend([job] * self.problem.n_operations_per_job)
-        random.shuffle(seq)
+        self.rng.shuffle(seq)
         return tuple(seq)
+
+    def _neighbor(self, seq_list: list[int]) -> tuple[int, ...]:
+        i, j = self.rng.sample(range(len(seq_list)), 2)
+        neighbor = list(seq_list)
+        if self.neighborhood == "swap":
+            neighbor[i], neighbor[j] = neighbor[j], neighbor[i]
+        else:
+            neighbor.insert(j, neighbor.pop(i))
+        return tuple(neighbor)
 
     def search(self) -> None:
         for restart in range(self.restarts):
@@ -79,10 +101,7 @@ class LocalSearch:
                     break
                 
                 for _ in range(min(25, n * (n - 1) // 2)):
-                    i, j = random.sample(range(n), 2)
-                    seq_list[i], seq_list[j] = seq_list[j], seq_list[i]
-                    neighbor_sequence = tuple(seq_list)
-                    seq_list[i], seq_list[j] = seq_list[j], seq_list[i]
+                    neighbor_sequence = self._neighbor(seq_list)
 
                     makespan = self._sequence_makespan(neighbor_sequence)
                     self.visited += 1

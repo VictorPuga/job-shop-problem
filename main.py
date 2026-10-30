@@ -12,7 +12,7 @@ from numpy.typing import NDArray
 from utils.a_star import AStar
 from utils.dfs import DFS
 from utils.instances import INSTANCES, OPTIMAL_MAKESPANS
-from utils.local_search import LocalSearch
+from utils.local_search import NEIGHBORHOODS, LocalSearch
 from utils.log import setup_logging
 from utils.problem import Problem
 
@@ -32,6 +32,15 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--no-prune", action="store_true", help="disable DFS pruning")
     parser.add_argument("--seed", type=int, default=42, help="seed for local_search")
+    parser.add_argument(
+        "--neighborhood",
+        choices=NEIGHBORHOODS,
+        default="swap",
+        help="neighborhood for local_search",
+    )
+    parser.add_argument(
+        "--restarts", type=int, default=10, help="restarts for local_search"
+    )
     parser.add_argument("--visualize", action="store_true", help="show a Gantt chart")
     parser.add_argument(
         "--log-nodes",
@@ -70,7 +79,12 @@ def build_solver(args: argparse.Namespace, problem: Problem) -> DFS | AStar | Lo
         return DFS(problem, prune=not args.no_prune)
     if args.algorithm == "a_star":
         return AStar(problem, heuristic=args.heuristic)
-    return LocalSearch(problem, seed=args.seed)
+    return LocalSearch(
+        problem,
+        restarts=args.restarts,
+        seed=args.seed,
+        neighborhood=args.neighborhood,
+    )
 
 
 def run_options(args: argparse.Namespace) -> dict[str, object]:
@@ -78,7 +92,7 @@ def run_options(args: argparse.Namespace) -> dict[str, object]:
         return {"prune": not args.no_prune}
     if args.algorithm == "a_star":
         return {"heuristic": args.heuristic}
-    return {"seed": args.seed}
+    return {"seed": args.seed, "neighborhood": args.neighborhood}
 
 
 def run_tag(options: dict[str, object]) -> str:
@@ -86,7 +100,7 @@ def run_tag(options: dict[str, object]) -> str:
         return "prune" if options["prune"] else "noprune"
     if "heuristic" in options:
         return str(options["heuristic"])
-    return f"seed{options['seed']}"
+    return f"{options['neighborhood']}_seed{options['seed']}"
 
 
 def git_commit() -> str | None:
@@ -177,6 +191,8 @@ def main() -> None:
     elif args.algorithm == "a_star":
         print(f"Heuristic: {args.heuristic}")
     else:
+        print(f"Neighborhood: {args.neighborhood}")
+        print(f"Restarts: {args.restarts}")
         print(f"Seed: {args.seed}")
     print(f"Best makespan: {solver.best_makespan}")
     print(f"Visited: {solver.visited}")
