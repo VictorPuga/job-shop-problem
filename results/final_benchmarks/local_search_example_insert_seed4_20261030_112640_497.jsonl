@@ -1,0 +1,14 @@
+{"ts": "2026-10-30T11:26:40.520", "level": "INFO", "event": "start", "instance": "example", "algorithm": "local_search", "n_jobs": 4, "n_machines": 3, "seed": 4, "neighborhood": "insert", "max_iterations": 500, "restarts": 10, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "4f473cb9199361f7c772c35b49df02fc41bd9ebe", "argv": ["main.py", "-a", "local_search", "-i", "example", "--neighborhood", "insert", "--seed", "4"]}
+{"ts": "2026-10-30T11:26:40.520", "level": "INFO", "event": "new_best", "makespan": 31, "restart": 0, "iteration": 0, "visited": 1, "sequence": [3, 0, 2, 3, 1, 0, 3, 2, 2, 0, 1, 1]}
+{"ts": "2026-10-30T11:26:40.520", "level": "INFO", "event": "restart_done", "restart": 0, "makespan": 31, "iterations": 1, "best": 31, "visited": 26}
+{"ts": "2026-10-30T11:26:40.521", "level": "INFO", "event": "restart_done", "restart": 1, "makespan": 32, "iterations": 6, "best": 31, "visited": 63}
+{"ts": "2026-10-30T11:26:40.521", "level": "INFO", "event": "new_best", "makespan": 29, "restart": 2, "iteration": 3, "visited": 68, "sequence": [1, 2, 0, 0, 2, 3, 1, 2, 3, 3, 0, 1]}
+{"ts": "2026-10-30T11:26:40.521", "level": "INFO", "event": "restart_done", "restart": 2, "makespan": 29, "iterations": 4, "best": 29, "visited": 93}
+{"ts": "2026-10-30T11:26:40.522", "level": "INFO", "event": "restart_done", "restart": 3, "makespan": 31, "iterations": 1, "best": 29, "visited": 119}
+{"ts": "2026-10-30T11:26:40.522", "level": "INFO", "event": "restart_done", "restart": 4, "makespan": 29, "iterations": 4, "best": 29, "visited": 160}
+{"ts": "2026-10-30T11:26:40.523", "level": "INFO", "event": "restart_done", "restart": 5, "makespan": 29, "iterations": 2, "best": 29, "visited": 187}
+{"ts": "2026-10-30T11:26:40.523", "level": "INFO", "event": "restart_done", "restart": 6, "makespan": 31, "iterations": 2, "best": 29, "visited": 215}
+{"ts": "2026-10-30T11:26:40.524", "level": "INFO", "event": "restart_done", "restart": 7, "makespan": 29, "iterations": 1, "best": 29, "visited": 241}
+{"ts": "2026-10-30T11:26:40.524", "level": "INFO", "event": "restart_done", "restart": 8, "makespan": 31, "iterations": 3, "best": 29, "visited": 275}
+{"ts": "2026-10-30T11:26:40.525", "level": "INFO", "event": "restart_done", "restart": 9, "makespan": 36, "iterations": 4, "best": 29, "visited": 311}
+{"ts": "2026-10-30T11:26:40.525", "level": "INFO", "event": "done", "instance": "example", "algorithm": "local_search", "seed": 4, "neighborhood": "insert", "best": 29, "visited": 311, "elapsed": 0.005, "time_to_best": 0.001, "optimal": 29, "reached_optimal": true}
