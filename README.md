@@ -37,6 +37,11 @@ The solvers have no internal time limit, so a killed DFS or A\* run leaves a log
 Some slow cases (DFS on `ft06`, A\* on `la01`, `ft10` and `la36`) are commented out in the script's `CASES` list, uncomment them to run them.
 The logs of the report are in `results/final_benchmarks/`.
 
+To run every algorithm on the generated instances in `instances/`, run `bash scripts/benchmark_instances.sh [instance ...]`.
+With no arguments it uses every `instances/*.json` file, otherwise only the named instances (for example `gen_easy_01 gen_hard_02`).
+For each instance it runs DFS, A\* with both heuristics, and local search with `swap` and `insert` over seeds 1-10.
+It uses the same `TIMEOUT` variable as `benchmark.sh`.
+
 The available instances are the keys of `INSTANCES` in `utils/instances.py`:
 
 - `example`: the small 4x3 instance (default).
