@@ -413,13 +413,14 @@ For each instance it runs DFS, A\* with both heuristics, and local search with b
 | --------------------------------------- | -------------------------------------------------------------- |
 | `*.jsonl`                               | Reference DFS and A\* runs on `example`, `ft06_4x4` and `ft06` |
 | `final_benchmarks/`                     | Logs of the runs reported in the final report                  |
+| `generated_instances_benchmarks/`       | Runs on the generated `instances/*.json` files                 |
 | `max_60_seconds/`                       | Runs under the 60-second budget                                |
+| `long_runs/`                            | Runs with an increased time budget of 1 hour                   |
 | `local_search/`                         | Local search runs                                              |
 | `local_search_neighborhood_benchmarks/` | Comparison of the `swap` and `insert` neighborhoods            |
 | `metrics/`                              | Aggregated metrics per run and per instance                    |
 | `tables/`                               | Summary tables used in the report                              |
 | `figures/`                              | Plots and Gantt charts                                         |
-| `compressed/`                           | Compressed copies of large logs                                |
 
 Regenerate the metrics, tables and figures with:
 
