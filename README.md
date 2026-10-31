@@ -167,7 +167,7 @@ Defined as the keys of `INSTANCES` in `utils/instances.py`. Their known optima a
 
 | Name       | Source                                                 | Size (jobs × machines) | Optimal makespan |
 | ---------- | ------------------------------------------------------ | :--------------------: | :--------------: |
-| `example`  | Small example (default)                                |         4 × 3          |        —         |
+| `example`  | Small example (default)                                |         4 × 3          |        29        |
 | `ft06_4x4` | `ft06` restricted to its first 4 jobs and machines 0–3 |         4 × 4          |      33 \*       |
 | `ft06`     | Fisher & Thompson                                      |         6 × 6          |        55        |
 | `la01`     | Lawrence                                               |         10 × 5         |       666        |
