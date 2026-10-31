@@ -4,7 +4,7 @@
 
 **Report:** [JSP Project Report (PDF)](JSP_ProjectReport_EduardoPorto_VictorPuga.pdf)
 
-Three approaches to the **Job Shop Scheduling Problem (JSSP)**: an exhaustive depth-first search, an informed A\* search and a local search metaheuristic. Every run is recorded as a structured JSON Lines log, so the methods can be compared on solution quality, search effort and running time.
+Three approaches to the **Job Shop Scheduling Problem (JSP)**: an exhaustive depth-first search, an informed A\* search and a local search metaheuristic. Every run is recorded as a structured JSON Lines log, so the methods can be compared on solution quality, search effort and running time.
 
 ## Table of Contents
 
@@ -21,11 +21,11 @@ Three approaches to the **Job Shop Scheduling Problem (JSSP)**: an exhaustive de
 
 ## Overview
 
-| Approach | Module | Type | Guarantees optimum | Variants |
-|---|---|---|:---:|---|
-| Depth-first search | `utils/dfs.py` | Exhaustive search | Yes | With pruning (default), `--no-prune` |
-| A\* | `utils/a_star.py` | Informed search | Yes | Heuristics `lower_bound`, `machine_heads_tails` |
-| Local search | `utils/local_search.py` | Metaheuristic | No | Neighborhoods `swap`, `insert`; random restarts |
+| Approach           | Module                  | Type              | Guarantees optimum | Variants                                        |
+| ------------------ | ----------------------- | ----------------- | :----------------: | ----------------------------------------------- |
+| Depth-first search | `utils/dfs.py`          | Exhaustive search |        Yes         | With pruning (default), `--no-prune`            |
+| A\*                | `utils/a_star.py`       | Informed search   |        Yes         | Heuristics `lower_bound`, `machine_heads_tails` |
+| Local search       | `utils/local_search.py` | Metaheuristic     |         No         | Neighborhoods `swap`, `insert`; random restarts |
 
 The exact methods (DFS and A\*) show the cost of proving optimality, measured in visited states and time. Local search trades that guarantee for speed and is compared against the known optima.
 
@@ -111,17 +111,17 @@ python main.py [options]
 
 `python main.py --help` lists every option. Unknown algorithms, instances or heuristics are rejected by the argument parser.
 
-| Option | Applies to | Default | Description |
-|---|---|---|---|
-| `-a`, `--algorithm` | all | `dfs` | `dfs`, `a_star` or `local_search` |
-| `-i`, `--instance` | all | `example` | Instance name (see [Instances](#instances)) |
-| `--heuristic` | A\* | `machine_heads_tails` | `lower_bound` or `machine_heads_tails` |
-| `--no-prune` | DFS | off | Disable pruning |
-| `--seed` | local search | `42` | Random seed |
-| `--neighborhood` | local search | `swap` | `swap` or `insert` |
-| `--restarts` | local search | `10` | Number of random restarts |
-| `--visualize` | all | off | Show a Gantt chart of the best schedule |
-| `--log-nodes` | all | off | Log every node and neighbor (see [Logging](#logging)) |
+| Option              | Applies to   | Default               | Description                                           |
+| ------------------- | ------------ | --------------------- | ----------------------------------------------------- |
+| `-a`, `--algorithm` | all          | `dfs`                 | `dfs`, `a_star` or `local_search`                     |
+| `-i`, `--instance`  | all          | `example`             | Instance name (see [Instances](#instances))           |
+| `--heuristic`       | A\*          | `machine_heads_tails` | `lower_bound` or `machine_heads_tails`                |
+| `--no-prune`        | DFS          | off                   | Disable pruning                                       |
+| `--seed`            | local search | `42`                  | Random seed                                           |
+| `--neighborhood`    | local search | `swap`                | `swap` or `insert`                                    |
+| `--restarts`        | local search | `10`                  | Number of random restarts                             |
+| `--visualize`       | all          | off                   | Show a Gantt chart of the best schedule               |
+| `--log-nodes`       | all          | off                   | Log every node and neighbor (see [Logging](#logging)) |
 
 ### Examples
 
@@ -165,14 +165,14 @@ For DFS, visited states count `search` calls. For A\*, they count expanded state
 
 Defined as the keys of `INSTANCES` in `utils/instances.py`. Their known optima are stored in `OPTIMAL_MAKESPANS`.
 
-| Name | Source | Size (jobs × machines) | Optimal makespan |
-|---|---|:---:|:---:|
-| `example` | Small example (default) | 4 × 3 | — |
-| `ft06_4x4` | `ft06` restricted to its first 4 jobs and machines 0–3 | 4 × 4 | 33 \* |
-| `ft06` | Fisher & Thompson | 6 × 6 | 55 |
-| `la01` | Lawrence | 10 × 5 | 666 |
-| `ft10` | Fisher & Thompson | 10 × 10 | 930 |
-| `la36` | Lawrence | 15 × 15 | 1268 |
+| Name       | Source                                                 | Size (jobs × machines) | Optimal makespan |
+| ---------- | ------------------------------------------------------ | :--------------------: | :--------------: |
+| `example`  | Small example (default)                                |         4 × 3          |        —         |
+| `ft06_4x4` | `ft06` restricted to its first 4 jobs and machines 0–3 |         4 × 4          |      33 \*       |
+| `ft06`     | Fisher & Thompson                                      |         6 × 6          |        55        |
+| `la01`     | Lawrence                                               |         10 × 5         |       666        |
+| `ft10`     | Fisher & Thompson                                      |        10 × 10         |       930        |
+| `la36`     | Lawrence                                               |        15 × 15         |       1268       |
 
 \* Computed with the DFS solver; not an official benchmark value.
 
@@ -185,11 +185,11 @@ python scripts/generate_instances.py            # base seed 2026
 python scripts/generate_instances.py --seed 7   # custom base seed
 ```
 
-| Family | Count | Size (jobs × machines) | Durations |
-|---|:---:|---|:---:|
-| `gen_easy_01` – `gen_easy_10` | 10 | 3 × 3 or 4 × 4 | 1–10 |
-| `gen_medium_01` – `gen_medium_08` | 8 | 5 × 5, 6 × 6 or 7 × 7 | 1–50 |
-| `gen_hard_01` – `gen_hard_02` | 2 | 10 × 10, 15 × 10 | 1–99 |
+| Family                            | Count | Size (jobs × machines) | Durations |
+| --------------------------------- | :---: | ---------------------- | :-------: |
+| `gen_easy_01` – `gen_easy_10`     |  10   | 3 × 3 or 4 × 4         |   1–10    |
+| `gen_medium_01` – `gen_medium_08` |   8   | 5 × 5, 6 × 6 or 7 × 7  |   1–50    |
+| `gen_hard_01` – `gen_hard_02`     |   2   | 10 × 10, 15 × 10       |   1–99    |
 
 Every `instances/<name>.json` file is available to `main.py` as an instance called `<name>`. Generated instances have no known optimal makespan.
 
@@ -217,17 +217,17 @@ An instance is a JSON object with two `n_jobs × n_machines` matrices:
 }
 ```
 
-| Field | Meaning |
-|---|---|
-| `machines[j][k]` | Machine (0-based) that processes the k-th operation of job `j` |
-| `durations[j][k]` | Processing time of that operation |
+| Field             | Meaning                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `machines[j][k]`  | Machine (0-based) that processes the k-th operation of job `j` |
+| `durations[j][k]` | Processing time of that operation                              |
 
 Each row is the fixed processing order of a job, and each job visits every machine exactly once. Job 0 in the example above reads as:
 
 | Operation | 1st | 2nd | 3rd | 4th |
-|---|:---:|:---:|:---:|:---:|
-| Machine | M2 | M3 | M1 | M0 |
-| Duration | 4 | 10 | 10 | 9 |
+| --------- | :-: | :-: | :-: | :-: |
+| Machine   | M2  | M3  | M1  | M0  |
+| Duration  |  4  | 10  | 10  |  9  |
 
 The objective is to minimize the **makespan**, the completion time of the last operation.
 
@@ -235,11 +235,11 @@ The objective is to minimize the **makespan**, the completion time of the last o
 
 DFS and A\* search an operation-sequence (dispatching) state space, implemented in `utils/problem.py`, `utils/dfs.py` and `utils/a_star.py`.
 
-| Element | Definition |
-|---|---|
-| **State** | A partial schedule (`State`): the next operation of each job (`next_operation`), when each job and machine becomes free (`job_free`, `machine_free`) and the jobs dispatched so far (`sequence`). Its makespan is the latest time any machine becomes free. |
-| **Action** | Dispatch the next operation of one job. It starts as soon as both its job and its machine are free. |
-| **Goal** | Every operation has been dispatched. The makespan of that state is the makespan of the schedule. |
+| Element    | Definition                                                                                                                                                                                                                                                  |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **State**  | A partial schedule (`State`): the next operation of each job (`next_operation`), when each job and machine becomes free (`job_free`, `machine_free`) and the jobs dispatched so far (`sequence`). Its makespan is the latest time any machine becomes free. |
+| **Action** | Dispatch the next operation of one job. It starts as soon as both its job and its machine are free.                                                                                                                                                         |
+| **Goal**   | Every operation has been dispatched. The makespan of that state is the makespan of the schedule.                                                                                                                                                            |
 
 Every state is feasible, so no cycle or precedence checks are needed. The reachable schedules are semi-active, and an optimal schedule is always among them. Each node has at most one child per job with operations left.
 
@@ -255,11 +255,11 @@ Each run writes a JSON Lines log (one JSON object per line) to a new file and pr
 logs/<algorithm>_<instance>_<tag>_<YYYYMMDD>_<HHMMSS>_<mmm>.jsonl
 ```
 
-| Algorithm | Tag | Example |
-|---|---|---|
-| DFS | `prune` or `noprune` | `dfs_ft06_noprune_20261028_171455_123.jsonl` |
-| A\* | heuristic name | `a_star_ft06_lower_bound_20261029_151739_403.jsonl` |
-| Local search | `<neighborhood>_seed<N>` | `local_search_la01_swap_seed3_…jsonl` |
+| Algorithm    | Tag                      | Example                                             |
+| ------------ | ------------------------ | --------------------------------------------------- |
+| DFS          | `prune` or `noprune`     | `dfs_ft06_noprune_20261028_171455_123.jsonl`        |
+| A\*          | heuristic name           | `a_star_ft06_lower_bound_20261029_151739_403.jsonl` |
+| Local search | `<neighborhood>_seed<N>` | `local_search_la01_swap_seed3_…jsonl`               |
 
 The timestamp has millisecond precision and the file is created exclusively, so a run never appends to an existing log.
 
@@ -267,15 +267,15 @@ The timestamp has millisecond precision and the file is created exclusively, so 
 
 Every line contains `ts`, `level` and `event`, plus the fields of that event.
 
-| Event | Algorithm | When |
-|---|---|---|
-| `start` | all | Once, at the beginning of the run |
-| `new_best` | DFS, local search | Each time a better makespan is found |
-| `progress` | DFS | Every 100,000 visits |
-| `progress` | A\* | Every 10 expansions |
-| `solution` | A\* | When the goal state is reached |
-| `restart_done` | local search | At the end of each restart |
-| `done` | all | Once, with the final result |
+| Event          | Algorithm         | When                                 |
+| -------------- | ----------------- | ------------------------------------ |
+| `start`        | all               | Once, at the beginning of the run    |
+| `new_best`     | DFS, local search | Each time a better makespan is found |
+| `progress`     | DFS               | Every 100,000 visits                 |
+| `progress`     | A\*               | Every 10 expansions                  |
+| `solution`     | A\*               | When the goal state is reached       |
+| `restart_done` | local search      | At the end of each restart           |
+| `done`         | all               | Once, with the final result          |
 
 <details>
 <summary><code>start</code>: run description</summary>
@@ -295,20 +295,28 @@ Every line contains `ts`, `level` and `event`, plus the fields of that event.
   "platform": "macOS-27.0.1-arm64-arm-64bit",
   "machine": "arm64",
   "git_commit": "7180ec1017fff01b6f47c6891e31420a062a15d1",
-  "argv": ["main.py", "-a", "a_star", "-i", "example", "--heuristic", "lower_bound"]
+  "argv": [
+    "main.py",
+    "-a",
+    "a_star",
+    "-i",
+    "example",
+    "--heuristic",
+    "lower_bound"
+  ]
 }
 ```
 
-| Field | Description |
-|---|---|
-| `algorithm`, `instance`, `n_jobs`, `n_machines` | What was solved |
-| `prune` | DFS option |
-| `heuristic` | A\* option |
-| `seed`, `neighborhood`, `max_iterations`, `restarts` | Local search options |
-| `log_nodes` | Whether node-level logging is enabled |
-| `python`, `platform`, `machine` | Execution environment |
-| `git_commit` | Code version (`null` outside a git checkout) |
-| `argv` | Full command line |
+| Field                                                | Description                                  |
+| ---------------------------------------------------- | -------------------------------------------- |
+| `algorithm`, `instance`, `n_jobs`, `n_machines`      | What was solved                              |
+| `prune`                                              | DFS option                                   |
+| `heuristic`                                          | A\* option                                   |
+| `seed`, `neighborhood`, `max_iterations`, `restarts` | Local search options                         |
+| `log_nodes`                                          | Whether node-level logging is enabled        |
+| `python`, `platform`, `machine`                      | Execution environment                        |
+| `git_commit`                                         | Code version (`null` outside a git checkout) |
+| `argv`                                               | Full command line                            |
 
 </details>
 
@@ -316,17 +324,25 @@ Every line contains `ts`, `level` and `event`, plus the fields of that event.
 <summary><code>progress</code>: A* search snapshot</summary>
 
 ```json
-{"ts": "2026-10-29T18:53:23.941", "level": "INFO", "event": "progress",
- "visited": 130, "f": 26, "depth": 5, "frontier": 222, "pushed": 467}
+{
+  "ts": "2026-10-29T18:53:23.941",
+  "level": "INFO",
+  "event": "progress",
+  "visited": 130,
+  "f": 26,
+  "depth": 5,
+  "frontier": 222,
+  "pushed": 467
+}
 ```
 
-| Field | Description |
-|---|---|
-| `visited` | States expanded so far |
-| `f` | `f = g + h` of the state being expanded |
-| `depth` | Number of operations dispatched in that state |
-| `frontier` | Size of the open list |
-| `pushed` | Total states added to the open list |
+| Field      | Description                                   |
+| ---------- | --------------------------------------------- |
+| `visited`  | States expanded so far                        |
+| `f`        | `f = g + h` of the state being expanded       |
+| `depth`    | Number of operations dispatched in that state |
+| `frontier` | Size of the open list                         |
+| `pushed`   | Total states added to the open list           |
 
 </details>
 
@@ -334,7 +350,14 @@ Every line contains `ts`, `level` and `event`, plus the fields of that event.
 <summary><code>new_best</code>: improved solution</summary>
 
 ```json
-{"ts": "...", "level": "INFO", "event": "new_best", "makespan": 59, "visited": 120, "sequence": [0, 1]}
+{
+  "ts": "...",
+  "level": "INFO",
+  "event": "new_best",
+  "makespan": 59,
+  "visited": 120,
+  "sequence": [0, 1]
+}
 ```
 
 In local search it also includes `restart` and `iteration`.
@@ -344,17 +367,17 @@ In local search it also includes `restart` and `iteration`.
 <details>
 <summary><code>done</code>: final result</summary>
 
-| Field | Description |
-|---|---|
-| `algorithm`, `instance` | What was solved |
-| `prune` / `heuristic` / `seed`, `neighborhood` | Algorithm options |
-| `best` | Best makespan found |
-| `visited` | Total visited states |
-| `elapsed` | Total search time in seconds |
-| `time_to_best` | Seconds until the last `new_best` or `solution` (absent if none was found) |
-| `max_frontier` | Largest frontier size reached (A\* only) |
-| `optimal` | Known optimal makespan from `OPTIMAL_MAKESPANS` |
-| `reached_optimal` | Whether `best` equals `optimal` |
+| Field                                          | Description                                                                |
+| ---------------------------------------------- | -------------------------------------------------------------------------- |
+| `algorithm`, `instance`                        | What was solved                                                            |
+| `prune` / `heuristic` / `seed`, `neighborhood` | Algorithm options                                                          |
+| `best`                                         | Best makespan found                                                        |
+| `visited`                                      | Total visited states                                                       |
+| `elapsed`                                      | Total search time in seconds                                               |
+| `time_to_best`                                 | Seconds until the last `new_best` or `solution` (absent if none was found) |
+| `max_frontier`                                 | Largest frontier size reached (A\* only)                                   |
+| `optimal`                                      | Known optimal makespan from `OPTIMAL_MAKESPANS`                            |
+| `reached_optimal`                              | Whether `best` equals `optimal`                                            |
 
 </details>
 
@@ -386,17 +409,17 @@ For each instance it runs DFS, A\* with both heuristics, and local search with b
 
 `results/` contains the runs used in the analysis, grouped by experiment, and the outputs derived from them.
 
-| Path | Content |
-|---|---|
-| `*.jsonl` | Reference DFS and A\* runs on `example`, `ft06_4x4` and `ft06` |
-| `final_benchmarks/` | Logs of the runs reported in the final report |
-| `max_60_seconds/` | Runs under the 60-second budget |
-| `local_search/` | Local search runs |
-| `local_search_neighborhood_benchmarks/` | Comparison of the `swap` and `insert` neighborhoods |
-| `metrics/` | Aggregated metrics per run and per instance |
-| `tables/` | Summary tables used in the report |
-| `figures/` | Plots and Gantt charts |
-| `compressed/` | Compressed copies of large logs |
+| Path                                    | Content                                                        |
+| --------------------------------------- | -------------------------------------------------------------- |
+| `*.jsonl`                               | Reference DFS and A\* runs on `example`, `ft06_4x4` and `ft06` |
+| `final_benchmarks/`                     | Logs of the runs reported in the final report                  |
+| `max_60_seconds/`                       | Runs under the 60-second budget                                |
+| `local_search/`                         | Local search runs                                              |
+| `local_search_neighborhood_benchmarks/` | Comparison of the `swap` and `insert` neighborhoods            |
+| `metrics/`                              | Aggregated metrics per run and per instance                    |
+| `tables/`                               | Summary tables used in the report                              |
+| `figures/`                              | Plots and Gantt charts                                         |
+| `compressed/`                           | Compressed copies of large logs                                |
 
 Regenerate the metrics, tables and figures with:
 
