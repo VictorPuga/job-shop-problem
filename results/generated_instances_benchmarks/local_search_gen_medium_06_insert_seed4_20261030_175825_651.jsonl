@@ -1,0 +1,20 @@
+{"ts": "2026-10-30T17:58:25.673", "level": "INFO", "event": "start", "instance": "gen_medium_06", "algorithm": "local_search", "n_jobs": 5, "n_machines": 5, "seed": 4, "neighborhood": "insert", "max_iterations": 500, "restarts": 10, "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "local_search", "-i", "gen_medium_06", "--neighborhood", "insert", "--seed", "4"]}
+{"ts": "2026-10-30T17:58:25.673", "level": "INFO", "event": "new_best", "makespan": 228, "restart": 0, "iteration": 0, "visited": 1, "sequence": [4, 2, 2, 1, 2, 0, 3, 1, 4, 2, 4, 3, 4, 3, 1, 4, 0, 3, 0, 0, 3, 2, 0, 1, 1]}
+{"ts": "2026-10-30T17:58:25.674", "level": "INFO", "event": "new_best", "makespan": 212, "restart": 0, "iteration": 1, "visited": 8, "sequence": [4, 2, 2, 1, 2, 0, 3, 1, 4, 2, 3, 4, 3, 1, 4, 0, 3, 0, 0, 3, 2, 4, 0, 1, 1]}
+{"ts": "2026-10-30T17:58:25.674", "level": "INFO", "event": "new_best", "makespan": 193, "restart": 0, "iteration": 2, "visited": 28, "sequence": [4, 2, 2, 1, 3, 2, 0, 3, 1, 4, 2, 4, 3, 1, 4, 0, 3, 0, 0, 3, 2, 4, 0, 1, 1]}
+{"ts": "2026-10-30T17:58:25.675", "level": "INFO", "event": "new_best", "makespan": 175, "restart": 0, "iteration": 3, "visited": 35, "sequence": [4, 2, 2, 1, 3, 2, 0, 3, 1, 4, 2, 4, 3, 1, 4, 0, 3, 0, 1, 0, 3, 2, 4, 0, 1]}
+{"ts": "2026-10-30T17:58:25.675", "level": "INFO", "event": "restart_done", "restart": 0, "makespan": 175, "iterations": 4, "best": 175, "visited": 60}
+{"ts": "2026-10-30T17:58:25.676", "level": "INFO", "event": "restart_done", "restart": 1, "makespan": 181, "iterations": 1, "best": 175, "visited": 86}
+{"ts": "2026-10-30T17:58:25.677", "level": "INFO", "event": "new_best", "makespan": 174, "restart": 2, "iteration": 5, "visited": 123, "sequence": [0, 3, 4, 2, 0, 1, 3, 3, 2, 0, 4, 1, 3, 1, 0, 2, 1, 4, 1, 2, 2, 3, 0, 4, 4]}
+{"ts": "2026-10-30T17:58:25.678", "level": "INFO", "event": "new_best", "makespan": 160, "restart": 2, "iteration": 6, "visited": 135, "sequence": [0, 3, 4, 1, 2, 0, 1, 3, 3, 2, 0, 4, 1, 3, 0, 2, 1, 4, 1, 2, 2, 3, 0, 4, 4]}
+{"ts": "2026-10-30T17:58:25.678", "level": "INFO", "event": "restart_done", "restart": 2, "makespan": 160, "iterations": 7, "best": 160, "visited": 160}
+{"ts": "2026-10-30T17:58:25.679", "level": "INFO", "event": "restart_done", "restart": 3, "makespan": 194, "iterations": 3, "best": 160, "visited": 191}
+{"ts": "2026-10-30T17:58:25.679", "level": "INFO", "event": "new_best", "makespan": 156, "restart": 4, "iteration": 3, "visited": 197, "sequence": [1, 3, 1, 3, 0, 4, 2, 2, 0, 4, 1, 1, 4, 2, 1, 0, 3, 2, 0, 4, 2, 0, 3, 3, 4]}
+{"ts": "2026-10-30T17:58:25.680", "level": "INFO", "event": "new_best", "makespan": 155, "restart": 4, "iteration": 4, "visited": 202, "sequence": [1, 3, 1, 0, 4, 2, 3, 2, 0, 4, 1, 1, 4, 2, 1, 0, 3, 2, 0, 4, 2, 0, 3, 3, 4]}
+{"ts": "2026-10-30T17:58:25.680", "level": "INFO", "event": "restart_done", "restart": 4, "makespan": 155, "iterations": 5, "best": 155, "visited": 227}
+{"ts": "2026-10-30T17:58:25.683", "level": "INFO", "event": "restart_done", "restart": 5, "makespan": 203, "iterations": 7, "best": 155, "visited": 305}
+{"ts": "2026-10-30T17:58:25.684", "level": "INFO", "event": "restart_done", "restart": 6, "makespan": 158, "iterations": 5, "best": 155, "visited": 344}
+{"ts": "2026-10-30T17:58:25.685", "level": "INFO", "event": "restart_done", "restart": 7, "makespan": 155, "iterations": 5, "best": 155, "visited": 398}
+{"ts": "2026-10-30T17:58:25.686", "level": "INFO", "event": "restart_done", "restart": 8, "makespan": 158, "iterations": 3, "best": 155, "visited": 432}
+{"ts": "2026-10-30T17:58:25.687", "level": "INFO", "event": "restart_done", "restart": 9, "makespan": 157, "iterations": 3, "best": 155, "visited": 466}
+{"ts": "2026-10-30T17:58:25.687", "level": "INFO", "event": "done", "instance": "gen_medium_06", "algorithm": "local_search", "seed": 4, "neighborhood": "insert", "best": 155, "visited": 466, "elapsed": 0.014, "time_to_best": 0.006, "optimal": null, "reached_optimal": null}

@@ -1,0 +1,41 @@
+{"ts": "2026-10-30T17:38:32.480", "level": "INFO", "event": "start", "instance": "gen_easy_05", "algorithm": "a_star", "n_jobs": 4, "n_machines": 4, "heuristic": "machine_heads_tails", "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "a_star", "-i", "gen_easy_05", "--heuristic", "machine_heads_tails"]}
+{"ts": "2026-10-30T17:38:32.481", "level": "INFO", "event": "progress", "visited": 10, "f": 34, "depth": 2, "frontier": 26, "pushed": 37}
+{"ts": "2026-10-30T17:38:32.482", "level": "INFO", "event": "progress", "visited": 20, "f": 34, "depth": 3, "frontier": 51, "pushed": 77}
+{"ts": "2026-10-30T17:38:32.483", "level": "INFO", "event": "progress", "visited": 30, "f": 34, "depth": 3, "frontier": 73, "pushed": 117}
+{"ts": "2026-10-30T17:38:32.483", "level": "INFO", "event": "progress", "visited": 40, "f": 34, "depth": 4, "frontier": 92, "pushed": 157}
+{"ts": "2026-10-30T17:38:32.484", "level": "INFO", "event": "progress", "visited": 50, "f": 34, "depth": 4, "frontier": 112, "pushed": 197}
+{"ts": "2026-10-30T17:38:32.484", "level": "INFO", "event": "progress", "visited": 60, "f": 34, "depth": 5, "frontier": 132, "pushed": 237}
+{"ts": "2026-10-30T17:38:32.485", "level": "INFO", "event": "progress", "visited": 70, "f": 34, "depth": 5, "frontier": 150, "pushed": 277}
+{"ts": "2026-10-30T17:38:32.486", "level": "INFO", "event": "progress", "visited": 80, "f": 34, "depth": 5, "frontier": 168, "pushed": 317}
+{"ts": "2026-10-30T17:38:32.486", "level": "INFO", "event": "progress", "visited": 90, "f": 34, "depth": 5, "frontier": 188, "pushed": 357}
+{"ts": "2026-10-30T17:38:32.487", "level": "INFO", "event": "progress", "visited": 100, "f": 34, "depth": 6, "frontier": 210, "pushed": 397}
+{"ts": "2026-10-30T17:38:32.487", "level": "INFO", "event": "progress", "visited": 110, "f": 34, "depth": 6, "frontier": 222, "pushed": 437}
+{"ts": "2026-10-30T17:38:32.488", "level": "INFO", "event": "progress", "visited": 120, "f": 34, "depth": 6, "frontier": 244, "pushed": 477}
+{"ts": "2026-10-30T17:38:32.489", "level": "INFO", "event": "progress", "visited": 130, "f": 34, "depth": 7, "frontier": 258, "pushed": 517}
+{"ts": "2026-10-30T17:38:32.490", "level": "INFO", "event": "progress", "visited": 140, "f": 34, "depth": 7, "frontier": 277, "pushed": 557}
+{"ts": "2026-10-30T17:38:32.490", "level": "INFO", "event": "progress", "visited": 150, "f": 34, "depth": 7, "frontier": 297, "pushed": 597}
+{"ts": "2026-10-30T17:38:32.491", "level": "INFO", "event": "progress", "visited": 160, "f": 34, "depth": 7, "frontier": 317, "pushed": 637}
+{"ts": "2026-10-30T17:38:32.491", "level": "INFO", "event": "progress", "visited": 170, "f": 34, "depth": 8, "frontier": 333, "pushed": 677}
+{"ts": "2026-10-30T17:38:32.492", "level": "INFO", "event": "progress", "visited": 180, "f": 34, "depth": 8, "frontier": 351, "pushed": 717}
+{"ts": "2026-10-30T17:38:32.492", "level": "INFO", "event": "progress", "visited": 190, "f": 34, "depth": 8, "frontier": 372, "pushed": 757}
+{"ts": "2026-10-30T17:38:32.493", "level": "INFO", "event": "progress", "visited": 200, "f": 34, "depth": 9, "frontier": 386, "pushed": 797}
+{"ts": "2026-10-30T17:38:32.493", "level": "INFO", "event": "progress", "visited": 210, "f": 34, "depth": 10, "frontier": 404, "pushed": 837}
+{"ts": "2026-10-30T17:38:32.494", "level": "INFO", "event": "progress", "visited": 220, "f": 35, "depth": 6, "frontier": 422, "pushed": 873}
+{"ts": "2026-10-30T17:38:32.494", "level": "INFO", "event": "progress", "visited": 230, "f": 35, "depth": 8, "frontier": 443, "pushed": 913}
+{"ts": "2026-10-30T17:38:32.495", "level": "INFO", "event": "progress", "visited": 240, "f": 35, "depth": 8, "frontier": 469, "pushed": 953}
+{"ts": "2026-10-30T17:38:32.495", "level": "INFO", "event": "progress", "visited": 250, "f": 35, "depth": 9, "frontier": 497, "pushed": 993}
+{"ts": "2026-10-30T17:38:32.496", "level": "INFO", "event": "progress", "visited": 260, "f": 35, "depth": 9, "frontier": 524, "pushed": 1033}
+{"ts": "2026-10-30T17:38:32.496", "level": "INFO", "event": "progress", "visited": 270, "f": 35, "depth": 10, "frontier": 554, "pushed": 1073}
+{"ts": "2026-10-30T17:38:32.497", "level": "INFO", "event": "progress", "visited": 280, "f": 35, "depth": 11, "frontier": 583, "pushed": 1112}
+{"ts": "2026-10-30T17:38:32.497", "level": "INFO", "event": "progress", "visited": 290, "f": 35, "depth": 9, "frontier": 561, "pushed": 1146}
+{"ts": "2026-10-30T17:38:32.497", "level": "INFO", "event": "progress", "visited": 300, "f": 35, "depth": 10, "frontier": 559, "pushed": 1183}
+{"ts": "2026-10-30T17:38:32.498", "level": "INFO", "event": "progress", "visited": 310, "f": 35, "depth": 11, "frontier": 568, "pushed": 1220}
+{"ts": "2026-10-30T17:38:32.498", "level": "INFO", "event": "progress", "visited": 320, "f": 35, "depth": 11, "frontier": 586, "pushed": 1256}
+{"ts": "2026-10-30T17:38:32.499", "level": "INFO", "event": "progress", "visited": 330, "f": 35, "depth": 12, "frontier": 606, "pushed": 1291}
+{"ts": "2026-10-30T17:38:32.499", "level": "INFO", "event": "progress", "visited": 340, "f": 35, "depth": 11, "frontier": 598, "pushed": 1323}
+{"ts": "2026-10-30T17:38:32.499", "level": "INFO", "event": "progress", "visited": 350, "f": 35, "depth": 12, "frontier": 592, "pushed": 1352}
+{"ts": "2026-10-30T17:38:32.500", "level": "INFO", "event": "progress", "visited": 360, "f": 35, "depth": 13, "frontier": 592, "pushed": 1380}
+{"ts": "2026-10-30T17:38:32.500", "level": "INFO", "event": "progress", "visited": 370, "f": 35, "depth": 13, "frontier": 588, "pushed": 1406}
+{"ts": "2026-10-30T17:38:32.500", "level": "INFO", "event": "progress", "visited": 380, "f": 35, "depth": 14, "frontier": 576, "pushed": 1427}
+{"ts": "2026-10-30T17:38:32.500", "level": "INFO", "event": "solution", "makespan": 35, "visited": 389, "frontier": 546, "sequence": [0, 1, 2, 2, 3, 1, 1, 2, 3, 3, 0, 0, 0, 1, 2, 3]}
+{"ts": "2026-10-30T17:38:32.500", "level": "INFO", "event": "done", "instance": "gen_easy_05", "algorithm": "a_star", "heuristic": "machine_heads_tails", "best": 35, "visited": 389, "elapsed": 0.02, "time_to_best": 0.02, "max_frontier": 618, "optimal": null, "reached_optimal": null}

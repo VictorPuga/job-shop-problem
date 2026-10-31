@@ -1,0 +1,29 @@
+{"ts": "2026-10-30T17:38:40.270", "level": "INFO", "event": "start", "instance": "gen_easy_07", "algorithm": "a_star", "n_jobs": 4, "n_machines": 4, "heuristic": "machine_heads_tails", "log_nodes": false, "python": "3.12.15", "platform": "macOS-27.2-arm64-arm-64bit", "machine": "arm64", "git_commit": "f753839b764c26d6a26b8a84ca84ba8743b5c083", "argv": ["main.py", "-a", "a_star", "-i", "gen_easy_07", "--heuristic", "machine_heads_tails"]}
+{"ts": "2026-10-30T17:38:40.271", "level": "INFO", "event": "progress", "visited": 10, "f": 33, "depth": 2, "frontier": 26, "pushed": 37}
+{"ts": "2026-10-30T17:38:40.272", "level": "INFO", "event": "progress", "visited": 20, "f": 33, "depth": 3, "frontier": 47, "pushed": 77}
+{"ts": "2026-10-30T17:38:40.272", "level": "INFO", "event": "progress", "visited": 30, "f": 33, "depth": 4, "frontier": 68, "pushed": 117}
+{"ts": "2026-10-30T17:38:40.273", "level": "INFO", "event": "progress", "visited": 40, "f": 33, "depth": 6, "frontier": 89, "pushed": 156}
+{"ts": "2026-10-30T17:38:40.274", "level": "INFO", "event": "progress", "visited": 50, "f": 33, "depth": 8, "frontier": 107, "pushed": 194}
+{"ts": "2026-10-30T17:38:40.274", "level": "INFO", "event": "progress", "visited": 60, "f": 34, "depth": 2, "frontier": 119, "pushed": 227}
+{"ts": "2026-10-30T17:38:40.275", "level": "INFO", "event": "progress", "visited": 70, "f": 34, "depth": 4, "frontier": 149, "pushed": 267}
+{"ts": "2026-10-30T17:38:40.276", "level": "INFO", "event": "progress", "visited": 80, "f": 34, "depth": 6, "frontier": 179, "pushed": 307}
+{"ts": "2026-10-30T17:38:40.276", "level": "INFO", "event": "progress", "visited": 90, "f": 34, "depth": 10, "frontier": 205, "pushed": 343}
+{"ts": "2026-10-30T17:38:40.277", "level": "INFO", "event": "progress", "visited": 100, "f": 34, "depth": 3, "frontier": 224, "pushed": 372}
+{"ts": "2026-10-30T17:38:40.277", "level": "INFO", "event": "progress", "visited": 110, "f": 34, "depth": 4, "frontier": 241, "pushed": 412}
+{"ts": "2026-10-30T17:38:40.278", "level": "INFO", "event": "progress", "visited": 120, "f": 34, "depth": 5, "frontier": 261, "pushed": 452}
+{"ts": "2026-10-30T17:38:40.279", "level": "INFO", "event": "progress", "visited": 130, "f": 34, "depth": 10, "frontier": 273, "pushed": 485}
+{"ts": "2026-10-30T17:38:40.280", "level": "INFO", "event": "progress", "visited": 140, "f": 34, "depth": 11, "frontier": 282, "pushed": 513}
+{"ts": "2026-10-30T17:38:40.280", "level": "INFO", "event": "progress", "visited": 150, "f": 34, "depth": 12, "frontier": 295, "pushed": 542}
+{"ts": "2026-10-30T17:38:40.280", "level": "INFO", "event": "progress", "visited": 160, "f": 34, "depth": 4, "frontier": 304, "pushed": 571}
+{"ts": "2026-10-30T17:38:40.281", "level": "INFO", "event": "progress", "visited": 170, "f": 34, "depth": 5, "frontier": 327, "pushed": 611}
+{"ts": "2026-10-30T17:38:40.282", "level": "INFO", "event": "progress", "visited": 180, "f": 34, "depth": 6, "frontier": 345, "pushed": 651}
+{"ts": "2026-10-30T17:38:40.282", "level": "INFO", "event": "progress", "visited": 190, "f": 34, "depth": 12, "frontier": 340, "pushed": 681}
+{"ts": "2026-10-30T17:38:40.283", "level": "INFO", "event": "progress", "visited": 200, "f": 34, "depth": 14, "frontier": 337, "pushed": 707}
+{"ts": "2026-10-30T17:38:40.283", "level": "INFO", "event": "progress", "visited": 210, "f": 34, "depth": 6, "frontier": 350, "pushed": 742}
+{"ts": "2026-10-30T17:38:40.284", "level": "INFO", "event": "progress", "visited": 220, "f": 34, "depth": 7, "frontier": 364, "pushed": 782}
+{"ts": "2026-10-30T17:38:40.284", "level": "INFO", "event": "progress", "visited": 230, "f": 34, "depth": 13, "frontier": 364, "pushed": 808}
+{"ts": "2026-10-30T17:38:40.284", "level": "INFO", "event": "progress", "visited": 240, "f": 34, "depth": 6, "frontier": 367, "pushed": 830}
+{"ts": "2026-10-30T17:38:40.285", "level": "INFO", "event": "progress", "visited": 250, "f": 34, "depth": 7, "frontier": 386, "pushed": 867}
+{"ts": "2026-10-30T17:38:40.285", "level": "INFO", "event": "progress", "visited": 260, "f": 34, "depth": 14, "frontier": 389, "pushed": 894}
+{"ts": "2026-10-30T17:38:40.285", "level": "INFO", "event": "solution", "makespan": 34, "visited": 261, "frontier": 385, "sequence": [0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 0, 0, 3, 3, 3]}
+{"ts": "2026-10-30T17:38:40.285", "level": "INFO", "event": "done", "instance": "gen_easy_07", "algorithm": "a_star", "heuristic": "machine_heads_tails", "best": 34, "visited": 261, "elapsed": 0.015, "time_to_best": 0.015, "max_frontier": 393, "optimal": null, "reached_optimal": null}
